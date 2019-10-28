@@ -2,12 +2,14 @@
 #include <unordered_map>
 using namespace std;
 
-class ram{
-    std::unordered_map<int, unsigned char> memory;
-
+class RAM{
     public:
+        RAM();
+        std::unordered_map<int, unsigned char> memory;
+
         int32_t get_value();
-        int32_t get_address();
+        void set_addr();
+        int32_t get_addr();
         void set_value(int32_t x);
 
         static const uint32_t ADDR_NULL_OFFSET = 0x00000000;
