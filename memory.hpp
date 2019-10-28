@@ -9,6 +9,7 @@ class RAM{
 
         int32_t get_value();
         void set_addr();
+        void set_instr(uint32_t instr);
         int32_t get_addr();
         void set_value(int32_t x);
 
@@ -25,5 +26,5 @@ class RAM{
 
     private:
         int32_t value;
-        int32_t address;
+        int32_t addr;
 };

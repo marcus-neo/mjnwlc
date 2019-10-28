@@ -1,13 +1,18 @@
 #include "memory.hpp"
+#include <iostream>
 
-int32_t ram::get_value(){
+int32_t RAM::get_value(){
     return value;
 }
 
-int32_t ram::get_address(){
-    return address;
+void RAM:: set_addr(){
+    memory[addr] = value;
 }
 
-void ram::set_value(int32_t x){
+int32_t RAM::get_addr(){
+    return addr;
+}
+
+void RAM::set_value(int32_t x){
     value = x;
 }
