@@ -2,7 +2,7 @@
 #define INSTRUCTIONS_H
 class instructions{
     public:
-        void execute(unsigned long input);
+        void execute(unsigned long input, unsigned short decoded1, unsigned short decoded2, unsigned long decoded3);
     private:
         
         void add(unsigned short& rd, unsigned short rs, unsigned short rt);
