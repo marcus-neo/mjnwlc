@@ -8,7 +8,7 @@
 class simulator{
     public:
         void execute();
-        int decodeinstruction(unsigned char binaryinstruction, unsigned short& decoded1, unsigned short& decoded2, unsigned long& decoded3);
+        int decodeinstruction(unsigned long bin, unsigned short& decoded1, unsigned short& decoded2, unsigned long& decoded3);
 
     private:
     

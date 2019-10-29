@@ -2,7 +2,7 @@
 
 // make JR and ADDIU run first
 //mips program exit 
-void instructions::execute(unsigned long input){
+void instructions::execute(unsigned long input, unsigned short decoded1, unsigned short decoded2, unsigned long decoded3){
     unsigned short opcode = input >> 26;
     
     if(opcode == 0){
