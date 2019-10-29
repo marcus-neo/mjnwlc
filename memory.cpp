@@ -9,26 +9,28 @@ void RAM::loadtoMemory(unsigned char data){
     offset++;
 }
 
-unsigned char RAM::pullfromMemory(uint32_t address){
-    unsigned char data;
-    if(address%4 == 0){
-        data = ((uint32_t)memory[address] + (uint32_t)memory[address+1]) << 8;
-        data = (data + (uint32_t)memory[address+2]) << 8;
-        data = (data + (uint32_t)memory[address+3]) << 8;
+uint32_t RAM::pullfromMemory(int& ProgCount){
+    uint32_t data;
+    
+
+    if(ProgCount%4 == 0){
+        data = ((uint32_t)memory[ProgCount] + (uint32_t)memory[ProgCount+1]) << 8;
+        data = (data + (uint32_t)memory[ProgCount+2]) << 8;
+        data = (data + (uint32_t)memory[ProgCount+3]) << 8;
     }
 
-    else if(address == 0){
+    else if(ProgCount == 0){
         exit(1);
     }
 
     offset-=4;
 
-    memory.erase(address+3);
-    memory.erase(address+2);
-    memory.erase(address+1);
-    memory.erase(address);
+    memory.erase(ProgCount+3);
+    memory.erase(ProgCount+2);
+    memory.erase(ProgCount+1);
+    memory.erase(ProgCount);
 
-    //else throw error: address is invalid
+    //else throw error: ProgCount is invalid
 
     return data;
 }
