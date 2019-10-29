@@ -13,34 +13,27 @@
 #include <fstream>
 #endif
 
-#ifndef SIMULATOR_HPP
-#define SIMULATOR_HPP
 #include <simulator.hpp>
-#endif
-
-#ifndef MEMORY_HPP
-#define MEMORY_HPP
 #include <memory.hpp>
-#endif
+#include <Instructions.hpp>
 
-int main(int argc, char *argv[]){
-    //1. open the file 
-    //2. Loop
-        //2a. Read the first line
-        //2b. Convert the instruction into binary
-        //2c. Store the first line into memory 
-        //2d. Move to second line
-        // Loop
 
-    //1. open the file:
-    ifstream f(argv[1], ios::binary | ios::in);
-    int input;
-    while(f >> input){
+void simulator::execute(){
+    int PC = 124124912094; //PUT THIS TO A GLOBAL VARIABLE IN THE FUTURE
+    RAM r;
+    u_char address;
+    unsigned int binaryinstruction;
+    unsigned short decoded1;
+    unsigned short decoded2;
+    unsigned long decoded3;
+    int instructiontype;
+    while(PC != 0){
+        binaryinstruction = r.pullfromMemory(address);
+        instructiontype = decodeinstruction(binaryinstruction, decoded1, decoded2, decoded3);
         
     }
-    
-}
 
+}
 
 //Implementing Register File
 

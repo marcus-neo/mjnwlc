@@ -1,3 +1,5 @@
+#ifndef INSTRUCTIONS_H
+#define INSTRUCTIONS_H
 class instructions{
     public:
         void execute(unsigned long input);
@@ -62,3 +64,4 @@ class instructions{
 
 
 };
+#endif

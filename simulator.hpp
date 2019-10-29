@@ -1,3 +1,5 @@
+#ifndef SIMULATOR_HPP
+#define SIMULATOR_HPP
 #ifndef STRING
 #define STRING
 #include <string>
@@ -5,9 +7,12 @@
 
 class simulator{
     public:
-        unsigned short read(std::string input);
+        void execute();
+        int decodeinstruction(unsigned int binaryinstruction, unsigned short& decoded1, unsigned short& decoded2, unsigned long& decoded3);
 
     private:
     
 
 };
+
+#endif

@@ -1,7 +1,4 @@
-#ifndef MEMORY_HPP
-#define MEMORY_HPP
 #include "memory.hpp"
-#endif
 #include <iostream>
 
 int32_t RAM::get_value(){
@@ -22,5 +19,8 @@ void RAM::set_value(int32_t x){
 //ADDED BY MARCUS NEO
 void RAM::loadtoMemory(u_char load){
     //load into memory, memory pointer ++ 
+}
+unsigned int RAM::pullfromMemory(u_char address){
+    //pull the data from memory
 }
 //END ADD 

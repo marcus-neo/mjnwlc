@@ -10,15 +10,14 @@
 #define VECTOR
 #include <vector>
 #endif
-#ifndef MEMORY_HPP
-#define MEMORY_HPP
-#include "memory.hpp"
-#endif
 
+#include "memory.hpp"
+#include "simulator.hpp"
 using namespace std;
 
 main(){
-    cout << "hello" << endl;
+
+    RAM r;
     fstream file;
     u_char n;
     file.open("binary3.bin", ios::in | ios::binary);
@@ -29,9 +28,12 @@ main(){
     
     for (int i=0; i<lengthofbin; i++){
         file.read((char *) (&n), sizeof(n));
-        loadtoMemory(n);
+        r.loadtoMemory(n);
         cout  << (int32_t)n << endl;
     }
+
+    simulator S;
+    S.execute();
     
     return 0;
 

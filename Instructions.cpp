@@ -1,8 +1,4 @@
-#ifndef INSTRUCTIONS_H
-#define INSTRUCTIONS_H
 #include <Instructions.hpp>
-#endif
-
 
 // make JR and ADDIU run first
 //mips program exit 

@@ -1,3 +1,5 @@
+#ifndef MEMORY_HPP
+#define MEMORY_HPP
 #include <cstdlib>
 #include <unordered_map>
 using namespace std;
@@ -8,6 +10,7 @@ class RAM{
         std::unordered_map<int, unsigned char> memory;
         //ADDED BY MARCUS NEO
         void loadtoMemory(u_char load);
+        unsigned int pullfromMemory(u_char address);
         //END ADD 
         int32_t get_value();
         void set_addr();
@@ -30,3 +33,5 @@ class RAM{
         int32_t value;
         int32_t addr;
 };
+
+#endif
