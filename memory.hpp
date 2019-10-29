@@ -6,7 +6,9 @@ class RAM{
     public:
         RAM();
         std::unordered_map<int, unsigned char> memory;
-
+        //ADDED BY MARCUS NEO
+        void loadtoMemory(u_char load);
+        //END ADD 
         int32_t get_value();
         void set_addr();
         void set_instr(uint32_t instr);

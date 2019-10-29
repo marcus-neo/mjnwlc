@@ -3,6 +3,9 @@
 #include <Instructions.hpp>
 #endif
 
+
+// make JR and ADDIU run first
+//mips program exit 
 void instructions::execute(unsigned long input){
     unsigned short opcode = input >> 26;
     
