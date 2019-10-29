@@ -7,7 +7,7 @@
 
 
 void simulator::execute(){
-    int PC = 124124912094; //PUT THIS TO A GLOBAL VARIABLE IN THE FUTURE
+    int ProgCount = 124124912094; //PUT THIS TO A GLOBAL VARIABLE IN THE FUTURE
     RAM r;
     instructions ins;
     unsigned char address;
@@ -17,7 +17,7 @@ void simulator::execute(){
     unsigned long decoded3;
     int instructiontype;
     while(PC != 0){
-        binaryinstruction = r.pullfromMemory();
+        binaryinstruction = r.pullfromMemory(int& ProgCount);
         instructiontype = decodeinstruction(binaryinstruction, decoded1, decoded2, decoded3);
         ins.execute(instructiontype, decoded1, decoded2, decoded3);
         
@@ -73,66 +73,111 @@ int decodeinstruction(unsigned long bin, unsigned short& decoded1, unsigned shor
                 return 5;
                 break;
             case 8:
+                decoded1 = rs;
                 return 6;
                 break;
             case 9:
+                decoded1 = rd;
+                decoded2 = rs;
                 return 7;
                 break;
             case 12:
                 return 8;
                 break;
             case 16:
+                decoded1 = rd;
                 return 9;
                 break;
             case 17:
+                decoded1 = rs;
                 return 10;
                 break;
             case 18:
+                decoded1 = rd;
                 return 11;
                 break;
             case 19:
+                decoded1 = rs;
                 return 12;
                 break;
             case 24:
+                decoded1 = rs;
+                decoded2 = rt;
                 return 13;
                 break;
             case 25:
+                decoded1 = rs;
+                decoded2 = rt;
                 return 14;
                 break;
             case 26:
+                decoded1 = rs;
+                decoded2 = rt;
                 return 15;
                 break;
             case 27:
+                decoded1 = rs;
+                decoded2 = rt;
                 return 16;
                 break;
             case 32:
+                decoded1 = rd;
+                decoded2 = rs;
+                decoded3 = rt;
                 return 17;
                 break;
             case 33:
+                decoded1 = rd;
+                decoded2 = rs;
+                decoded3 = rt;
                 return 18;
                 break;
             case 34:
+                decoded1 = rd;
+                decoded2 = rs;
+                decoded3 = rt;  
                 return 19;
                 break;
             case 35:
+                decoded1 = rd;
+                decoded2 = rs;
+                decoded3 = rt;
                 return 20;
                 break;
             case 36:
+                decoded1 = rd;
+                decoded2 = rs;
+                decoded3 = rt;
                 return 21;
                 break;
             case 37:
+                decoded1 = rd;
+                decoded2 = rs;
+                decoded3 = rt;
                 return 22;
                 break;
             case 38:
+                decoded1 = rd;
+                decoded2 = rs;
+                decoded3 = rt;
                 return 23;
                 break;
             case 42:
+                decoded1 = rd;
+                decoded2 = rs;
+                decoded3 = rt;
                 return 24;
                 break;
             case 43:
+                decoded1 = rd;
+                decoded2 = rs;
+                decoded3 = rt;
                 return 25;
                 break;
         }
+    }
+    else if (opcode == 2 || opcode == 3){
+
     }
 }
 
