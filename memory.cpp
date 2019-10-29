@@ -1,6 +1,7 @@
 #include "memory.hpp"
 #include <iostream>
 #include <iterator>
+#include <string>
 
 //ADDED BY MARCUS NEO
 void RAM::loadtoMemory(unsigned char data){
@@ -10,8 +11,10 @@ void RAM::loadtoMemory(unsigned char data){
 }
 
 unsigned char RAM::pullfromMemory(uint32_t address){
+    unsigned char data;
+
     if(address%4 == 0){
-        unsigned char data = memory[address]+memory[address+1]+memory[address+2]+memory[address+3];
+        data = memory[address]+memory[address+1]+memory[address+2]+memory[address+3];
     }
 
     offset-=4;
