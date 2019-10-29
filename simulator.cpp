@@ -16,7 +16,7 @@ void simulator::execute(){
     unsigned short decoded2;
     unsigned long decoded3;
     int instructiontype;
-    while(PC != 0){
+    while(ProgCount != 0){
         binaryinstruction = r.pullfromMemory(int& ProgCount);
         instructiontype = decodeinstruction(binaryinstruction, decoded1, decoded2, decoded3);
         ins.execute(instructiontype, decoded1, decoded2, decoded3);
