@@ -10,7 +10,7 @@ class RAM{
         unordered_map<int, unsigned char> memory;
         //ADDED BY MARCUS NEO
         void loadtoMemory(unsigned char load);
-        unsigned char pullfromMemory(uint32_t address);
+        uint32_t pullfromMemory();
         //END ADD
         uint32_t get_addr(uint32_t data);
 
