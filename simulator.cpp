@@ -1,7 +1,7 @@
 #ifndef STRING
 #define STRING
 #include <string>
-#endif 
+#endif
 
 #ifndef IOSTREAM
 #define IOSTREAM
@@ -13,15 +13,15 @@
 #include <fstream>
 #endif
 
-#include <simulator.hpp>
-#include <memory.hpp>
-#include <Instructions.hpp>
+#include "simulator.hpp"
+#include "memory.hpp"
+#include "Instructions.hpp"
 
 
 void simulator::execute(){
     int PC = 124124912094; //PUT THIS TO A GLOBAL VARIABLE IN THE FUTURE
     RAM r;
-    u_char address;
+    unsigned char address;
     unsigned int binaryinstruction;
     unsigned short decoded1;
     unsigned short decoded2;

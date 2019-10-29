@@ -1,26 +1,41 @@
 #include "memory.hpp"
 #include <iostream>
+#include <iterator>
 
-int32_t RAM::get_value(){
-    return value;
-}
-
-void RAM:: set_addr(){
-    memory[addr] = value;
-}
-
-int32_t RAM::get_addr(){
-    return addr;
-}
-
-void RAM::set_value(int32_t x){
-    value = x;
-}
 //ADDED BY MARCUS NEO
-void RAM::loadtoMemory(u_char load){
-    //load into memory, memory pointer ++ 
+void RAM::loadtoMemory(unsigned char data){
+    uint32_t addr = ADDR_INSTR_OFFSET + offset;
+    memory[addr] = data;
+    offset++;
 }
-unsigned int RAM::pullfromMemory(u_char address){
-    //pull the data from memory
+
+unsigned char RAM::pullfromMemory(uint32_t address){
+    if(address%4 == 0){
+        unsigned char data = memory[address]+memory[address+1]+memory[address+2]+memory[address+3];
+    }
+
+    offset-=4;
+
+    memory.erase(address+3);
+    memory.erase(address+2);
+    memory.erase(address+1);
+    memory.erase(address);
+
+    //else throw error: address is invalid
+
+    return data;
 }
-//END ADD 
+//END ADD
+
+uint32_t RAM::get_addr(uint32_t data){
+    unordered_map<int, unsigned char>::iterator it;
+
+    for(it = memory.begin(); it != memory.end(); it++){
+        if(it->second == data){
+            return it->first;
+        }
+    }
+
+    return -1;
+    //else throw error: data not found
+}

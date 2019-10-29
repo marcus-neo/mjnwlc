@@ -7,16 +7,12 @@ using namespace std;
 class RAM{
     public:
         RAM();
-        std::unordered_map<int, unsigned char> memory;
+        unordered_map<int, unsigned char> memory;
         //ADDED BY MARCUS NEO
-        void loadtoMemory(u_char load);
-        unsigned int pullfromMemory(u_char address);
-        //END ADD 
-        int32_t get_value();
-        void set_addr();
-        void set_instr(uint32_t instr);
-        int32_t get_addr();
-        void set_value(int32_t x);
+        void loadtoMemory(unsigned char load);
+        unsigned char pullfromMemory(uint32_t address);
+        //END ADD
+        uint32_t get_addr(uint32_t data);
 
         static const uint32_t ADDR_NULL_OFFSET = 0x00000000;
         static const uint32_t ADDR_NULL_LENGTH = 0x4;
@@ -31,7 +27,7 @@ class RAM{
 
     private:
         int32_t value;
-        int32_t addr;
+        int32_t offset=0;
 };
 
 #endif
