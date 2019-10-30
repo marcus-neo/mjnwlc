@@ -2,189 +2,230 @@
 
 // make JR and ADDIU run first
 //mips program exit 
-void instructions::execute(unsigned long input, unsigned short decoded1, unsigned short decoded2, unsigned long decoded3){
-    unsigned short opcode = input >> 26;
-    
-    if(opcode == 0){
-        unsigned short function = input & 0b111111;
-        unsigned short rs = (input << 6) >> 27;
-        unsigned short rt = (input << 12) >> 27;
-        unsigned short rd = (input << 17) >> 27;
-        unsigned short shamt = (input << 22) >> 27; 
-        if (function == 1){
+void instructions::execute(int instype, unsigned short decoded1, unsigned short decoded2, unsigned long decoded3){
+    switch(instype){
+        case 0:
             return;
-            //EXIT THE INSTRUCTION CODE
-        }
-        else if(function == 0){
-            sll(rd, rt, shamt);
-        }
-        else if(function == 2){
-            srl(rd, rt, shamt);
-        }
-        else if (function == 3){
-            sra(rd, rt, shamt);
-        }
-        else if (function == 4){
-            sllv(rd, rt, rs);
-        }
-        else if (function == 6){
-            srlv(rd, rt, rs);
-        }
-        else if (function == 7){
-            srav(rd, rt, rs);
-        }
-        else if (function == 8){
-            jr(rs);
-        }
-        else if (function == 9){
-            jalr(rd, rs);
-        }
-        else if (function == 12){
-            //syscall
-        }
-        else if (function == 16){
-            mfhi(rd);
-        }
-        else if (function == 17){
-            mthi(rs);
-        }
-        else if (function == 18){
-            mflo(rd);
-        }
-        else if (function == 19){
-            mtlo(rs);
-        }
-        else if (function == 24){
-            mult(rs, rt);
-        }
-        else if (function == 25){
-            multu(rs, rt);
-        }
-        else if (function == 26){
-            div(rs,rt);
-        }
-        else if (function == 27){
-            divu(rs, rt);
-        }
-        else if (function == 32){
-            add(rd, rs, rt);
-        }
-        else if (function == 33){
-            addu(rd, rs, rt);
-        }
-        else if (function == 34){
-            sub(rd, rs, rt);
-        }
-        else if (function == 35){
-            subu(rd, rs, rt);
-        }
-        else if (function == 36){
-            andd(rd, rs, rt);
-        }
-        else if (function == 37){
-            orr(rd, rs, rt);
-        }
-        else if (function == 38){
-            xorr(rd, rs, rt);   
-        }
-        else if (function == 42){
-            slt(rd, rs, rt);
-        }
-        else if (function == 43){
-            sltu(rd, rs, rt);
-        }
-    }
-    else if(opcode == 2 || opcode == 3){
-        unsigned long address = input & 0x03ffff;
-        if(opcode == 2){
-            j(address);
-        }
-        else if(opcode == 3){
-            jal(address);
-        }
-    }
-    else{
-        unsigned short rs = (input << 6) >> 27;
-        unsigned short rt = (input << 12) >> 27;
-        unsigned short imm = input & 0xffff; 
-        if(opcode == 1){
-            if(rt == 0b00001){
-                bgez(rs, imm);
-            }
-            else if (rt == 0b10001){
-                bgezal(rs, imm);
-            }
-            else if (rt == 0b00000){
-                bltz(rs, imm);
-            }
-            else if (rt == 0b10000){
-                bltzal(rs, imm);
-            }
-            //error code for this section
-            //else{
-            //    return 1000;
-            //}
-        }
-        if(opcode == 4){
-            beq(rs, rt, imm);
-        }
-        else if(opcode == 5){
-            bne(rs, rt, imm);
-        }
-        else if(opcode == 6){
-            blez(rs, imm);
-        }
-        else if(opcode == 7){
-            bgtz(rs, imm);
-        }
-        else if(opcode == 8){
-            addi(rt, rs, imm);
-        }
-        else if(opcode == 9){
-            addiu(rt, rs, imm);
-        }
-        else if(opcode == 10){
-            slti(rt, rs, imm);
-        }
-        else if(opcode == 11){
-            sltiu(rt, rs, imm);
-        }
-        else if(opcode == 12){
-            andi(rt, rs, imm);
-        }
-        else if(opcode == 13){
-            ori(rt, rs, imm);
-        }
-        else if(opcode == 14){
-            xori(rt, rs, imm);
-        }
-        else if(opcode == 15){
-            lui(rt, imm);
-        }
-        else if(opcode == 32){
-            lb(rt, imm, rs);
-        }
-        else if(opcode == 33){
-            lh(rt, imm, rs);
-        }
-        else if(opcode == 34){
-            lw(rt, imm, rs);
-        }
-        else if(opcode == 36){
-            lbu(rt, imm, rs);
-        }
-        else if(opcode == 37){
-            lhu(rt, imm, rs);
-        }
-        else if(opcode == 40){
-            sb(rt, imm, rs);
-        }
-        else if(opcode == 41){
-            sh(rt, imm, rs);
-        }
-        else if(opcode == 43){
-            sw(rt, imm, rs);
-        }
+            break;
+        case 1:
+            sll(decoded1, decoded2, decoded3);
+            return;
+            break;
+        case 2:
+            srl(decoded1, decoded2, decoded3);
+            return;
+            break;
+        case 3:
+            sra(decoded1, decoded2, decoded3);
+            return;
+            break;
+        case 4:
+            sllv(decoded1, decoded2, decoded3);
+            return;
+            break;
+        case 5:
+            srlv(decoded1, decoded2, decoded3);
+            return;
+            break;
+        case 6:
+            srav(decoded1, decoded2, decoded3);
+            return;
+            break;
+        case 7:
+            jr(decoded1);
+            return;
+            break;
+        case 8:
+            jalr(decoded1, decoded2);
+            return;
+            break;
+        case 9:
+            return;
+            break;
+        //syscall
+    
+        case 10:
+            mfhi(decoded1);
+            return;
+            break;
+    
+        case 11:
+            mthi(decoded1);
+            return;
+            break;
+    
+        case 12:
+            mflo(decoded1);
+            return;
+            break;
+        case 13:
+            mtlo(decoded1);
+            return;
+            break;
+        case 14:
+            mult(decoded1, decoded2);
+            return;
+            break;
+        case 15:
+            multu(decoded1, decoded2);
+            return;
+            break;
+        case 16:
+            div(decoded1, decoded2);
+            return;
+            break;
+        case 17:
+            divu(decoded1, decoded2);
+            return;
+            break;
+        case 18:
+            add(decoded1, decoded2, decoded3);
+            return;
+            break;
+        case 19:
+            addu(decoded1, decoded2, decoded3);
+            return;
+            break;
+        case 20:
+            sub(decoded1, decoded2, decoded3);
+            return;
+            break;
+        case 21:
+            subu(decoded1, decoded2, decoded3);
+            return;
+            break;
+        case 22:
+            andd(decoded1, decoded2, decoded3);
+            return;
+            break;
+        case 23:
+            orr(decoded1, decoded2, decoded3);
+            return;
+            break;
+        case 24:
+            xorr(decoded1, decoded2, decoded3);
+            return;
+            break;   
+        case 25:
+            slt(decoded1, decoded2, decoded3);
+            return;
+            break;
+        case 26:
+            sltu(decoded1, decoded2, decoded3);
+            return;
+            break;
+        case 30:
+            j(decoded3);
+            return;
+            break;
+        case 31:
+            jal(decoded3);
+            return;
+            break;
+        case 40:
+            bgez(decoded1, decoded3);
+            return;
+            break;
+        case 41:
+            bgezal(decoded1, decoded3);
+            return;
+            break;
+        case 42:
+            bltz(decoded1, decoded3);
+            return;
+            break;
+        case 43:
+            bltzal(decoded1, decoded3);
+            return;
+            break;
+        case 44:
+            beq(decoded1, decoded2, decoded3);
+            return;
+            break;
+        case 45:
+            bne(decoded1, decoded2, decoded3);
+            return;
+            break;
+        case 46:
+            blez(decoded1, decoded3);
+            return;
+            break;
+        case 47:
+            bgtz(decoded1, decoded3);
+            return;
+            break;
+        case 48:
+            addi(decoded2, decoded1, decoded3);
+            return;
+            break;
+        case 49:
+            addiu(decoded2, decoded1, decoded3);
+            return;
+            break;
+        case 50:
+            slti(decoded2, decoded1, decoded3);
+            return;
+            break;
+        case 51:
+            sltiu(decoded2, decoded1, decoded3);
+            return;
+            break;
+        case 52:
+            andi(decoded2, decoded1, decoded3);
+            return;
+            break;
+        case 53:
+            ori(decoded2, decoded1, decoded3);
+            return;
+            break;
+        case 54:
+            xori(decoded2, decoded1, decoded3);
+            return;
+            break;
+        case 55:
+            lui(decoded1, decoded3);
+            return;
+            break;
+        case 56:
+            lb(decoded1, decoded2, decoded3);
+            return;
+            break;
+        case 57:
+            lh(decoded1, decoded2, decoded3);
+            return;
+            break;
+        case 58:
+            lw(decoded1, decoded2, decoded3);
+            return;
+            break;
+        case 59:
+            lwl(decoded1, decoded2, decoded3);
+            return;
+            break;
+        case 60:
+            lwr(decoded1, decoded2, decoded3);
+            return;
+            break;
+        case 61:
+            lbu(decoded1, decoded2, decoded3);
+            return;
+            break;
+        case 62:
+            lhu(decoded1, decoded2, decoded3);
+            return;
+            break;
+        case 63:
+            sb(decoded1, decoded2, decoded3);
+            return;
+            break;
+        case 64:
+            sh(decoded1, decoded2, decoded3);
+            return;
+            break;
+        case 65:
+            sw(decoded1, decoded2, decoded3);
+            return;
+            break;
     }
 }
 
