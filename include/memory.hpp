@@ -25,14 +25,17 @@ class RAM{
         static const unsigned long ADDR_PUTC_OFFSET = 0x30000004;
         static const unsigned long ADDR_PUTC_LENGTH = 0x4;
 
-        void loadtoMemory(unsigned char load);
+        void loadtoMemory(unsigned char binstr);
         unsigned long pullfromMemory(int& ProgCount);
         unsigned long get_addr(unsigned long data);
         void jump(int& ProgCount, unsigned long addr);
+        void loadtoStack(unsigned long data);
+        unsigned long getfromStack();
 
     private:
         int32_t value;
         int32_t offset=0;
+        int32_t sp=0;
 };
 
 #endif

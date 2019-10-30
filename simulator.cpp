@@ -20,7 +20,7 @@ void simulator::execute(RAM& r){
         binaryinstruction = r.pullfromMemory(ProgCount);
         instructiontype = decodeinstruction(binaryinstruction, decoded1, decoded2, decoded3);
         ins.execute(instructiontype, decoded1, decoded2, decoded3);
-        
+
     }
 
 }

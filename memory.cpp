@@ -12,9 +12,13 @@ RAM::RAM(){
     }
 }
 
-void RAM::loadtoMemory(unsigned char data){
+RAM::~RAM(){
+    cout << "Clearing RAM and stack memory" << endl;
+}
+
+void RAM::loadtoMemory(unsigned char binstr){
     unsigned long addr = ADDR_INSTR_OFFSET + offset;
-    memory[addr] = data;
+    memory[addr] = binstr;
     offset++;
 }
 
@@ -73,4 +77,23 @@ void RAM::jump(int& ProgCount, unsigned long addr){
         cerr << msg << endl;
         return;
     }
+}
+
+void RAM::loadtoStack(unsigned long data){
+    unsigned long lsb = data << 24 >> 24;
+    unsigned long xlsb = data << 16 >> 24;
+    unsigned long xmsb = data << 8 >> 24;
+    unsigned long msb = data >> 24;
+    unsigned long addr = ADDR_DATA_OFFSET + sp;
+
+    stack[addr] = msb;
+    stack[addr+1] = xmsb;
+    stack[addr+2] = xlsb;
+    stack[addr+3] = lsb;
+
+    sp+=4;
+}
+
+unsigned long RAM::getfromStack(){
+
 }
