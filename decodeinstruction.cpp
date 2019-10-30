@@ -7,12 +7,12 @@ int decodeinstruction(unsigned long bin, unsigned short& decoded1, unsigned shor
     
     if(opcode == 0){
         unsigned short function = bin & 0b111111;
-        unsigned short rd = (bin << 6) >> 27;
-        rd = rd & 0b11111;
-        unsigned short rs = (bin << 11) >> 27;
+        unsigned short rs = (bin << 6) >> 27;
         rs = rs & 0b11111;
-        unsigned long rt = (bin << 16) >> 27;
+        unsigned short rt = (bin << 11) >> 27;
         rt = rt & 0b11111;
+        unsigned long rd = (bin << 16) >> 27;
+        rd = rd & 0b11111;
         unsigned long shamt = (bin << 21) >> 27;
         shamt = shamt & 0b11111;
         

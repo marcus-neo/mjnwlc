@@ -38,7 +38,7 @@ void simulator::execute(){
         insexecute(instructiontype, decoded1, decoded2, decoded3);
         cout << "instruction successfully executed" << endl;
         cout << "ProgCount is: " << endl;
-        ProgCount = 0;
+        
     }
 }
 

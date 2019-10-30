@@ -8,7 +8,7 @@ class RegisterFile{
     unsigned long $zero;
     unsigned long $at = 5;
     unsigned long $v0 = 7, $v1 = 9;
-    unsigned long $a0, $a1, $a2, $a3;
+    unsigned long $a0 = 0x10000000, $a1, $a2, $a3;
     unsigned long $t0, $t1, $t2, $t3, $t4, $t5, $t6, $t7;
     unsigned long $s0, $s1, $s2, $s3, $s4, $s5, $s6, $s7;
     unsigned long $t8, $t9;
