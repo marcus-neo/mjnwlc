@@ -1,13 +1,13 @@
 #ifndef REGISTERFILE_HPP
 #define REGISTERFILE_HPP
 
-extern RegisterFile reg;
+
 
 class RegisterFile{
     private: 
     unsigned long $zero;
-    unsigned long $at;
-    unsigned long $v0, $v1;
+    unsigned long $at = 5;
+    unsigned long $v0 = 7, $v1 = 9;
     unsigned long $a0, $a1, $a2, $a3;
     unsigned long $t0, $t1, $t2, $t3, $t4, $t5, $t6, $t7;
     unsigned long $s0, $s1, $s2, $s3, $s4, $s5, $s6, $s7;
@@ -24,5 +24,7 @@ class RegisterFile{
     
 
 };
+
+extern RegisterFile reg;
 
 #endif

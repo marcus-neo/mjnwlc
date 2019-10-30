@@ -1,5 +1,5 @@
-#include <include/Instructions.hpp>
-#include <RegisterFile.hpp>
+#include "include/Instructions.hpp"
+#include "include/RegisterFile.hpp"
 
 // make JR and ADDIU run first
 //mips program exit 

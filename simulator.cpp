@@ -5,7 +5,8 @@
 #include "include/memory.hpp"
 #include "include/Instructions.hpp"
 #include "include/decodeinstruction.hpp"
-
+#include "include/RegisterFile.hpp"
+using namespace std;
 void simulator::execute(){
     unsigned long ProgCount = r.ADDR_INSTR_OFFSET; //PUT THIS TO A GLOBAL VARIABLE IN THE FUTURE
     unsigned char address;
@@ -16,11 +17,28 @@ void simulator::execute(){
     int instructiontype;
 
     while(ProgCount != 0){
+        cout << "pulling from memory" << endl;
         binaryinstruction = r.pullfromMemory(ProgCount);
-        instructiontype = decodeinstruction(binaryinstruction, decoded1, decoded2, decoded3);
-        insexecute(instructiontype, decoded1, decoded2, decoded3);
+        cout << "binary instruction is " << binaryinstruction << endl << endl;
+        cout << "decoding instruction" << endl;
+        cout << "initial r1 is " << reg.readRegister(1) << endl;
+        cout << "initial r2 is " << reg.readRegister(2) << endl;
+        cout << "initial r3 is " << reg.readRegister(3) << endl;
 
+        instructiontype = decodeinstruction(binaryinstruction, decoded1, decoded2, decoded3);
+        cout << "instruction number is: " << instructiontype << endl;
+        cout << "decoded1 = " << decoded1 << endl;
+        cout << "decoded2 = " << decoded2 << endl;
+        cout << "decoded3 = " << decoded3 << endl;
+
+        
+        cout << "executing instruction" << endl;
+        insexecute(instructiontype, decoded1, decoded2, decoded3);
+        cout << "instruction successfully executed" << endl;
+        ProgCount = 0;
     }
+
+    
 
 }
 

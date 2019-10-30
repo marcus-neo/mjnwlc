@@ -1,12 +1,20 @@
-int decodeinstruction(unsigned long bin, unsigned short& decoded1, unsigned short& decoded2, unsigned long decoded3){
+#include "include/decodeinstruction.hpp"
+#include <iostream>
+using namespace std;
+
+int decodeinstruction(unsigned long bin, unsigned short& decoded1, unsigned short& decoded2, unsigned long& decoded3){
     unsigned short opcode = bin >> 26;
     
     if(opcode == 0){
         unsigned short function = bin & 0b111111;
-        unsigned short rs = (bin << 6) >> 27;
-        unsigned short rt = (bin << 6) >> 27;
-        unsigned short rd = (bin << 17) >> 27;
-        unsigned short shamt = (bin << 22) >> 27;
+        unsigned short rd = (bin << 6) >> 27;
+        rd = rd & 0b11111;
+        unsigned short rs = (bin << 11) >> 27;
+        rs = rs & 0b11111;
+        unsigned long rt = (bin << 16) >> 27;
+        rt = rt & 0b11111;
+        unsigned long shamt = (bin << 21) >> 27;
+        shamt = shamt & 0b11111;
         
         switch(function){
             case 1:
@@ -98,6 +106,7 @@ int decodeinstruction(unsigned long bin, unsigned short& decoded1, unsigned shor
                 break;
             case 32:
                 decoded1 = rd;
+                cout << "decoded1 test here = " << decoded1 << endl << endl;
                 decoded2 = rs;
                 decoded3 = rt;
                 return 18;

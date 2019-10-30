@@ -4,8 +4,6 @@
 #include <unordered_map>
 using namespace std;
 
-extern RAM r;
-
 class RAM{
     public:
         RAM();
@@ -39,5 +37,7 @@ class RAM{
         int32_t offset=0;
         int32_t sp=0;
 };
+
+extern RAM r;
 
 #endif

@@ -1,4 +1,4 @@
-#include <include/Instructions.hpp>
+#include "../include/Instructions.hpp"
 void mthi(unsigned short rs){
 
 }
