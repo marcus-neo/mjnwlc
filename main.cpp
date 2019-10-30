@@ -15,17 +15,27 @@
 #include "simulator.hpp"
 using namespace std;
 
-main(){
+RAM r;
 
-    RAM r;
+int main(){
     fstream file;
-    u_char n;
-    file.open("binary3.bin", ios::in | ios::binary);
+    unsigned char n;
+
+    try{
+        file.open("binary3.bin", ios::in | ios::binary);
+
+        if (!file.is_open()) {
+            throw "Error opening binary file!";
+        }
+    } catch(const char* msg){
+        cerr << msg << endl;
+        exit(EXIT_FAILURE);
+    }
+
     file.seekg(0, file.end);
     int lengthofbin = file.tellg();
     file.seekg(0, file.beg);
-    
-    
+
     for (int i=0; i<lengthofbin; i++){
         file.read((char *) (&n), sizeof(n));
         r.loadtoMemory(n);
@@ -33,8 +43,8 @@ main(){
     }
 
     simulator S;
-    S.execute();
-    
-    return 0;
+    S.execute(r);
 
+    cout << "Simulator has finished execution successfully" << endl;
+    return 0;
 }

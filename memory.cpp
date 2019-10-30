@@ -2,15 +2,24 @@
 #include <iostream>
 #include <iterator>
 
-//ADDED BY MARCUS NEO
+RAM::RAM(){
+    for(int i=ADDR_INSTR_OFFSET; i<(ADDR_INSTR_OFFSET+0x1000000); i+=4){
+        memory[i] = '\0';
+    }
+
+    for(int i=ADDR_DATA_OFFSET; i<(ADDR_DATA_OFFSET+0x4000000); i+=4){
+        stack[i] = 0;
+    }
+}
+
 void RAM::loadtoMemory(unsigned char data){
-    uint32_t addr = ADDR_INSTR_OFFSET + offset;
+    unsigned long addr = ADDR_INSTR_OFFSET + offset;
     memory[addr] = data;
     offset++;
 }
 
-uint32_t RAM::pullfromMemory(int& ProgCount){
-    uint32_t data;
+unsigned long RAM::pullfromMemory(int& ProgCount){
+    unsigned long data;
 
     if((ProgCount-1) == (ADDR_INSTR_OFFSET + offset)){
         ProgCount = 0;
@@ -19,26 +28,23 @@ uint32_t RAM::pullfromMemory(int& ProgCount){
 
     try{
         if(ProgCount%4 == 0){
-            data = ((uint32_t)memory[ProgCount] + (uint32_t)memory[ProgCount+1]) << 8;
-            data = (data + (uint32_t)memory[ProgCount+2]) << 8;
-            data = (data + (uint32_t)memory[ProgCount+3]) << 8;
+            data = ((unsigned long)memory[ProgCount] + (unsigned long)memory[ProgCount+1]) << 8;
+            data = (data + (unsigned long)memory[ProgCount+2]) << 8;
+            data = (data + (unsigned long)memory[ProgCount+3]) << 8;
         }
 
         else{
             throw "Invalid address!";
         }
-    } catch (const char* msg){
+    } catch(const char* msg){
         cerr << msg << endl;
         return 1;
     }
 
-    //else throw error: ProgCount is invalid
-
     return data;
 }
-//END ADD
 
-uint32_t RAM::get_addr(uint32_t data){
+unsigned long RAM::get_addr(unsigned long data){
     unordered_map<int, unsigned char>::iterator it;
 
     for(it = memory.begin(); it != memory.end(); it++){
@@ -46,6 +52,25 @@ uint32_t RAM::get_addr(uint32_t data){
             return it->first;
         }
     }
+    try{
+        throw "Data not found!";
+    } catch(const char* msg){
+        cerr << msg << endl;
+        return 1;
+    }
+}
 
-    throw "Data not found!";
+void RAM::jump(int& ProgCount, unsigned long addr){
+    try{
+        if(addr%4 == 0){
+            ProgCount = addr;
+        }
+
+        else{
+            throw "Invalid address!";
+        }
+    } catch(const char* msg){
+        cerr << msg << endl;
+        return;
+    }
 }
