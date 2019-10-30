@@ -14,6 +14,7 @@
 #include "include/memory.hpp"
 #include "include/simulator.hpp"
 #include "include/RegisterFile.hpp"
+#include "include/ProgramCounter.hpp"
 using namespace std;
 
 RAM r;

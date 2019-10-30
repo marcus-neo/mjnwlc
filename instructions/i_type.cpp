@@ -1,5 +1,6 @@
 #include "../include/Instructions.hpp"
 #include "../include/RegisterFile.hpp"
+#include "../include/ProgramCounter.hpp"
 
 void beq(unsigned short rs, unsigned short rt, unsigned short imm){
 

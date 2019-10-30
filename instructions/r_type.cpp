@@ -1,7 +1,9 @@
 #include "../include/Instructions.hpp"
 #include "../include/RegisterFile.hpp"
+#include "../include/ProgramCounter.hpp"
 #include <iostream>
 using namespace std;
+
 void sll(unsigned short& rd, unsigned short rt, unsigned short shamt){
 
 }
@@ -23,8 +25,9 @@ void srav(unsigned short& rd, unsigned short rt, unsigned short rs){
 
 }
 void jr(unsigned short rs){
-
+    ProgCount = reg.readRegister(rs);
 }
+
 void jalr(unsigned short& rd, unsigned short rs){
 
 }

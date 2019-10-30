@@ -6,15 +6,18 @@
 #include "include/Instructions.hpp"
 #include "include/decodeinstruction.hpp"
 #include "include/RegisterFile.hpp"
+#include "include/ProgramCounter.hpp"
 using namespace std;
+
 void simulator::execute(){
-    unsigned long ProgCount = r.ADDR_INSTR_OFFSET; //PUT THIS TO A GLOBAL VARIABLE IN THE FUTURE
+     //PUT THIS TO A GLOBAL VARIABLE IN THE FUTURE
     unsigned char address;
     unsigned long binaryinstruction;
     unsigned short decoded1;
     unsigned short decoded2;
     unsigned long decoded3;
     int instructiontype;
+    ProgCount = r.ADDR_INSTR_OFFSET;
 
     while(ProgCount != 0){
         cout << "pulling from memory" << endl;
@@ -31,18 +34,13 @@ void simulator::execute(){
         cout << "decoded2 = " << decoded2 << endl;
         cout << "decoded3 = " << decoded3 << endl;
 
-        
         cout << "executing instruction" << endl;
         insexecute(instructiontype, decoded1, decoded2, decoded3);
         cout << "instruction successfully executed" << endl;
+        cout << "ProgCount is: " << endl;
         ProgCount = 0;
     }
-
-    
-
 }
-
-
 
 //Implementing Register File
 

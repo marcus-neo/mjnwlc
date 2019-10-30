@@ -1,7 +1,6 @@
-class ProgramCounter{
-    private:
-    unsigned long PC;
+#ifndef PROGRAMCOUNTER_HPP
+#define PROGRAMCOUNTER_HPP
 
-    public: 
-    void jump(unsigned long jump_by);
-};
+extern unsigned long ProgCount;
+
+#endif
