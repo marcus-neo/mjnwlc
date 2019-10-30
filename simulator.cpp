@@ -18,8 +18,9 @@ void simulator::execute(){
     unsigned long decoded3;
     int instructiontype;
     ProgCount = r.ADDR_INSTR_OFFSET;
+    int i=0;
 
-    while(ProgCount != 0){
+    while(ProgCount != 0 && i<3){
         cout << "pulling from memory" << endl;
         binaryinstruction = r.pullfromMemory(ProgCount);
         cout << "binary instruction is " << binaryinstruction << endl << endl;
@@ -38,7 +39,8 @@ void simulator::execute(){
         insexecute(instructiontype, decoded1, decoded2, decoded3);
         cout << "instruction successfully executed" << endl;
         cout << "ProgCount is: " << endl;
-        
+        ProgCount+=4;
+        i++;
     }
 }
 
