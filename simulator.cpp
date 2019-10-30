@@ -7,7 +7,7 @@
 #include "include/decodeinstruction.hpp"
 
 void simulator::execute(){
-    int ProgCount = r.ADDR_INSTR_OFFSET; //PUT THIS TO A GLOBAL VARIABLE IN THE FUTURE
+    unsigned long ProgCount = r.ADDR_INSTR_OFFSET; //PUT THIS TO A GLOBAL VARIABLE IN THE FUTURE
     unsigned char address;
     unsigned long binaryinstruction;
     unsigned short decoded1;
