@@ -11,8 +11,11 @@ void instructions::execute(unsigned long input, unsigned short decoded1, unsigne
         unsigned short rt = (input << 12) >> 27;
         unsigned short rd = (input << 17) >> 27;
         unsigned short shamt = (input << 22) >> 27; 
-
-        if(function == 0){
+        if (function == 1){
+            return;
+            //EXIT THE INSTRUCTION CODE
+        }
+        else if(function == 0){
             sll(rd, rt, shamt);
         }
         else if(function == 2){
