@@ -4,6 +4,7 @@
 
 class simulator{
     public:
+    
         void execute();
         
     private:
