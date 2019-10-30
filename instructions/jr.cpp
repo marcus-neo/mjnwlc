@@ -1,3 +1,5 @@
-#include "include/Instructions.hpp"
+#include <include/Instructions.hpp>
+void jr(unsigned short rs){
 
-void jr(unsigned short rs);
+}
+
