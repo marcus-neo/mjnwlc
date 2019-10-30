@@ -1,4 +1,7 @@
+#ifndef REGISTERFILE_HPP
+#define REGISTERFILE_HPP
 
+extern RegisterFile reg;
 
 class RegisterFile{
     private: 
@@ -21,3 +24,5 @@ class RegisterFile{
     
 
 };
+
+#endif

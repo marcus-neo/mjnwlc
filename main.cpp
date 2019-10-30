@@ -13,9 +13,11 @@
 
 #include "include/memory.hpp"
 #include "include/simulator.hpp"
+#include "include/RegisterFile.hpp"
 using namespace std;
 
 RAM r;
+RegisterFile reg;
 
 int main(){
     fstream file;
@@ -43,7 +45,7 @@ int main(){
     }
 
     simulator S;
-    S.execute(r);
+    S.execute();
 
     cout << "Simulator has finished execution successfully" << endl;
     return 0;

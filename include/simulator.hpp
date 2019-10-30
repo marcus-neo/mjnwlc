@@ -4,7 +4,7 @@
 
 class simulator{
     public:
-        void execute(RAM& r);
+        void execute();
         
     private:
     

@@ -4,6 +4,8 @@
 #include <unordered_map>
 using namespace std;
 
+extern RAM r;
+
 class RAM{
     public:
         RAM();

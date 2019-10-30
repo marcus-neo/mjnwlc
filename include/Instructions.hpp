@@ -54,6 +54,6 @@ void subu(unsigned short& rd, unsigned short rs, unsigned short rt);
 void sw(unsigned short rt, unsigned short rs, unsigned short imm);
 void xorr(unsigned short& rd, unsigned short rs, unsigned short rt);
 void xori(unsigned short rt, unsigned short rs, unsigned short imm);
-void execute(int instype, unsigned short decoded1, unsigned short decoded2, unsigned long decoded3);
+void insexecute(int instype, unsigned short decoded1, unsigned short decoded2, unsigned long decoded3);
 
 #endif

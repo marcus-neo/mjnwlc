@@ -1,8 +1,9 @@
 #include <include/Instructions.hpp>
+#include <RegisterFile.hpp>
 
 // make JR and ADDIU run first
 //mips program exit 
-void execute(int instype, unsigned short decoded1, unsigned short decoded2, unsigned long decoded3){
+void insexecute(int instype, unsigned short decoded1, unsigned short decoded2, unsigned long decoded3){
     switch(instype){
         case 0:
             return;
