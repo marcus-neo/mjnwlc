@@ -11,24 +11,26 @@ void RAM::loadtoMemory(unsigned char data){
 
 uint32_t RAM::pullfromMemory(int& ProgCount){
     uint32_t data;
-    
 
-    if(ProgCount%4 == 0){
-        data = ((uint32_t)memory[ProgCount] + (uint32_t)memory[ProgCount+1]) << 8;
-        data = (data + (uint32_t)memory[ProgCount+2]) << 8;
-        data = (data + (uint32_t)memory[ProgCount+3]) << 8;
+    if((ProgCount-1) == (ADDR_INSTR_OFFSET + offset)){
+        ProgCount = 0;
+        return 1;
     }
 
-    else if(ProgCount == 0){
-        exit(1);
+    try{
+        if(ProgCount%4 == 0){
+            data = ((uint32_t)memory[ProgCount] + (uint32_t)memory[ProgCount+1]) << 8;
+            data = (data + (uint32_t)memory[ProgCount+2]) << 8;
+            data = (data + (uint32_t)memory[ProgCount+3]) << 8;
+        }
+
+        else{
+            throw "Invalid address!";
+        }
+    } catch (const char* msg){
+        cerr << msg << endl;
+        return 1;
     }
-
-    offset-=4;
-
-    memory.erase(ProgCount+3);
-    memory.erase(ProgCount+2);
-    memory.erase(ProgCount+1);
-    memory.erase(ProgCount);
 
     //else throw error: ProgCount is invalid
 
@@ -45,6 +47,5 @@ uint32_t RAM::get_addr(uint32_t data){
         }
     }
 
-    return -1;
-    //else throw error: data not found
+    throw "Data not found!";
 }
