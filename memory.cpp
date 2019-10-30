@@ -18,6 +18,16 @@ RAM::~RAM(){
 
 void RAM::loadtoMemory(unsigned char binstr){
     unsigned long addr = ADDR_INSTR_OFFSET + offset;
+
+    try{
+        if(addr<ADDR_INSTR_OFFSET || addr>=(ADDR_INSTR_OFFSET+0x1000000)){
+            throw "Accessing out of bounds memory!";
+        }
+    } catch(const char* msg){
+        cerr << msg << endl;
+        return;
+    }
+
     memory[addr] = binstr;
     offset++;
 }
@@ -27,6 +37,15 @@ unsigned long RAM::pullfromMemory(unsigned long& ProgCount){
 
     if((ProgCount-1) == (ADDR_INSTR_OFFSET + offset)){
         ProgCount = 0;
+        return 1;
+    }
+
+    try{
+        if(ProgCount<ADDR_INSTR_OFFSET || ProgCount>=(ADDR_INSTR_OFFSET+0x1000000)){
+            throw "Accessing out of bounds memory!";
+        }
+    } catch(const char* msg){
+        cerr << msg << endl;
         return 1;
     }
 
@@ -56,6 +75,7 @@ unsigned long RAM::get_addr(unsigned long data){
             return it->first;
         }
     }
+
     try{
         throw "Data not found!";
     } catch(const char* msg){
@@ -80,11 +100,21 @@ void RAM::jump(int& ProgCount, unsigned long addr){
 }
 
 void RAM::loadtoStack(unsigned long data){
+    unsigned long addr = ADDR_DATA_OFFSET + sp;
+
+    try{
+        if(addr<ADDR_DATA_OFFSET || addr>=(ADDR_DATA_OFFSET+0x1000000)){
+            throw "Accessing out of bounds memory!";
+        }
+    } catch(const char* msg){
+        cerr << msg << endl;
+        return;
+    }
+
     unsigned long lsb = data << 24 >> 24;
     unsigned long xlsb = data << 16 >> 24;
     unsigned long xmsb = data << 8 >> 24;
     unsigned long msb = data >> 24;
-    unsigned long addr = ADDR_DATA_OFFSET + sp;
 
     stack[addr] = msb;
     stack[addr+1] = xmsb;
@@ -96,6 +126,15 @@ void RAM::loadtoStack(unsigned long data){
 
 unsigned long RAM::getfromStack(unsigned long addr){
     unsigned long data;
+
+    try{
+        if(addr<ADDR_DATA_OFFSET || addr>=(ADDR_DATA_OFFSET+0x1000000)){
+            throw "Accessing out of bounds memory!";
+        }
+    } catch(const char* msg){
+        cerr << msg << endl;
+        return 1;
+    }
 
     try{
         if(addr%4 == 0){
