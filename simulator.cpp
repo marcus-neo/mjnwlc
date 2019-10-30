@@ -1,10 +1,10 @@
 #include <string>
 #include <iostream>
 #include <fstream>
-#include "simulator.hpp"
-#include "memory.hpp"
-#include "Instructions.hpp"
-#include "decodeinstruction.hpp"
+#include "include/simulator.hpp"
+#include "include/memory.hpp"
+#include "include/Instructions.hpp"
+#include "include/decodeinstruction.hpp"
 
 void simulator::execute(RAM& r){
     int ProgCount = r.ADDR_INSTR_OFFSET; //PUT THIS TO A GLOBAL VARIABLE IN THE FUTURE

@@ -1,6 +1,6 @@
 #ifndef REGISTERFILE_H
 #define REGISTERFILE_H
-#include "RegisterFile.hpp"
+#include "include/RegisterFile.hpp"
 #endif
 
 unsigned long RegisterFile::readRegister(int RegisterNumber){

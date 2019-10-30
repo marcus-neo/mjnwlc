@@ -11,8 +11,8 @@
 #include <vector>
 #endif
 
-#include "memory.hpp"
-#include "simulator.hpp"
+#include "include/memory.hpp"
+#include "include/simulator.hpp"
 using namespace std;
 
 RAM r;
