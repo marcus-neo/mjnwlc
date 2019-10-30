@@ -26,11 +26,11 @@ class RAM{
         static const unsigned long ADDR_PUTC_LENGTH = 0x4;
 
         void loadtoMemory(unsigned char binstr);
-        unsigned long pullfromMemory(int& ProgCount);
+        unsigned long pullfromMemory(unsigned long& ProgCount);
         unsigned long get_addr(unsigned long data);
         void jump(int& ProgCount, unsigned long addr);
         void loadtoStack(unsigned long data);
-        unsigned long getfromStack();
+        unsigned long getfromStack(unsigned long addr);
 
     private:
         int32_t value;

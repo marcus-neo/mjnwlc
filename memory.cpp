@@ -22,7 +22,7 @@ void RAM::loadtoMemory(unsigned char binstr){
     offset++;
 }
 
-unsigned long RAM::pullfromMemory(int& ProgCount){
+unsigned long RAM::pullfromMemory(unsigned long& ProgCount){
     unsigned long data;
 
     if((ProgCount-1) == (ADDR_INSTR_OFFSET + offset)){
@@ -32,9 +32,9 @@ unsigned long RAM::pullfromMemory(int& ProgCount){
 
     try{
         if(ProgCount%4 == 0){
-            data = ((unsigned long)memory[ProgCount] + (unsigned long)memory[ProgCount+1]) << 8;
+            data = (((unsigned long)memory[ProgCount] << 8) + (unsigned long)memory[ProgCount+1]) << 8;
             data = (data + (unsigned long)memory[ProgCount+2]) << 8;
-            data = (data + (unsigned long)memory[ProgCount+3]) << 8;
+            data = data + (unsigned long)memory[ProgCount+3];
         }
 
         else{
@@ -94,6 +94,30 @@ void RAM::loadtoStack(unsigned long data){
     sp+=4;
 }
 
-unsigned long RAM::getfromStack(){
+unsigned long RAM::getfromStack(unsigned long addr){
+    unsigned long data;
 
+    try{
+        if(addr%4 == 0){
+            data = ((stack[addr] << 8) + stack[addr+1]) << 8;
+            data = (data + stack[addr+2]) << 8;
+            data = data + stack[addr+3];
+
+            stack.erase(addr+3);
+            stack.erase(addr+2);
+            stack.erase(addr+1);
+            stack.erase(addr);
+
+            sp-=4;
+        }
+
+        else{
+            throw "Invalid address!";
+        }
+    } catch(const char* msg){
+        cerr << msg << endl;
+        return 1;
+    }
+
+    return data;
 }
