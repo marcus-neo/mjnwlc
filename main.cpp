@@ -50,5 +50,5 @@ int main(){
     S.execute();
 
     cout << "Simulator has finished execution successfully" << endl;
-    return 0;
+    return -10;
 }
