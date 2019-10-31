@@ -1,4 +1,4 @@
 #ifndef DECODEINSTRUCTION_HPP
 #define DECODEINSTRUCTION_HPP
-int decodeinstruction(unsigned long bin, unsigned short& decoded1, unsigned short& decoded2, unsigned long& decoded3);
+int decodeinstruction(unsigned int bin, unsigned short& decoded1, unsigned short& decoded2, unsigned int& decoded3);
 #endif

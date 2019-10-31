@@ -10,27 +10,27 @@ class RAM{
         ~RAM();
 
         unordered_map<int, unsigned char> memory;
-        unordered_map<int, unsigned long> stack;
+        unordered_map<int, unsigned int> stack;
 
-        static const unsigned long ADDR_NULL_OFFSET = 0x00000000;
-        static const unsigned long ADDR_NULL_LENGTH = 0x4;
+        static const unsigned int ADDR_NULL_OFFSET = 0x00000000;
+        static const unsigned int ADDR_NULL_LENGTH = 0x4;
         //CPU can store up to 2^22 (4194304) instructions
-        static const unsigned long ADDR_INSTR_OFFSET = 0x10000000;
-        static const unsigned long ADDR_INSTR_LENGTH = 0x1000000;
+        static const unsigned int ADDR_INSTR_OFFSET = 0x10000000;
+        static const unsigned int ADDR_INSTR_LENGTH = 0x1000000;
         //RAM can store up to 2^24 (16777216) 32-bit data
-        static const unsigned long ADDR_DATA_OFFSET = 0x20000000;
-        static const unsigned long ADDR_DATA_LENGTH = 0x4000000;
-        static const unsigned long ADDR_GETC_OFFSET = 0x30000000;
-        static const unsigned long ADDR_GETC_LENGTH = 0x4;
-        static const unsigned long ADDR_PUTC_OFFSET = 0x30000004;
-        static const unsigned long ADDR_PUTC_LENGTH = 0x4;
+        static const unsigned int ADDR_DATA_OFFSET = 0x20000000;
+        static const unsigned int ADDR_DATA_LENGTH = 0x4000000;
+        static const unsigned int ADDR_GETC_OFFSET = 0x30000000;
+        static const unsigned int ADDR_GETC_LENGTH = 0x4;
+        static const unsigned int ADDR_PUTC_OFFSET = 0x30000004;
+        static const unsigned int ADDR_PUTC_LENGTH = 0x4;
 
         void loadtoMemory(unsigned char binstr);
-        unsigned long pullfromMemory(unsigned long& ProgCount);
-        unsigned long get_addr(unsigned long data);
-        void jump(int& ProgCount, unsigned long addr);
-        void loadtoStack(unsigned long data);
-        unsigned long getfromStack(unsigned long addr);
+        unsigned int pullfromMemory(unsigned int& ProgCount);
+        unsigned int get_addr(unsigned int data);
+        void jump(int& ProgCount, unsigned int addr);
+        void loadtoStack(unsigned int data);
+        unsigned int getfromStack(unsigned int addr);
 
     private:
         int32_t value;

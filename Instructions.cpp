@@ -3,7 +3,7 @@
 
 // make JR and ADDIU run first
 //mips program exit 
-void insexecute(int instype, unsigned short decoded1, unsigned short decoded2, unsigned long decoded3){
+void insexecute(int instype, unsigned short decoded1, unsigned short decoded2, unsigned int decoded3){
     switch(instype){
         case 0:
             return;

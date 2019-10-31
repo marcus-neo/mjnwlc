@@ -2,7 +2,7 @@
 #include <iostream>
 using namespace std;
 
-int decodeinstruction(unsigned long bin, unsigned short& decoded1, unsigned short& decoded2, unsigned long& decoded3){
+int decodeinstruction(unsigned int bin, unsigned short& decoded1, unsigned short& decoded2, unsigned int& decoded3){
     unsigned short opcode = bin >> 26;
     cout << "opcode is: " << opcode << endl;
     if(opcode == 0){
@@ -11,9 +11,9 @@ int decodeinstruction(unsigned long bin, unsigned short& decoded1, unsigned shor
         rs = rs & 0b11111;
         unsigned short rt = (bin << 11) >> 27;
         rt = rt & 0b11111;
-        unsigned long rd = (bin << 16) >> 27;
+        unsigned int rd = (bin << 16) >> 27;
         rd = rd & 0b11111;
-        unsigned long shamt = (bin << 21) >> 27;
+        unsigned int shamt = (bin << 21) >> 27;
         shamt = shamt & 0b11111;
         
         switch(function){
@@ -171,7 +171,7 @@ int decodeinstruction(unsigned long bin, unsigned short& decoded1, unsigned shor
         }
     }
     else if (opcode == 2 || opcode == 3){
-        unsigned long decoded3 = bin & 0x03ffff;
+        unsigned int decoded3 = bin & 0x03ffff;
         switch(opcode){
             case 2:
                 return 30;
@@ -192,7 +192,7 @@ int decodeinstruction(unsigned long bin, unsigned short& decoded1, unsigned shor
     else{
         unsigned short rs = (bin << 6) >> 27;
         unsigned short rt = (bin << 12) >> 27;
-        unsigned long imm = bin & 0xffff;
+        unsigned int imm = bin & 0xffff;
         
         switch (opcode){
             case 1:
