@@ -17,12 +17,13 @@ void simulator::execute(){
     unsigned short decoded2;
     unsigned long decoded3;
     int instructiontype;
-    ProgCount = r.ADDR_INSTR_OFFSET;
+    PC.ProgCount = r.ADDR_INSTR_OFFSET;
     int i=0;
 
-    while(ProgCount != 0 && i<3){
+    while(PC.ProgCount != 0 && i<3){
         cout << "pulling from memory" << endl;
-        binaryinstruction = r.pullfromMemory(ProgCount);
+        binaryinstruction = r.pullfromMemory(PC.ProgCount);
+        cout << "ProgCount is: " << PC.ProgCount << endl;
         cout << "binary instruction is " << binaryinstruction << endl << endl;
         cout << "decoding instruction" << endl;
         cout << "initial r1 is " << reg.readRegister(1) << endl;
@@ -38,8 +39,14 @@ void simulator::execute(){
         cout << "executing instruction" << endl;
         insexecute(instructiontype, decoded1, decoded2, decoded3);
         cout << "instruction successfully executed" << endl;
-        cout << "ProgCount is: " << endl;
-        ProgCount+=4;
+        if (PC.interference == 0){
+            PC.ProgCount+=4;
+        }
+        else{
+            PC.interference == 0;
+        }
+        //THIS IF LOOP IS TEMPORARY --> PLEASE IMPLEMENT IN PROGRAMCOUNTER.CPP AND PROGRAMCOUNTER.HPP
+        
         i++;
     }
 }

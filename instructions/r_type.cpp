@@ -25,7 +25,8 @@ void srav(unsigned short& rd, unsigned short rt, unsigned short rs){
 
 }
 void jr(unsigned short rs){
-    ProgCount = reg.readRegister(rs);
+    PC.ProgCount = reg.readRegister(rs);
+    PC.interference = 1;
 }
 
 void jalr(unsigned short& rd, unsigned short rs){

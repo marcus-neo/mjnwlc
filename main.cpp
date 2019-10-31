@@ -16,7 +16,7 @@
 #include "include/RegisterFile.hpp"
 #include "include/ProgramCounter.hpp"
 using namespace std;
-
+programCounter PC;
 RAM r;
 RegisterFile reg;
 
