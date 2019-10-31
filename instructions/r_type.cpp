@@ -1,6 +1,7 @@
 #include "../include/Instructions.hpp"
 #include "../include/RegisterFile.hpp"
 #include "../include/ProgramCounter.hpp"
+#include "../tools.hpp"
 #include <iostream>
 using namespace std;
 
@@ -57,16 +58,36 @@ void divu(unsigned short rs, unsigned short rt){
 
 }
 void add(unsigned short& rd, unsigned short rs, unsigned short rt){
-    reg.writeRegister(rd, reg.readRegister(rs) + reg.readRegister(rt));
+    if(((reg.readRegister(rs) & 0x80000000) > 0) && ((reg.readRegister(rt)) & 0x80000000) > 0){
+        int xs = twos(reg.readRegister(rs));
+        int xt = twos(reg.readRegister(rt));
+        reg.writeRegister(rd, xs + xt);
+    }
+
+    else{
+        reg.writeRegister(rd, reg.readRegister(rs) + reg.readRegister(rt));
+    }
+
     cout << endl;
     cout << "rs = " << reg.readRegister(rs) << endl;
     cout << "rt = " << reg.readRegister(rt) << endl;
     cout << "rd = " << reg.readRegister(rd) << endl;
     cout << endl;
-
 }
-void addu(unsigned short& rd, unsigned short rs, unsigned short rt){
 
+void addu(unsigned short& rd, unsigned short rs, unsigned short rt){
+    reg.writeRegister(rd, reg.readRegister(rs) + reg.readRegister(rt));
+
+    if(((unsigned)reg.readRegister(rs) >= 0 && (unsigned)reg.readRegister(rt) >= 0 && (unsigned)reg.readRegister(rd) < 0) || ((unsigned)reg.readRegister(rs) < 0 && (unsigned)reg.readRegister(rt) < 0 && (unsigned)reg.readRegister(rd) >= 0)){
+        cout << "Error: Arithmetic overflow occurred!" << endl;
+        exit(10);
+    }
+
+    cout << endl;
+    cout << "rs = " << reg.readRegister(rs) << endl;
+    cout << "rt = " << reg.readRegister(rt) << endl;
+    cout << "rd = " << reg.readRegister(rd) << endl;
+    cout << endl;
 }
 void sub(unsigned short& rd, unsigned short rs, unsigned short rt){
 
