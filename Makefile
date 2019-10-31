@@ -30,3 +30,9 @@ j_type.o: instructions/j_type.cpp
 
 i_type.o: instructions/i_type.cpp
 	g++ -c instructions/i_type.cpp
+
+run:
+	./prog
+
+clean:
+	rm *.o prog
