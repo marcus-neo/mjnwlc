@@ -66,6 +66,10 @@ void add(unsigned short& rd, unsigned short rs, unsigned short rt){
 
 }
 void addu(unsigned short& rd, unsigned short rs, unsigned short rt){
+    bool MSBrs, MSBrt;
+    MSBrs = rs >> 31;
+    MSBrt = rt >> 31;
+    
 
 }
 void sub(unsigned short& rd, unsigned short rs, unsigned short rt){
