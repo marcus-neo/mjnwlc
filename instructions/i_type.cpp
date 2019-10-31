@@ -5,26 +5,44 @@
 using namespace std;
 
 void beq(unsigned short rs, unsigned short rt, unsigned short imm){
-
+    if(reg.readRegister(rs) == reg.readRegister(rt)){
+        PC.ProgCount += (imm << 2);
+    }
 }
+
 void bne(unsigned short rs, unsigned short rt, unsigned short imm){
-
+    if(reg.readRegister(rs) != reg.readRegister(rt)){
+        PC.ProgCount += (imm << 2);
+    }
 }
+
 void blez(unsigned short rs, unsigned short imm){
-
+    if(reg.readRegister(rs) <= 0){
+        PC.ProgCount += (imm << 2);
+    }
 }
+
 void bgtz(unsigned short rs, unsigned short imm){
-
+    if(reg.readRegister(rs) > 0){
+        PC.ProgCount += (imm << 2);
+    }
 }
+
 void bltz(unsigned short rs, unsigned short imm){
-
+    if(reg.readRegister(rs) < 0){
+        PC.ProgCount += (imm << 2);
+    }
 }
+
 void bltzal(unsigned short rs, unsigned short imm){
 
 }
 void bgez(unsigned short rs, unsigned short imm){
-
+    if(reg.readRegister(rs) >= 0){
+        PC.ProgCount += (imm << 2);
+    }
 }
+
 void bgezal(unsigned short rs, unsigned short imm){
 
 }
@@ -48,6 +66,7 @@ void addi(unsigned short rt, unsigned short rs, unsigned short imm){
         }
     }
 }
+
 void addiu(unsigned short rt, unsigned short rs, unsigned short imm){
     reg.writeRegister(rt, (unsigned)(reg.readRegister(rs) + imm));
 
@@ -56,12 +75,27 @@ void addiu(unsigned short rt, unsigned short rs, unsigned short imm){
         exit(-10);
     }
 }
+
 void slti(unsigned short rt, unsigned short rs, unsigned short imm){
+    if((signed)reg.readRegister(rs) < (signed)imm){
+        reg.writeRegister(rt, 1);
+    }
 
+    else{
+        reg.writeRegister(rt, 0);
+    }
 }
+
 void sltiu(unsigned short rt, unsigned short rs, unsigned short imm){
+    if((unsigned)reg.readRegister(rs) < (unsigned)imm){
+        reg.writeRegister(rt, 1);
+    }
 
+    else{
+        reg.writeRegister(rt, 0);
+    }
 }
+
 void andi(unsigned short rt, unsigned short rs, unsigned short imm){
     reg.writeRegister(rt, (reg.readRegister(rs) & imm));
 }
