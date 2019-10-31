@@ -97,11 +97,30 @@ void addu(unsigned short& rd, unsigned short rs, unsigned short rt){
     cout << "rd = " << reg.readRegister(rd) << endl;
     cout << endl;
 }
-void sub(unsigned short& rd, unsigned short rs, unsigned short rt){
 
-}
-void subu(unsigned short& rd, unsigned short rs, unsigned short rt){
+void sub(unsigned short& rd, unsigned short rs, unsigned short rt){
     reg.writeRegister(rd, (reg.readRegister(rs) - reg.readRegister(rt)));
+
+    if(((reg.readRegister(rs) & 0x80000000) > 0) && ((reg.readRegister(rt) & 0x80000000) == 0) && ((reg.readRegister(rd) & 0x80000000) == 0)){
+        cout << "Error: Arithmetic overflow occurred!" << endl;
+        exit(-10);
+    }
+
+    else if(((reg.readRegister(rs) & 0x80000000) == 0) && ((reg.readRegister(rt) & 0x80000000) > 0) && ((reg.readRegister(rd) & 0x80000000) > 0)){
+        cout << "Error: Arithmetic overflow occurred!" << endl;
+        exit(-10);
+    }
+}
+
+void subu(unsigned short& rd, unsigned short rs, unsigned short rt){
+    if(reg.readRegister(rs) < reg.readRegister(rt)){
+        cout << "Error: Arithmetic overflow occurred!" << endl;
+        exit(-10);
+    }
+
+    else{
+        reg.writeRegister(rd, (reg.readRegister(rs) - reg.readRegister(rt)));
+    }
 }
 
 void andd(unsigned short& rd, unsigned short rs, unsigned short rt){
