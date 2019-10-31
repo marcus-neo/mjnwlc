@@ -5,25 +5,59 @@
 using namespace std;
 
 void sll(unsigned short& rd, unsigned short rt, unsigned short shamt){
-
+    reg.writeRegister(rd, reg.readRegister(rt) << shamt);
 }
 
 void srl(unsigned short& rd, unsigned short rt, unsigned short shamt){
-
+    reg.writeRegister(rd, reg.readRegister(rt) >> shamt);
 }
 
 void sra(unsigned short& rd, unsigned short rt, unsigned short shamt){
+    if((reg.readRegister(rt) & 0x80000000) > 0){
+        int temp = reg.readRegister(rt) >> shamt;
+        int sign = 0;
 
+        for(int i=0; i<shamt; i++){
+            sign++;
+            sign = sign << 1;
+        }
+        sign = sign << (31-shamt);
+
+        reg.writeRegister(rd, temp | sign);
+    }
+
+    else{
+        reg.writeRegister(rd, reg.readRegister(rt) >> shamt);
+    }
 }
+
 void sllv(unsigned short& rd, unsigned short rt, unsigned short rs){
-
+    reg.writeRegister(rd, reg.readRegister(rt) << reg.readRegister(rs));
 }
+
 void srlv(unsigned short& rd, unsigned short rt, unsigned short rs){
-
+    reg.writeRegister(rd, reg.readRegister(rt) >> reg.readRegister(rs));
 }
+
 void srav(unsigned short& rd, unsigned short rt, unsigned short rs){
+    if((reg.readRegister(rt) & 0x80000000) > 0){
+        int temp = reg.readRegister(rt) >> reg.readRegister(rs);
+        int sign = 0;
 
+        for(int i=0; i<reg.readRegister(rs); i++){
+            sign++;
+            sign = sign << 1;
+        }
+        sign = sign << (31-reg.readRegister(rs));
+
+        reg.writeRegister(rd, temp | sign);
+    }
+
+    else{
+        reg.writeRegister(rd, reg.readRegister(rt) >> reg.readRegister(rs));
+    }
 }
+
 void jr(unsigned short rs){
     PC.ProgCount = reg.readRegister(rs);
     PC.interference = 1;
@@ -134,9 +168,23 @@ void orr(unsigned short& rd, unsigned short rs, unsigned short rt){
 void xorr(unsigned short& rd, unsigned short rs, unsigned short rt){
     reg.writeRegister(rd, (reg.readRegister(rs) ^ reg.readRegister(rt)));
 }
+
 void slt(unsigned short& rd, unsigned short rs, unsigned short rt){
+    if((signed)reg.readRegister(rs) < (signed)reg.readRegister(rt)){
+        reg.writeRegister(rd, 1);
+    }
 
+    else{
+        reg.writeRegister(rd, 0);
+    }
 }
-void sltu(unsigned short& rd, unsigned short rs, unsigned short rt){
 
+void sltu(unsigned short& rd, unsigned short rs, unsigned short rt){
+    if((unsigned)reg.readRegister(rs) < (unsigned)reg.readRegister(rt)){
+        reg.writeRegister(rd, 1);
+    }
+
+    else{
+        reg.writeRegister(rd, 0);
+    }
 }
