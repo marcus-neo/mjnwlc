@@ -1,17 +1,19 @@
 #!/bin/bash
 
-for i in bin/testbench/*.bin ; do
+for i in bin/*.bin ; do
 cp $i bin/input/input.bin; 
 
+
 filename=$(basename $i .bin);
-output=$(<bin/testanswer/$filename.txt);
+output=$(<$filename.txt);
 echo $filename;
 echo $output;
 
 ./prog
 RETCODE=$?
 
-if [[ "$RETCODE" == "$output" ]] ; then
+
+if [[ "$RETCODE" == 246 ]] ; then
 
 	echo "Success";
 else

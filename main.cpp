@@ -25,7 +25,7 @@ int main(){
     unsigned char n;
     cout << "Opening binary" << endl << endl;
     try{
-        file.open("bin/binary3.bin", ios::in | ios::binary);
+        file.open("bin/input/input.bin", ios::in | ios::binary);
 
         if (!file.is_open()) {
             throw "Error opening binary file!";
