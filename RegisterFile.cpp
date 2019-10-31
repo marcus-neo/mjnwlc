@@ -5,7 +5,7 @@
 
 
 
-long RegisterFile::readRegister(int RegisterNumber){
+int RegisterFile::readRegister(int RegisterNumber){
     switch(RegisterNumber){
         case 0:
             return $zero;

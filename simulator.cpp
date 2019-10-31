@@ -13,10 +13,10 @@ using namespace std;
 void simulator::execute(){
      //PUT THIS TO A GLOBAL VARIABLE IN THE FUTURE
     unsigned char address;
-    unsigned long binaryinstruction;
+    unsigned int binaryinstruction;
     unsigned short decoded1;
     unsigned short decoded2;
-    unsigned long decoded3;
+    unsigned int decoded3;
     int instructiontype;
     PC.ProgCount = r.ADDR_INSTR_OFFSET;
     int i=0;

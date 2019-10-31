@@ -4,7 +4,7 @@
 class programCounter{
     public:
         void increment();
-        unsigned long ProgCount;
+        unsigned int ProgCount;
         bool interference = 0; 
 };
 

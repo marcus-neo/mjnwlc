@@ -20,7 +20,7 @@ class RegisterFile{
 
     public:
     int readRegister(int RegisterNumber);
-    void writeRegister(int RegisterNumber, long input);
+    void writeRegister(int RegisterNumber, int input);
     
 
 };

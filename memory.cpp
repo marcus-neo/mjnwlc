@@ -17,7 +17,7 @@ RAM::~RAM(){
 }
 
 void RAM::loadtoMemory(unsigned char binstr){
-    unsigned long addr = ADDR_INSTR_OFFSET + offset;
+    unsigned int addr = ADDR_INSTR_OFFSET + offset;
 
     try{
         if(addr<ADDR_INSTR_OFFSET || addr>=(ADDR_INSTR_OFFSET+0x1000000)){
@@ -32,8 +32,8 @@ void RAM::loadtoMemory(unsigned char binstr){
     offset++;
 }
 
-unsigned long RAM::pullfromMemory(unsigned long& ProgCount){
-    unsigned long data;
+unsigned int RAM::pullfromMemory(unsigned int& ProgCount){
+    unsigned int data;
 
     if((ProgCount-1) == (ADDR_INSTR_OFFSET + offset)){
         ProgCount = 0;
@@ -51,9 +51,9 @@ unsigned long RAM::pullfromMemory(unsigned long& ProgCount){
 
     try{
         if(ProgCount%4 == 0){
-            data = (((unsigned long)memory[ProgCount] << 8) + (unsigned long)memory[ProgCount+1]) << 8;
-            data = (data + (unsigned long)memory[ProgCount+2]) << 8;
-            data = data + (unsigned long)memory[ProgCount+3];
+            data = (((unsigned int)memory[ProgCount] << 8) + (unsigned int)memory[ProgCount+1]) << 8;
+            data = (data + (unsigned int)memory[ProgCount+2]) << 8;
+            data = data + (unsigned int)memory[ProgCount+3];
         }
 
         else{
@@ -67,7 +67,7 @@ unsigned long RAM::pullfromMemory(unsigned long& ProgCount){
     return data;
 }
 
-unsigned long RAM::get_addr(unsigned long data){
+unsigned int RAM::get_addr(unsigned int data){
     unordered_map<int, unsigned char>::iterator it;
 
     for(it = memory.begin(); it != memory.end(); it++){
@@ -84,7 +84,7 @@ unsigned long RAM::get_addr(unsigned long data){
     }
 }
 
-void RAM::jump(int& ProgCount, unsigned long addr){
+void RAM::jump(int& ProgCount, unsigned int addr){
     try{
         if(addr%4 == 0){
             ProgCount = addr;
@@ -99,8 +99,8 @@ void RAM::jump(int& ProgCount, unsigned long addr){
     }
 }
 
-void RAM::loadtoStack(unsigned long data){
-    unsigned long addr = ADDR_DATA_OFFSET + sp;
+void RAM::loadtoStack(unsigned int data){
+    unsigned int addr = ADDR_DATA_OFFSET + sp;
 
     try{
         if(addr<ADDR_DATA_OFFSET || addr>=(ADDR_DATA_OFFSET+0x1000000)){
@@ -111,10 +111,10 @@ void RAM::loadtoStack(unsigned long data){
         return;
     }
 
-    unsigned long lsb = data << 24 >> 24;
-    unsigned long xlsb = data << 16 >> 24;
-    unsigned long xmsb = data << 8 >> 24;
-    unsigned long msb = data >> 24;
+    unsigned int lsb = data << 24 >> 24;
+    unsigned int xlsb = data << 16 >> 24;
+    unsigned int xmsb = data << 8 >> 24;
+    unsigned int msb = data >> 24;
 
     stack[addr] = msb;
     stack[addr+1] = xmsb;
@@ -124,8 +124,8 @@ void RAM::loadtoStack(unsigned long data){
     sp+=4;
 }
 
-unsigned long RAM::getfromStack(unsigned long addr){
-    unsigned long data;
+unsigned int RAM::getfromStack(unsigned int addr){
+    unsigned int data;
 
     try{
         if(addr<ADDR_DATA_OFFSET || addr>=(ADDR_DATA_OFFSET+0x1000000)){
