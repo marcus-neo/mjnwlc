@@ -61,10 +61,20 @@ void add(unsigned short& rd, unsigned short rs, unsigned short rt){
         int xs = -(unsigned)reg.readRegister(rs);
         int xt = -(unsigned)reg.readRegister(rt);
         reg.writeRegister(rd, xs + xt);
+
+        if((reg.readRegister(rd) & 0x80000000) == 0){
+            cout << "Error: Arithmetic overflow occurred!" << endl;
+            exit(-10);
+        }
     }
 
     else{
         reg.writeRegister(rd, reg.readRegister(rs) + reg.readRegister(rt));
+
+        if((reg.readRegister(rd) & 0x80000000) > 0){
+            cout << "Error: Arithmetic overflow occurred!" << endl;
+            exit(-10);
+        }
     }
 
     cout << endl;
