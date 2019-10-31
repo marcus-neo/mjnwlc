@@ -9,7 +9,7 @@ void sll(unsigned short& rd, unsigned short rt, unsigned short shamt){
 }
 
 void srl(unsigned short& rd, unsigned short rt, unsigned short shamt){
-    
+
 }
 
 void sra(unsigned short& rd, unsigned short rt, unsigned short shamt){
@@ -58,9 +58,8 @@ void divu(unsigned short rs, unsigned short rt){
 }
 void add(unsigned short& rd, unsigned short rs, unsigned short rt){
     if(((reg.readRegister(rs) & 0x80000000) > 0) && ((reg.readRegister(rt)) & 0x80000000) > 0){
-        int xs = -(unsigned)reg.readRegister(rs);
-        int xt = -(unsigned)reg.readRegister(rt);
-        reg.writeRegister(rd, xs + xt);
+        reg.writeRegister(rd, reg.readRegister(rs) + reg.readRegister(rt));
+
 
         if((reg.readRegister(rd) & 0x80000000) == 0){
             cout << "Error: Arithmetic overflow occurred!" << endl;
