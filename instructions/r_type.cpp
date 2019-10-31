@@ -65,11 +65,7 @@ void add(unsigned short& rd, unsigned short rs, unsigned short rt){
     cout << endl;
 
 }
-void addu(unsigned short& rd, unsigned short rs, unsigned short rt){
-    bool MSBrs, MSBrt;
-    MSBrs = rs >> 31;
-    MSBrt = rt >> 31;
-    
+void addu(unsigned short& rd, unsigned short rs, unsigned short rt){    
 
 }
 void sub(unsigned short& rd, unsigned short rs, unsigned short rt){
