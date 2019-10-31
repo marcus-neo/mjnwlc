@@ -106,7 +106,7 @@ long RegisterFile::readRegister(int RegisterNumber){
     }
 }
 
-void RegisterFile::writeRegister(int RegisterNumber, long input){
+void RegisterFile::writeRegister(int RegisterNumber, int input){
     switch(RegisterNumber){
         case 0:
             break;
