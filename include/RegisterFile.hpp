@@ -6,8 +6,8 @@
 class RegisterFile{
     private: 
     long $zero;
-    long $at = 5;
-    long $v0 = 7, $v1 = 9;
+    long $at = 0x7fffffff;
+    long $v0 = 0x7fffffff, $v1 = 0x7fffffff;
     long $a0 = 0x10000000, $a1, $a2, $a3;
     long $t0, $t1, $t2, $t3, $t4, $t5, $t6, $t7;
     long $s0, $s1, $s2, $s3, $s4, $s5, $s6, $s7;

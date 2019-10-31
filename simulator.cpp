@@ -1,6 +1,7 @@
 #include <string>
 #include <iostream>
 #include <fstream>
+#include <iterator>
 #include "include/simulator.hpp"
 #include "include/memory.hpp"
 #include "include/Instructions.hpp"
@@ -19,8 +20,12 @@ void simulator::execute(){
     int instructiontype;
     PC.ProgCount = r.ADDR_INSTR_OFFSET;
     int i=0;
+    unordered_map<int, unsigned char>::iterator it;
 
     while(PC.ProgCount != 0 && i<3){
+        for(it=r.memory.begin(); it!=r.memory.end(); it++){
+            cout << "[ " << hex << it->first << " " <<  (int)it->second << " ]" << dec << endl;
+        }
         cout << "pulling from memory" << endl;
         binaryinstruction = r.pullfromMemory(PC.ProgCount);
         cout << "ProgCount is: " << PC.ProgCount << endl;
