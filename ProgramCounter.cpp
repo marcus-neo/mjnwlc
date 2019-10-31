@@ -2,5 +2,11 @@
 
 
 void programCounter::increment(){
-    ProgCount = ProgCount + 4;
+    if(interference == 0){
+        ProgCount = ProgCount + 4;
+    }
+    else{
+        interference = 0;
+    }
+    
 }

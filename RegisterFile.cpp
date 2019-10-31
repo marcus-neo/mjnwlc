@@ -5,7 +5,7 @@
 
 
 
-unsigned long RegisterFile::readRegister(int RegisterNumber){
+long RegisterFile::readRegister(int RegisterNumber){
     switch(RegisterNumber){
         case 0:
             return $zero;
@@ -106,7 +106,7 @@ unsigned long RegisterFile::readRegister(int RegisterNumber){
     }
 }
 
-void RegisterFile::writeRegister(int RegisterNumber, unsigned long input){
+void RegisterFile::writeRegister(int RegisterNumber, long input){
     switch(RegisterNumber){
         case 0:
             break;

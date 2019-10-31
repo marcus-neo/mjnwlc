@@ -39,13 +39,7 @@ void simulator::execute(){
         cout << "executing instruction" << endl;
         insexecute(instructiontype, decoded1, decoded2, decoded3);
         cout << "instruction successfully executed" << endl;
-        if (PC.interference == 0){
-            PC.ProgCount+=4;
-        }
-        else{
-            PC.interference == 0;
-        }
-        //THIS IF LOOP IS TEMPORARY --> PLEASE IMPLEMENT IN PROGRAMCOUNTER.CPP AND PROGRAMCOUNTER.HPP
+        PC.increment();
         
         i++;
     }
