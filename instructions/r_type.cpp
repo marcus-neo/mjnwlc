@@ -93,16 +93,19 @@ void sub(unsigned short& rd, unsigned short rs, unsigned short rt){
 
 }
 void subu(unsigned short& rd, unsigned short rs, unsigned short rt){
-    
+    reg.writeRegister(rd, (reg.readRegister(rs) - reg.readRegister(rt)));
 }
+
 void andd(unsigned short& rd, unsigned short rs, unsigned short rt){
-
+    reg.writeRegister(rd, (reg.readRegister(rs) & reg.readRegister(rt)));
 }
+
 void orr(unsigned short& rd, unsigned short rs, unsigned short rt){
-
+    reg.writeRegister(rd, (reg.readRegister(rs) | reg.readRegister(rt)));
 }
-void xorr(unsigned short& rd, unsigned short rs, unsigned short rt){
 
+void xorr(unsigned short& rd, unsigned short rs, unsigned short rt){
+    reg.writeRegister(rd, (reg.readRegister(rs) ^ reg.readRegister(rt)));
 }
 void slt(unsigned short& rd, unsigned short rs, unsigned short rt){
 

@@ -42,13 +42,14 @@ void andi(unsigned short rt, unsigned short rs, unsigned short imm){
 
 }
 void ori(unsigned short rt, unsigned short rs, unsigned short imm){
-
+    reg.writeRegister(rt, (reg.readRegister(rs) | imm));
 }
+
 void xori(unsigned short rt, unsigned short rs, unsigned short imm){
 
 }
 void lui(unsigned short rt, unsigned short imm){
-
+    reg.writeRegister(rt, (imm << 16));
 }
 void lb(unsigned short rt, unsigned short rs, unsigned short imm){
 
