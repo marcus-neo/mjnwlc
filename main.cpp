@@ -19,7 +19,6 @@ using namespace std;
 programCounter PC;
 RAM r;
 RegisterFile reg;
-
 int main(){
     cout << "prog started" << endl << endl;
     fstream file;

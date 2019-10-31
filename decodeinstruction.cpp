@@ -4,7 +4,7 @@ using namespace std;
 
 int decodeinstruction(unsigned long bin, unsigned short& decoded1, unsigned short& decoded2, unsigned long& decoded3){
     unsigned short opcode = bin >> 26;
-    
+    cout << "opcode is: " << opcode << endl;
     if(opcode == 0){
         unsigned short function = bin & 0b111111;
         unsigned short rs = (bin << 6) >> 27;
@@ -113,6 +113,7 @@ int decodeinstruction(unsigned long bin, unsigned short& decoded1, unsigned shor
 
             case 33:
                 decoded1 = rd;
+                cout << "decoded1 test here = " << decoded1 << endl << endl;
                 decoded2 = rs;
                 decoded3 = rt;
                 return 19;
