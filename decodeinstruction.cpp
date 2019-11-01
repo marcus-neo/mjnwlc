@@ -191,7 +191,10 @@ int decodeinstruction(unsigned int bin, unsigned short& decoded1, unsigned short
     }
     else{
         unsigned short rs = (bin << 6) >> 27;
-        unsigned short rt = (bin << 12) >> 27;
+        rs = rs & 0b11111;
+        cout << "rs is " << rs << endl;
+        unsigned short rt = (bin << 11) >> 27;
+        rt = rt & 0b11111;
         unsigned int imm = bin & 0xffff;
         
         switch (opcode){

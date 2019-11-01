@@ -3,9 +3,9 @@
 #include <iterator>
 
 RAM::RAM(){
-    /* for(int i=ADDR_DATA_OFFSET; i<(ADDR_DATA_OFFSET+0x4000000); i+=4){
+     for(int i=ADDR_DATA_OFFSET; i<(ADDR_DATA_OFFSET+0x4000000); i+=4){
         stack[i] = 0;
-    } */
+    } 
 }
 
 RAM::~RAM(){

@@ -1,7 +1,4 @@
-#ifndef REGISTERFILE_H
-#define REGISTERFILE_H
 #include "include/RegisterFile.hpp"
-#endif
 
 int RegisterFile::readRegister(int RegisterNumber){
     switch(RegisterNumber){

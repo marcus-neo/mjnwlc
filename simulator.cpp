@@ -21,7 +21,7 @@ void simulator::execute(){
     int i=0;
     unordered_map<unsigned int, unsigned char>::iterator it;
 
-    while(PC.ProgCount != 0 && i<3){
+    while(PC.ProgCount != 0){
         for(it=r.memory.begin(); it!=r.memory.end(); it++){
             cout << "[ " << hex << it->first << " " <<  (int)it->second << " ]" << dec << endl;
         }
@@ -30,9 +30,9 @@ void simulator::execute(){
         cout << "ProgCount is: " << PC.ProgCount << endl;
         cout << "binary instruction is " << binaryinstruction << endl << endl;
         cout << "decoding instruction" << endl;
-        cout << "initial r1 is " << reg.readRegister(1) << endl;
-        cout << "initial r2 is " << reg.readRegister(2) << endl;
-        cout << "initial r3 is " << reg.readRegister(3) << endl;
+        // cout << "initial r1 is " << reg.readRegister(1) << endl;
+        // cout << "initial r2 is " << reg.readRegister(2) << endl;
+        // cout << "initial r3 is " << reg.readRegister(3) << endl;
 
         instructiontype = decodeinstruction(binaryinstruction, decoded1, decoded2, decoded3);
         cout << "instruction number is: " << instructiontype << endl;
@@ -44,8 +44,6 @@ void simulator::execute(){
         insexecute(instructiontype, decoded1, decoded2, decoded3);
         cout << "instruction successfully executed" << endl;
         PC.increment();
-
-        i++;
     }
 }
 
