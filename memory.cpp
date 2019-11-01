@@ -3,13 +3,9 @@
 #include <iterator>
 
 RAM::RAM(){
-    /*for(int i=ADDR_INSTR_OFFSET; i<(ADDR_INSTR_OFFSET+0x1000000); i+=4){
-        memory[i] = '\0';
-    }
-
-    for(int i=ADDR_DATA_OFFSET; i<(ADDR_DATA_OFFSET+0x4000000); i+=4){
+    /* for(int i=ADDR_DATA_OFFSET; i<(ADDR_DATA_OFFSET+0x4000000); i+=4){
         stack[i] = 0;
-    }*/
+    } */
 }
 
 RAM::~RAM(){
@@ -68,7 +64,7 @@ unsigned int RAM::pullfromMemory(unsigned int& ProgCount){
 }
 
 unsigned int RAM::get_addr(unsigned int data){
-    unordered_map<int, unsigned char>::iterator it;
+    unordered_map<unsigned int, unsigned char>::iterator it;
 
     for(it = memory.begin(); it != memory.end(); it++){
         if(it->second == data){
@@ -99,9 +95,7 @@ void RAM::jump(int& ProgCount, unsigned int addr){
     }
 }
 
-void RAM::loadtoStack(unsigned int data){
-    unsigned int addr = ADDR_DATA_OFFSET + sp;
-
+void RAM::loadtoStack(unsigned int addr, unsigned int data){
     try{
         if(addr<ADDR_DATA_OFFSET || addr>=(ADDR_DATA_OFFSET+0x1000000)){
             throw "Accessing out of bounds memory!";
@@ -120,8 +114,6 @@ void RAM::loadtoStack(unsigned int data){
     stack[addr+1] = xmsb;
     stack[addr+2] = xlsb;
     stack[addr+3] = lsb;
-
-    sp+=4;
 }
 
 unsigned int RAM::getfromStack(unsigned int addr){
@@ -141,13 +133,6 @@ unsigned int RAM::getfromStack(unsigned int addr){
             data = ((stack[addr] << 8) + stack[addr+1]) << 8;
             data = (data + stack[addr+2]) << 8;
             data = data + stack[addr+3];
-
-            stack.erase(addr+3);
-            stack.erase(addr+2);
-            stack.erase(addr+1);
-            stack.erase(addr);
-
-            sp-=4;
         }
 
         else{

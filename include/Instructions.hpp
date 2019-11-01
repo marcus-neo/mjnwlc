@@ -16,9 +16,9 @@ void bltzal(unsigned short rs, unsigned short imm);
 void bne(unsigned short rs, unsigned short rt, unsigned short imm);
 void div(signed short rs, signed short rt);
 void divu(unsigned short rs, unsigned short rt);
-void j(unsigned short address);
+void j(unsigned int address);
 void jalr(unsigned short& rd, unsigned short rs);
-void jal(unsigned short address);
+void jal(unsigned int address);
 void jr(unsigned short rs);
 void syscall();
 void lb(unsigned short rt, unsigned short rs, unsigned short imm);
@@ -55,5 +55,6 @@ void sw(unsigned short rt, unsigned short rs, unsigned short imm);
 void xorr(unsigned short& rd, unsigned short rs, unsigned short rt);
 void xori(unsigned short rt, unsigned short rs, unsigned short imm);
 void insexecute(int instype, unsigned short decoded1, unsigned short decoded2, unsigned int decoded3);
+void delayins();
 
 #endif
