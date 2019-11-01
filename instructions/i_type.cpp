@@ -140,6 +140,9 @@ void lb(unsigned short rt, unsigned short rs, unsigned short imm){
         }
 
         else{
+            if((byte & 0x80) > 0){
+                byte = byte | 0xFFFFFF00;
+            }
             reg.writeRegister(rt, byte);
         }
     } catch(const char* msg){
@@ -148,22 +151,72 @@ void lb(unsigned short rt, unsigned short rs, unsigned short imm){
 }
 
 void lh(unsigned short rt, unsigned short rs, unsigned short imm){
+    int hw;
 
+    try{
+        hw = r.getfromStack(reg.readRegister(rs)+imm);
+
+        if((hw & 0xFFFF0000) > 0){
+            throw "Invalid instruction! Memory does not contain a byte!";
+        }
+
+        else{
+            if((hw & 0x8000) > 0){
+                hw = hw | 0xFFFF0000;
+            }
+            reg.writeRegister(rt, hw);
+        }
+    } catch(const char* msg){
+        cerr << msg << endl;
+    }
 }
+
 void lbu(unsigned short rt, unsigned short rs, unsigned short imm){
+    int byte;
 
+    try{
+        byte = r.getfromStack(reg.readRegister(rs)+imm);
+
+        if((byte & 0xFFFFFF00) > 0){
+            throw "Invalid instruction! Memory does not contain a byte!";
+        }
+
+        else{
+            reg.writeRegister(rt, byte);
+        }
+    } catch(const char* msg){
+        cerr << msg << endl;
+    }
 }
+
 void lhu(unsigned short rt, unsigned short rs, unsigned short imm){
+    int hw;
 
+    try{
+        hw = r.getfromStack(reg.readRegister(rs)+imm);
+
+        if((hw & 0xFFFF0000) > 0){
+            throw "Invalid instruction! Memory does not contain a byte!";
+        }
+
+        else{
+            reg.writeRegister(rt, hw);
+        }
+    } catch(const char* msg){
+        cerr << msg << endl;
+    }
 }
+
 void sb(unsigned short rt, unsigned short rs, unsigned short imm){
     int byte = reg.readRegister(rt) & 0xFF;
     r.loadtoStack(reg.readRegister(rs)+imm, byte);
 }
 
 void sh(unsigned short rt, unsigned short rs, unsigned short imm){
-
+    int hw = reg.readRegister(rt) & 0xFFFF;
+    r.loadtoStack(reg.readRegister(rs)+imm, hw);
 }
+
 void sw(unsigned short rt, unsigned short rs, unsigned short imm){
     r.loadtoStack(reg.readRegister(rs)+imm, reg.readRegister(rt));
 }

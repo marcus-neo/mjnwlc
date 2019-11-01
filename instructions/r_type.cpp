@@ -60,7 +60,7 @@ void srav(unsigned short& rd, unsigned short rt, unsigned short rs){
 
 void jr(unsigned short rs){
     try{
-        if(reg.readRegister(rs)%4 == 0 && reg.readRegister(rs) >= 0x10000000 && reg.readRegister(rs) < 0x11000000){
+        if(reg.readRegister(rs)%4 == 0 && reg.readRegister(rs) >= 0x10000000 && reg.readRegister(rs) < 0x11000000 && reg.readRegister(rs) != 0){
             PC.ProgCount = reg.readRegister(rs);
             PC.interference = 1;
         }
@@ -112,7 +112,9 @@ void mult(signed short rs, signed short rt){
 
 }
 void multu(unsigned short rs, unsigned short rt){
-
+    unsigned long product = reg.readRegister(rs) * reg.readRegister(rt);
+    reg.writeRegister(32, (product & 0xFFFFFFFF00000000) >> 32);
+    reg.writeRegister(33, product & 0xFFFFFFFF);
 }
 void div(signed short rs, signed short rt){
 
