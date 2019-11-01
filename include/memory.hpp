@@ -9,8 +9,8 @@ class RAM{
         RAM();
         ~RAM();
 
-        unordered_map<int, unsigned char> memory;
-        unordered_map<int, unsigned int> stack;
+        unordered_map<unsigned int, unsigned char> memory;
+        unordered_map<unsigned int, unsigned int> stack;
 
         static const unsigned int ADDR_NULL_OFFSET = 0x00000000;
         static const unsigned int ADDR_NULL_LENGTH = 0x4;
@@ -29,13 +29,12 @@ class RAM{
         unsigned int pullfromMemory(unsigned int& ProgCount);
         unsigned int get_addr(unsigned int data);
         void jump(int& ProgCount, unsigned int addr);
-        void loadtoStack(unsigned int data);
+        void loadtoStack(unsigned int addr, unsigned int data);
         unsigned int getfromStack(unsigned int addr);
 
     private:
         int32_t value;
         int32_t offset=0;
-        int32_t sp=0;
 };
 
 extern RAM r;

@@ -19,7 +19,7 @@ void simulator::execute(){
     int instructiontype;
     PC.ProgCount = r.ADDR_INSTR_OFFSET;
     int i=0;
-    unordered_map<int, unsigned char>::iterator it;
+    unordered_map<unsigned int, unsigned char>::iterator it;
 
     while(PC.ProgCount != 0 && i<3){
         for(it=r.memory.begin(); it!=r.memory.end(); it++){
