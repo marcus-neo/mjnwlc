@@ -5,18 +5,18 @@
 
 class RegisterFile{
     private: 
-    int $zero;
-    int $at = 0xffffffff;
-    int $v0 = 0xffffffff, $v1 = 0xffffffff;
-    int $a0 = 0x10000000, $a1, $a2, $a3;
-    int $t0, $t1, $t2, $t3, $t4, $t5, $t6, $t7;
-    int $s0, $s1, $s2, $s3, $s4, $s5, $s6, $s7;
-    int $t8, $t9;
-    int $k0, $k1;
-    int $gp;
-    int $sp;
-    int $fp;
-    int $ra;
+    int $zero = 0;
+    int $at = 0;
+    int $v0 = 0, $v1 = 0;
+    int $a0 = 0, $a1 = 0, $a2 = 0, $a3 = 0;
+    int $t0 = 0, $t1 = 0, $t2 = 0, $t3 = 0, $t4 = 0, $t5 = 0, $t6 = 0, $t7 = 0;
+    int $s0 = 0, $s1 = 0, $s2 = 0, $s3 = 0, $s4 = 0, $s5 = 0, $s6 = 0, $s7 = 0;
+    int $t8 = 0, $t9 = 0;
+    int $k0 = 0, $k1 = 0;
+    int $gp = 0;
+    int $sp = 0;
+    int $fp = 0;
+    int $ra = 0;
 
     public:
     int readRegister(int RegisterNumber);
