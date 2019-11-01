@@ -47,8 +47,6 @@ void simulator::execute(){
     }
 }
 
-
-
 //Implementing Register File
 
 
