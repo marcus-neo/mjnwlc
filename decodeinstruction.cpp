@@ -191,7 +191,10 @@ int decodeinstruction(unsigned int bin, unsigned short& decoded1, unsigned short
     }
     else{
         unsigned short rs = (bin << 6) >> 27;
-        unsigned short rt = (bin << 12) >> 27;
+        rs = rs & 0b11111;
+        cout << "rs is " << rs << endl;
+        unsigned short rt = (bin << 11) >> 27;
+        rt = rt & 0b11111;
         unsigned int imm = bin & 0xffff;
         
         switch (opcode){
@@ -307,43 +310,43 @@ int decodeinstruction(unsigned int bin, unsigned short& decoded1, unsigned short
                 decoded3 = imm;
                 return 57;
 
-            case 34:
+            case 35:
                 decoded1 = rt;
                 decoded2 = rs;
                 decoded3 = imm;
                 return 58;
 
-            case 35:
+            case 34:
                 decoded1 = rt;
                 decoded2 = rs;
                 decoded3 = imm;
                 return 59;
 
-            case 36:
+            case 38:
                 decoded1 = rt;
                 decoded2 = rs;
                 decoded3 = imm;
                 return 60;
 
-            case 37:
+            case 36:
                 decoded1 = rt;
                 decoded2 = rs;
                 decoded3 = imm;
                 return 61;
 
-            case 40:
+            case 37:
                 decoded1 = rt;
                 decoded2 = rs;
                 decoded3 = imm;
                 return 62;
 
-            case 41:
+            case 40:
                 decoded1 = rt;
                 decoded2 = rs;
                 decoded3 = imm;
                 return 63;
 
-            case 42:
+            case 41:
                 decoded1 = rt;
                 decoded2 = rs;
                 decoded3 = imm;

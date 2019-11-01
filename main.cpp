@@ -16,9 +16,10 @@
 #include "include/RegisterFile.hpp"
 #include "include/ProgramCounter.hpp"
 using namespace std;
+RegisterFile reg;
 programCounter PC;
 RAM r;
-RegisterFile reg;
+
 simulator S;
 
 int main(){
@@ -51,5 +52,8 @@ int main(){
     S.execute();
 
     cout << "Simulator has finished execution successfully" << endl;
-    return -10;
+    
+    
+        return -10;
+    
 }
