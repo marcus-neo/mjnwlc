@@ -1,5 +1,11 @@
+#include "include/simulator.hpp"
+#include "include/memory.hpp"
+#include "include/ProgramCounter.hpp"
 #include "include/Instructions.hpp"
+#include "include/decodeinstruction.hpp"
 #include "include/RegisterFile.hpp"
+#include <iostream>
+using namespace std;
 
 // make JR and ADDIU run first
 //mips program exit 
@@ -229,4 +235,18 @@ void insexecute(int instype, unsigned short decoded1, unsigned short decoded2, u
             return;
             
     }
+}
+
+void delayins(){
+    unsigned int binaryinstruction;
+    unsigned short decoded1;
+    unsigned short decoded2;
+    unsigned int decoded3;
+    int instructiontype;
+    PC.ProgCount+=4;
+
+    binaryinstruction = r.pullfromMemory(PC.ProgCount);
+    instructiontype = decodeinstruction(binaryinstruction, decoded1, decoded2, decoded3);
+    insexecute(instructiontype, decoded1, decoded2, decoded3);
+    cout << "delay instruction successfully executed" << endl;
 }

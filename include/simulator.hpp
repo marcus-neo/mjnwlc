@@ -4,12 +4,12 @@
 
 class simulator{
     public:
-    
         void execute();
-        
+
     private:
-    
 
 };
+
+extern simulator S;
 
 #endif

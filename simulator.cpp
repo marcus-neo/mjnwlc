@@ -11,8 +11,7 @@
 using namespace std;
 
 void simulator::execute(){
-     //PUT THIS TO A GLOBAL VARIABLE IN THE FUTURE
-    unsigned char address;
+    //PUT THIS TO A GLOBAL VARIABLE IN THE FUTURE
     unsigned int binaryinstruction;
     unsigned short decoded1;
     unsigned short decoded2;
@@ -45,10 +44,12 @@ void simulator::execute(){
         insexecute(instructiontype, decoded1, decoded2, decoded3);
         cout << "instruction successfully executed" << endl;
         PC.increment();
-        
+
         i++;
     }
 }
+
+
 
 //Implementing Register File
 

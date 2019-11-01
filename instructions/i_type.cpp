@@ -6,46 +6,62 @@ using namespace std;
 
 void beq(unsigned short rs, unsigned short rt, unsigned short imm){
     if(reg.readRegister(rs) == reg.readRegister(rt)){
+        delayins();
         PC.ProgCount += (imm << 2);
     }
 }
 
 void bne(unsigned short rs, unsigned short rt, unsigned short imm){
     if(reg.readRegister(rs) != reg.readRegister(rt)){
+        delayins();
         PC.ProgCount += (imm << 2);
     }
 }
 
 void blez(unsigned short rs, unsigned short imm){
     if(reg.readRegister(rs) <= 0){
+        delayins();
         PC.ProgCount += (imm << 2);
     }
 }
 
 void bgtz(unsigned short rs, unsigned short imm){
     if(reg.readRegister(rs) > 0){
+        delayins();
         PC.ProgCount += (imm << 2);
     }
 }
 
 void bltz(unsigned short rs, unsigned short imm){
     if(reg.readRegister(rs) < 0){
+        delayins();
         PC.ProgCount += (imm << 2);
     }
 }
 
 void bltzal(unsigned short rs, unsigned short imm){
-
+    if(reg.readRegister(rs) < 0){
+        delayins();
+        reg.writeRegister(31, PC.ProgCount+4);
+        PC.ProgCount += (imm << 2);
+    }
 }
+
 void bgez(unsigned short rs, unsigned short imm){
     if(reg.readRegister(rs) >= 0){
+        delayins();
         PC.ProgCount += (imm << 2);
     }
 }
 
 void bgezal(unsigned short rs, unsigned short imm){
-
+    if(reg.readRegister(rs) >= 0){
+        delayins();
+        reg.writeRegister(31, PC.ProgCount+4);
+        PC.ProgCount += (imm << 2);
+    }
 }
+
 void addi(unsigned short rt, unsigned short rs, unsigned short imm){
     if(((reg.readRegister(rs) & 0x80000000) > 0) && ((imm & 0x80000000) > 0)){
         reg.writeRegister(rt, reg.readRegister(rs) + imm);

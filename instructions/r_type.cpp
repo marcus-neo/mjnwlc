@@ -59,25 +59,55 @@ void srav(unsigned short& rd, unsigned short rt, unsigned short rs){
 }
 
 void jr(unsigned short rs){
-    PC.ProgCount = reg.readRegister(rs);
-    PC.interference = 1;
+    try{
+        if(reg.readRegister(rs)%4 == 0 && reg.readRegister(rs) >= 0x10000000 && reg.readRegister(rs) < 0x11000000){
+            PC.ProgCount = reg.readRegister(rs);
+            PC.interference = 1;
+        }
+
+        else{
+            throw "Invalid address!";
+        }
+    } catch(const char* msg){
+        cerr << msg << endl;
+        exit(-11);
+    }
 }
 
 void jalr(unsigned short& rd, unsigned short rs){
+    try{
+        if(reg.readRegister(rs)%4 == 0 && reg.readRegister(rs) >= 0x10000000 && reg.readRegister(rs) < 0x11000000){
+            delayins();
+            reg.writeRegister(31, PC.ProgCount+4);
+            PC.ProgCount = (PC.ProgCount & 0xF0000000) | (reg.readRegister(rs) << 2);
+            PC.interference = 1;
+        }
 
+        else{
+            throw "Invalid address!";
+        }
+    } catch(const char* msg){
+        cerr << msg << endl;
+        exit(-11);
+    }
 }
+
 void mfhi(unsigned short& rd){
-
+    reg.writeRegister(rd, reg.readRegister(32));
 }
+
 void mthi(unsigned short rs){
-
+    reg.writeRegister(32, reg.readRegister(rs));
 }
+
 void mflo(unsigned short& rd){
-
+    reg.writeRegister(rd, reg.readRegister(33));
 }
+
 void mtlo(unsigned short rs){
-
+    reg.writeRegister(33, reg.readRegister(rs));
 }
+
 void mult(signed short rs, signed short rt){
 
 }

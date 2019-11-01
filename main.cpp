@@ -19,6 +19,8 @@ using namespace std;
 programCounter PC;
 RAM r;
 RegisterFile reg;
+simulator S;
+
 int main(){
     cout << "prog started" << endl << endl;
     fstream file;
@@ -45,7 +47,6 @@ int main(){
         cout  << (int32_t)n << endl;
     }
     cout << "instruction stored in memory" << endl;
-    simulator S;
     cout << " executing simulator" << endl;
     S.execute();
 
