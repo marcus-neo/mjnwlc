@@ -114,7 +114,13 @@ void addiu(unsigned short rt, unsigned short rs, unsigned short imm){
 }
 
 void slti(unsigned short rt, unsigned short rs, unsigned short imm){
-    if((signed)reg.readRegister(rs) < (signed)imm){
+    int ximm=imm;
+
+    if((imm & 0x8000) > 0){
+        ximm = imm | 0xFFFF0000;
+    }
+
+    if((signed)reg.readRegister(rs) < (signed)ximm){
         reg.writeRegister(rt, 1);
     }
 

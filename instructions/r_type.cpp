@@ -75,6 +75,10 @@ void jr(unsigned short rs){
 }
 
 void jalr(unsigned short& rd, unsigned short rs){
+    if(rd == 0){
+        rd = 31;
+    }
+
     try{
         if(reg.readRegister(rs)%4 == 0 && reg.readRegister(rs) >= 0x10000000 && reg.readRegister(rs) < 0x11000000){
             delayins();
@@ -108,7 +112,7 @@ void mtlo(unsigned short rs){
     reg.writeRegister(33, reg.readRegister(rs));
 }
 
-void mult(signed short rs, signed short rt){
+void mult(unsigned short rs, unsigned short rt){
     int xs = reg.readRegister(rs);
     int xt = reg.readRegister(rt);
     bool s=0, t=0;
@@ -129,6 +133,11 @@ void mult(signed short rs, signed short rt){
         product = -product;
     }
 
+    if(((reg.readRegister(rs) > 0) && (reg.readRegister(rt) > 0) && (product < 0)) || ((reg.readRegister(rs) < 0) && (reg.readRegister(rt) < 0) && (product > 0))){
+        cerr << "Arithmetic error!" << endl;
+        exit(-10);
+    }
+
     reg.writeRegister(32, (product & 0xFFFFFFFF00000000) >> 32);
     reg.writeRegister(33, product & 0xFFFFFFFF);
 }
@@ -137,14 +146,86 @@ void multu(unsigned short rs, unsigned short rt){
     unsigned long product = (unsigned)reg.readRegister(rs) * (unsigned)reg.readRegister(rt);
     reg.writeRegister(32, (product & 0xFFFFFFFF00000000) >> 32);
     reg.writeRegister(33, product & 0xFFFFFFFF);
+
+    if(((reg.readRegister(rs) > 0) && (reg.readRegister(rt) > 0) && (product < 0)) || ((reg.readRegister(rs) < 0) && (reg.readRegister(rt) < 0) && (product > 0))){
+        cerr << "Arithmetic error!" << endl;
+        exit(-10);
+    }
 }
 
-void div(signed short rs, signed short rt){
+void div(unsigned short rs, unsigned short rt){
+    if(reg.readRegister(rt) == 0){
+        cerr << "Arithmetic error!" << endl;
+        exit(-10);
+    }
 
+    int xs = reg.readRegister(rs);
+    int xt = reg.readRegister(rt);
+    bool s=0, t=0;
+
+    if((reg.readRegister(rs) & 0x80000000) > 1){
+        xs = -reg.readRegister(rs);
+        s=1;
+    }
+
+    if((reg.readRegister(rt) & 0x80000000) > 1){
+        xt = -reg.readRegister(rt);
+        t=1;
+    }
+
+    signed int quotient = xs / xt;
+    signed int remainder = xs % xt;
+
+    if((s & t) == 1){
+        remainder = -remainder;
+    }
+
+    else if(s == 1 && t == 0){
+        quotient = -quotient;
+        remainder = -remainder;
+    }
+
+    else if(s == 0 && t == 1){
+        quotient = -quotient;
+    }
+
+    if(((reg.readRegister(rs) > 0) && (reg.readRegister(rt) > 0) && (quotient < 0)) || ((reg.readRegister(rs) < 0) && (reg.readRegister(rt) < 0) && (quotient > 0))){
+        cerr << "Arithmetic error!" << endl;
+        exit(-10);
+    }
+
+    if(((reg.readRegister(rs) > 0) && (reg.readRegister(rt) > 0) && (remainder < 0)) || ((reg.readRegister(rs) < 0) && (reg.readRegister(rt) < 0) && (remainder > 0))){
+        cerr << "Arithmetic error!" << endl;
+        exit(-10);
+    }
+
+    reg.writeRegister(33, quotient);
+    reg.writeRegister(32, remainder);
 }
+
 void divu(unsigned short rs, unsigned short rt){
+    if(reg.readRegister(rt) == 0){
+        cerr << "Arithmetic error!" << endl;
+        exit(-10);
+    }
 
+    unsigned int quotient = (unsigned)reg.readRegister(rs) / (unsigned)reg.readRegister(rt);
+    unsigned int remainder = (unsigned)reg.readRegister(rs) % (unsigned)reg.readRegister(rt);
+
+    if(((reg.readRegister(rs) > 0) && (reg.readRegister(rt) > 0) && (quotient < 0)) || ((reg.readRegister(rs) < 0) && (reg.readRegister(rt) < 0) && (quotient > 0))){
+        cerr << "Arithmetic error!" << endl;
+        exit(-10);
+    }
+
+    if(((reg.readRegister(rs) > 0) && (reg.readRegister(rt) > 0) && (remainder < 0)) || ((reg.readRegister(rs) < 0) && (reg.readRegister(rt) < 0) && (remainder > 0))){
+        cerr << "Arithmetic error!" << endl;
+        exit(-10);
+    }
+
+    reg.writeRegister(33, quotient);
+    reg.writeRegister(32, remainder);
 }
+
 void add(unsigned short& rd, unsigned short rs, unsigned short rt){
     int xs, xt, sum;
 
