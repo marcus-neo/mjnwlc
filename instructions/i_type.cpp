@@ -85,11 +85,15 @@ void addi(unsigned short rt, unsigned short rs, signed short imm){
 }
 
 void addiu(unsigned short rt, unsigned short rs, unsigned short imm){
-    reg.writeRegister(rt, (unsigned)(reg.readRegister(rs) + imm));
+    unsigned int sum = (unsigned)reg.readRegister(rs) + (unsigned)imm;
 
-    if(((reg.readRegister(rs) & 0x80000000) > 0) && (reg.readRegister(rt) < 0)){
+    if(((reg.readRegister(rs) & 0x80000000) > 0) && ((sum & 0x80000000) == 0)){
         cout << "Error: Arithmetic overflow occurred!" << endl;
         exit(-10);
+    }
+
+    else{
+        reg.writeRegister(rt, sum);
     }
 }
 
