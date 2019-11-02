@@ -111,18 +111,26 @@ void mtlo(unsigned short rs){
 void mult(signed short rs, signed short rt){
     int xs = reg.readRegister(rs);
     int xt = reg.readRegister(rt);
+    bool s=0, t=0;
 
     if((reg.readRegister(rs) & 0x80000000) > 1){
         xs = -reg.readRegister(rs);
+        s=1;
     }
 
     if((reg.readRegister(rt) & 0x80000000) > 1){
         xt = -reg.readRegister(rt);
+        t=1;
     }
 
     signed long product = xs * xt;
-    
-    
+
+    if((s ^ t) == 1){
+        product = -product;
+    }
+
+    reg.writeRegister(32, (product & 0xFFFFFFFF00000000) >> 32);
+    reg.writeRegister(33, product & 0xFFFFFFFF);
 }
 
 void multu(unsigned short rs, unsigned short rt){
