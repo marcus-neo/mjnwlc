@@ -64,13 +64,19 @@ void bgezal(unsigned short rs, unsigned short imm){
 }
 
 void addi(unsigned short rt, unsigned short rs, signed short imm){
+    int xs, ximm=imm, sum;
+
+    if((imm & 0x8000) > 0){
+        ximm = imm | 0xFFFF0000;
+    }
+
     if(((reg.readRegister(rs) & 0x80000000) > 0) && ((imm & 0x8000) > 0)){
-        int xs = -reg.readRegister(rs);
-        int ximm = -imm;
-        int sum = xs+ximm;
+        xs = -reg.readRegister(rs);
+        ximm = -ximm;
+        sum = xs+ximm;
 
         if(sum > (unsigned)0x80000000){
-            cout << "Error: Arithmetic overflow occurred!" << endl;
+            cerr << "Error: Arithmetic overflow occurred!" << endl;
             exit(-10);
         }
 
@@ -82,23 +88,39 @@ void addi(unsigned short rt, unsigned short rs, signed short imm){
     else{
         reg.writeRegister(rt, reg.readRegister(rs) + imm);
     }
+
+    if(((reg.readRegister(rs) > 0) && (imm > 0) && (reg.readRegister(rt) < 0)) || ((reg.readRegister(rs) < 0) && (imm < 0) && (reg.readRegister(rt) > 0))){
+        cerr << "Arithmetic error!" << endl;
+        exit(-10);
+    }
 }
 
 void addiu(unsigned short rt, unsigned short rs, unsigned short imm){
     unsigned int sum = (unsigned)reg.readRegister(rs) + (unsigned)imm;
 
     if(((reg.readRegister(rs) & 0x80000000) > 0) && ((sum & 0x80000000) == 0)){
-        cout << "Error: Arithmetic overflow occurred!" << endl;
+        cerr << "Error: Arithmetic overflow occurred!" << endl;
         exit(-10);
     }
 
     else{
         reg.writeRegister(rt, sum);
     }
+
+    if(((reg.readRegister(rs) > 0) && (imm > 0) && (reg.readRegister(rt) < 0)) || ((reg.readRegister(rs) < 0) && (imm < 0) && (reg.readRegister(rt) > 0))){
+        cerr << "Arithmetic error!" << endl;
+        exit(-10);
+    }
 }
 
 void slti(unsigned short rt, unsigned short rs, unsigned short imm){
-    if((signed)reg.readRegister(rs) < (signed)imm){
+    int ximm=imm;
+
+    if((imm & 0x8000) > 0){
+        ximm = imm | 0xFFFF0000;
+    }
+
+    if((signed)reg.readRegister(rs) < (signed)ximm){
         reg.writeRegister(rt, 1);
     }
 
@@ -118,19 +140,43 @@ void sltiu(unsigned short rt, unsigned short rs, unsigned short imm){
 }
 
 void andi(unsigned short rt, unsigned short rs, unsigned short imm){
-    reg.writeRegister(rt, (reg.readRegister(rs) & imm));
+    int ximm=imm;
+
+    if((imm & 0x8000) > 0){
+        ximm = ximm | 0xFFFF0000;
+    }
+
+    reg.writeRegister(rt, (reg.readRegister(rs) & ximm));
 }
 
 void ori(unsigned short rt, unsigned short rs, unsigned short imm){
-    reg.writeRegister(rt, (reg.readRegister(rs) | imm));
+    int ximm=imm;
+
+    if((imm & 0x8000) > 0){
+        ximm = ximm | 0xFFFF0000;
+    }
+
+    reg.writeRegister(rt, (reg.readRegister(rs) | ximm));
 }
 
 void xori(unsigned short rt, unsigned short rs, unsigned short imm){
-    reg.writeRegister(rt, (reg.readRegister(rs) ^ imm));
+    int ximm=imm;
+
+    if((imm & 0x8000) > 0){
+        ximm = ximm | 0xFFFF0000;
+    }
+
+    reg.writeRegister(rt, (reg.readRegister(rs) ^ ximm));
 }
 
 void lui(unsigned short rt, unsigned short imm){
-    reg.writeRegister(rt, (imm << 16));
+    int ximm=imm;
+
+    if((imm & 0x8000) > 0){
+        ximm = ximm | 0xFFFF0000;
+    }
+
+    reg.writeRegister(rt, (ximm << 16));
 }
 
 void lb(unsigned short rt, unsigned short rs, unsigned short imm){
