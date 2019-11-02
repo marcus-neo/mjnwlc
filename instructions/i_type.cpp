@@ -63,7 +63,7 @@ void bgezal(unsigned short rs, unsigned short imm){
     }
 }
 
-void addi(unsigned short rt, unsigned short rs, unsigned short imm){
+void addi(unsigned short rt, unsigned short rs, signed short imm){
     if(((reg.readRegister(rs) & 0x80000000) > 0) && ((imm & 0x8000) > 0)){
         int xs = -reg.readRegister(rs);
         int ximm = -imm;
