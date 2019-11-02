@@ -21,7 +21,7 @@ void RAM::loadtoMemory(unsigned char binstr){
         }
     } catch(const char* msg){
         cerr << msg << endl;
-        return;
+        exit(-11);
     }
 
     memory[addr] = binstr;
@@ -42,7 +42,7 @@ unsigned int RAM::pullfromMemory(unsigned int& ProgCount){
         }
     } catch(const char* msg){
         cerr << msg << endl;
-        return 1;
+        exit(-11);
     }
 
     try{
@@ -57,7 +57,7 @@ unsigned int RAM::pullfromMemory(unsigned int& ProgCount){
         }
     } catch(const char* msg){
         cerr << msg << endl;
-        return 1;
+        exit(-11);
     }
 
     return data;
@@ -76,7 +76,7 @@ unsigned int RAM::get_addr(unsigned int data){
         throw "Data not found!";
     } catch(const char* msg){
         cerr << msg << endl;
-        return 1;
+        exit(-11);
     }
 }
 
@@ -91,7 +91,7 @@ void RAM::jump(int& ProgCount, unsigned int addr){
         }
     } catch(const char* msg){
         cerr << msg << endl;
-        return;
+        exit(-11);
     }
 }
 
@@ -102,7 +102,7 @@ void RAM::loadtoStack(unsigned int addr, unsigned int data){
         }
     } catch(const char* msg){
         cerr << msg << endl;
-        return;
+        exit(-11);
     }
 
     unsigned int lsb = data << 24 >> 24;
@@ -125,7 +125,7 @@ unsigned int RAM::getfromStack(unsigned int addr){
         }
     } catch(const char* msg){
         cerr << msg << endl;
-        return 1;
+        exit(-11);
     }
 
     try{
@@ -140,7 +140,7 @@ unsigned int RAM::getfromStack(unsigned int addr){
         }
     } catch(const char* msg){
         cerr << msg << endl;
-        return 1;
+        exit(-11);
     }
 
     return data;
