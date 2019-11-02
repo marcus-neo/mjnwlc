@@ -7,7 +7,7 @@ class RegisterFile{
         void writeRegister(int RegisterNumber, int input);
 
     private:
-        int $zero;
+        int $zero = 0;
         int $at = 0;
         int $v0 = 0, $v1 = 0;
         int $a0 = 0, $a1 = 0, $a2 = 0, $a3 = 0;
@@ -19,7 +19,7 @@ class RegisterFile{
         int $sp = 0;
         int $fp = 0;
         int $ra = 0;
-        int $hi, $lo;
+        int $hi = 0, $lo = 0;
 };
 
 extern RegisterFile reg;
