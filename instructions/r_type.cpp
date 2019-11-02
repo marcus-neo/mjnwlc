@@ -60,7 +60,7 @@ void srav(unsigned short& rd, unsigned short rt, unsigned short rs){
 
 void jr(unsigned short rs){
     try{
-        if(reg.readRegister(rs)%4 == 0 && reg.readRegister(rs) >= 0x10000000 && reg.readRegister(rs) < 0x11000000 && reg.readRegister(rs) != 0){
+        if(reg.readRegister(rs)%4 == 0 && reg.readRegister(rs) >= 0x10000000 && reg.readRegister(rs) < 0x11000000 || reg.readRegister(rs) == 0){
             PC.ProgCount = reg.readRegister(rs);
             PC.interference = 1;
         }
