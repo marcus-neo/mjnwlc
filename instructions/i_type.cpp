@@ -63,24 +63,24 @@ void bgezal(unsigned short rs, unsigned short imm){
     }
 }
 
-void addi(unsigned short rt, unsigned short rs, signed short imm){
-    if(((reg.readRegister(rs) & 0x80000000) > 0) && ((imm & 0x80000000) > 0)){
-        reg.writeRegister(rt, reg.readRegister(rs) + imm);
+void addi(unsigned short rt, unsigned short rs, unsigned short imm){
+    if(((reg.readRegister(rs) & 0x80000000) > 0 && ((imm & 0x8000) > 0))){
+        int xs = -reg.readRegister(rs);
+        int ximm = -imm;
+        int sum = xs+ximm;
 
-
-        if((reg.readRegister(rt) & 0x80000000) == 0){
+        if(sum > (unsigned)0x80000000){
             cout << "Error: Arithmetic overflow occurred!" << endl;
             exit(-10);
+        }
+        
+        else{
+            reg.writeRegister(rt, -sum);
         }
     }
 
     else{
         reg.writeRegister(rt, reg.readRegister(rs) + imm);
-
-        if((reg.readRegister(rt) & 0x80000000) > 0){
-            cout << "Error: Arithmetic overflow occurred!" << endl;
-            exit(-10);
-        }
     }
 }
 
