@@ -134,19 +134,43 @@ void sltiu(unsigned short rt, unsigned short rs, unsigned short imm){
 }
 
 void andi(unsigned short rt, unsigned short rs, unsigned short imm){
-    reg.writeRegister(rt, (reg.readRegister(rs) & imm));
+    int ximm=imm;
+
+    if((imm & 0x8000) > 0){
+        ximm = ximm | 0xFFFF0000;
+    }
+
+    reg.writeRegister(rt, (reg.readRegister(rs) & ximm));
 }
 
 void ori(unsigned short rt, unsigned short rs, unsigned short imm){
-    reg.writeRegister(rt, (reg.readRegister(rs) | imm));
+    int ximm=imm;
+
+    if((imm & 0x8000) > 0){
+        ximm = ximm | 0xFFFF0000;
+    }
+
+    reg.writeRegister(rt, (reg.readRegister(rs) | ximm));
 }
 
 void xori(unsigned short rt, unsigned short rs, unsigned short imm){
-    reg.writeRegister(rt, (reg.readRegister(rs) ^ imm));
+    int ximm=imm;
+
+    if((imm & 0x8000) > 0){
+        ximm = ximm | 0xFFFF0000;
+    }
+
+    reg.writeRegister(rt, (reg.readRegister(rs) ^ ximm));
 }
 
 void lui(unsigned short rt, unsigned short imm){
-    reg.writeRegister(rt, (imm << 16));
+    int ximm=imm;
+
+    if((imm & 0x8000) > 0){
+        ximm = ximm | 0xFFFF0000;
+    }
+
+    reg.writeRegister(rt, (ximm << 16));
 }
 
 void lb(unsigned short rt, unsigned short rs, unsigned short imm){

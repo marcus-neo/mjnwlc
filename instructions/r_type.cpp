@@ -134,7 +134,7 @@ void mult(signed short rs, signed short rt){
 }
 
 void multu(unsigned short rs, unsigned short rt){
-    unsigned long product = reg.readRegister(rs) * reg.readRegister(rt);
+    unsigned long product = (unsigned)reg.readRegister(rs) * (unsigned)reg.readRegister(rt);
     reg.writeRegister(32, (product & 0xFFFFFFFF00000000) >> 32);
     reg.writeRegister(33, product & 0xFFFFFFFF);
 }
@@ -192,27 +192,29 @@ void addu(unsigned short& rd, unsigned short rs, unsigned short rt){
 }
 
 void sub(unsigned short& rd, unsigned short rs, unsigned short rt){
+    int xs, xt, diff;
+
     reg.writeRegister(rd, (reg.readRegister(rs) - reg.readRegister(rt)));
 
     if(((reg.readRegister(rs) & 0x80000000) > 0) && ((reg.readRegister(rt) & 0x80000000) == 0) && ((reg.readRegister(rd) & 0x80000000) == 0)){
-        cout << "Error: Arithmetic overflow occurred!" << endl;
+        cout << "Arithmetic error!" << endl;
         exit(-10);
     }
 
     else if(((reg.readRegister(rs) & 0x80000000) == 0) && ((reg.readRegister(rt) & 0x80000000) > 0) && ((reg.readRegister(rd) & 0x80000000) > 0)){
-        cout << "Error: Arithmetic overflow occurred!" << endl;
+        cout << "Arithmetic error!" << endl;
         exit(-10);
     }
 }
 
 void subu(unsigned short& rd, unsigned short rs, unsigned short rt){
-    if(reg.readRegister(rs) < reg.readRegister(rt)){
-        cout << "Error: Arithmetic overflow occurred!" << endl;
+    if((unsigned)reg.readRegister(rs) < (unsigned)reg.readRegister(rt)){
+        cerr << "Error: Arithmetic overflow occurred!" << endl;
         exit(-10);
     }
 
     else{
-        reg.writeRegister(rd, (reg.readRegister(rs) - reg.readRegister(rt)));
+        reg.writeRegister(rd, ((unsigned)reg.readRegister(rs) - (unsigned)reg.readRegister(rt)));
     }
 }
 
