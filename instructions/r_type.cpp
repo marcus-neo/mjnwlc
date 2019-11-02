@@ -234,7 +234,7 @@ void add(unsigned short& rd, unsigned short rs, unsigned short rt){
         xt = -reg.readRegister(rt);
         sum = xs+xt;
 
-        if(sum > (unsigned)0x80000000){
+        if(sum >= (unsigned)0x80000000){
             cerr << "Error: Arithmetic overflow occurred!" << endl;
             exit(-10);
         }
