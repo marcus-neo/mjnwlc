@@ -1,7 +1,7 @@
 #ifndef INSTRUCTIONS_H
 #define INSTRUCTIONS_H
 void add(unsigned short& rd, unsigned short rs, unsigned short rt);
-void addi(unsigned short rt, unsigned short rs, unsigned short imm);
+void addi(unsigned short rt, unsigned short rs, signed short imm);
 void addiu(unsigned short rt, unsigned short rs, unsigned short imm);
 void addu(unsigned short& rd, unsigned short rs, unsigned short rt);
 void andd(unsigned short& rd, unsigned short rs, unsigned short rt);
