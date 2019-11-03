@@ -22,9 +22,9 @@ void simulator::execute(){
     unordered_map<unsigned int, unsigned char>::iterator it;
 
     while(PC.ProgCount != 0){
-        for(it=r.memory.begin(); it!=r.memory.end(); it++){
-            cout << "[ " << hex << it->first << " " <<  (int)it->second << " ]" << dec << endl;
-        }
+        // for(it=r.memory.begin(); it!=r.memory.end(); it++){
+        //     cout << "[ " << hex << it->first << " " <<  (int)it->second << " ]" << dec << endl;
+        // }
         cout << "pulling from memory" << endl;
         binaryinstruction = r.pullfromMemory(PC.ProgCount);
         cout << "ProgCount is: " << PC.ProgCount << endl;

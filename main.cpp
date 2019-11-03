@@ -45,7 +45,7 @@ int main(){
     for (int i=0; i<lengthofbin; i++){
         file.read((char *) (&n), sizeof(n));
         r.loadtoMemory(n);
-        cout  << (int32_t)n << endl;
+        //cout  << (int32_t)n << endl;
     }
     cout << "instruction stored in memory" << endl;
     cout << " executing simulator" << endl;
@@ -54,6 +54,6 @@ int main(){
     cout << "Simulator has finished execution successfully" << endl;
     
     
-        return -10;
+        return 0;
     
 }
