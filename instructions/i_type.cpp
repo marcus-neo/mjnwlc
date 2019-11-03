@@ -142,9 +142,9 @@ void sltiu(unsigned short rt, unsigned short rs, unsigned short imm){
 void andi(unsigned short rt, unsigned short rs, unsigned short imm){
     int ximm=imm;
 
-    if((imm & 0x8000) > 0){
+    /* if((imm & 0x8000) > 0){
         ximm = ximm | 0xFFFF0000;
-    }
+    } */
 
     reg.writeRegister(rt, (reg.readRegister(rs) & ximm));
 }
@@ -152,9 +152,9 @@ void andi(unsigned short rt, unsigned short rs, unsigned short imm){
 void ori(unsigned short rt, unsigned short rs, unsigned short imm){
     int ximm=imm;
 
-    if((imm & 0x8000) > 0){
+    /* if((imm & 0x8000) > 0){
         ximm = ximm | 0xFFFF0000;
-    }
+    } */
 
     reg.writeRegister(rt, (reg.readRegister(rs) | ximm));
 }
@@ -162,9 +162,9 @@ void ori(unsigned short rt, unsigned short rs, unsigned short imm){
 void xori(unsigned short rt, unsigned short rs, unsigned short imm){
     int ximm=imm;
 
-    if((imm & 0x8000) > 0){
+    /* if((imm & 0x8000) > 0){
         ximm = ximm | 0xFFFF0000;
-    }
+    } */
 
     reg.writeRegister(rt, (reg.readRegister(rs) ^ ximm));
 }
