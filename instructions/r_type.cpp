@@ -234,7 +234,7 @@ void add(unsigned short& rd, unsigned short rs, unsigned short rt){
         xt = -reg.readRegister(rt);
         sum = xs+xt;
 
-        if(sum >= (unsigned)0x80000000){
+        if(sum > (unsigned)0x80000000 || sum == 0){
             cerr << "Error: Arithmetic overflow occurred!" << endl;
             exit(-10);
         }
@@ -257,18 +257,13 @@ void add(unsigned short& rd, unsigned short rs, unsigned short rt){
 void addu(unsigned short& rd, unsigned short rs, unsigned short rt){
     unsigned int sum = (unsigned)reg.readRegister(rs) + (unsigned)reg.readRegister(rt);
 
-    if(((reg.readRegister(rs) & 0x80000000) > 0) && ((reg.readRegister(rt) & 0x80000000) > 0) && ((sum & 0x80000000) == 0)){
+    if(((reg.readRegister(rs) & 0x80000000) > 0) || ((reg.readRegister(rt) & 0x80000000) > 0)) && ((sum & 0x80000000) == 0))){
         cerr << "Error: Arithmetic overflow occurred!" << endl;
         exit(-10);
     }
 
     else{
         reg.writeRegister(rd, sum);
-    }
-
-    if((reg.readRegister(rs) > 0 && reg.readRegister(rt) > 0 && reg.readRegister(rd) < 0) || (reg.readRegister(rs) < 0 && reg.readRegister(rt) < 0 && reg.readRegister(rd) > 0)){
-        cerr << "Arithmetic error" << endl;
-        exit(-10);
     }
 }
 
