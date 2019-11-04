@@ -86,12 +86,14 @@ void addi(unsigned short rt, unsigned short rs, signed short imm){
     }
 
     else{
-        reg.writeRegister(rt, reg.readRegister(rs) + imm);
-    }
+        sum = reg.readRegister(rs) + imm;
 
-    if(((reg.readRegister(rs) > 0) && (imm > 0) && (reg.readRegister(rt) < 0)) || ((reg.readRegister(rs) < 0) && (imm < 0) && (reg.readRegister(rt) > 0))){
-        cerr << "Arithmetic error!" << endl;
-        exit(-10);
+        if(((reg.readRegister(rs) > 0) && (imm > 0) && sum < 0) || ((reg.readRegister(rs) < 0) && (imm < 0) && sum > 0)){
+            cerr << "Arithmetic error!" << endl;
+            exit(-10);
+        }
+        
+        reg.writeRegister(rt, sum);
     }
 }
 
@@ -105,11 +107,6 @@ void addiu(unsigned short rt, unsigned short rs, unsigned short imm){
 
     else{
         reg.writeRegister(rt, sum);
-    }
-
-    if(((reg.readRegister(rs) > 0) && (imm > 0) && (reg.readRegister(rt) < 0)) || ((reg.readRegister(rs) < 0) && (imm < 0) && (reg.readRegister(rt) > 0))){
-        cerr << "Arithmetic error!" << endl;
-        exit(-10);
     }
 }
 

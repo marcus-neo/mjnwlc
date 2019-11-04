@@ -275,20 +275,23 @@ void addu(unsigned short& rd, unsigned short rs, unsigned short rt){
 void sub(unsigned short& rd, unsigned short rs, unsigned short rt){
     if(reg.readRegister(rs) == 0 && reg.readRegister(rt) == 0x80000000){
         cerr << "Arithmetic error!" << endl;
+        
         exit(-10);
     }
 
-    if(((reg.readRegister(rs) & 0x80000000) > 0) && ((reg.readRegister(rt) & 0x80000000) == 0) && ((reg.readRegister(rd) & 0x80000000) == 0)){
+    signed int diff = reg.readRegister(rs) - reg.readRegister(rt);
+
+    if(((reg.readRegister(rs) & 0x80000000) > 0) && ((reg.readRegister(rt) & 0x80000000) == 0) && ((diff & 0x80000000) == 0)){
         cerr << "Arithmetic error!" << endl;
         exit(-10);
     }
 
-    else if(((reg.readRegister(rs) & 0x80000000) == 0) && ((reg.readRegister(rt) & 0x80000000) > 0) && ((reg.readRegister(rd) & 0x80000000) > 0)){
+    else if(((reg.readRegister(rs) & 0x80000000) == 0) && ((reg.readRegister(rt) & 0x80000000) > 0) && ((diff & 0x80000000) > 0)){
         cerr << "Arithmetic error!" << endl;
         exit(-10);
     }
 
-    reg.writeRegister(rd, (reg.readRegister(rs) - reg.readRegister(rt)));
+    reg.writeRegister(rd, diff);
 }
 
 void subu(unsigned short& rd, unsigned short rs, unsigned short rt){
