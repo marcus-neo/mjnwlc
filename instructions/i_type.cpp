@@ -92,7 +92,7 @@ void addi(unsigned short rt, unsigned short rs, signed short imm){
             cerr << "Arithmetic error!" << endl;
             exit(-10);
         }
-        
+
         reg.writeRegister(rt, sum);
     }
 }
