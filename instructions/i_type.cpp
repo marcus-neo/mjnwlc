@@ -273,8 +273,51 @@ void lw(unsigned short rt, unsigned short rs, unsigned short imm){
 }
 
 void lwl(unsigned short rt, unsigned short rs, unsigned short imm){
+    unsigned int addr = reg.readRegister(rs) + imm;
 
+    switch(addr%4){
+        unsigned int temp;
+        case 0: reg.writeRegister(rt, r.getfromStack(reg.readRegister(rs)+imm));
+                return;
+
+        case 1: temp = r.getfromStack(reg.readRegister(rs)+imm) << 8;
+                temp = temp | (reg.readRegister(rt) & 0xFF);
+                reg.writeRegister(rt, temp);
+                return;
+
+        case 2: temp = r.getfromStack(reg.readRegister(rs)+imm) << 16;
+                temp = temp | (reg.readRegister(rt) & 0xFFFF);
+                reg.writeRegister(rt, temp);
+                return;
+
+        case 3: temp = r.getfromStack(reg.readRegister(rs)+imm) << 24;
+                temp = temp | (reg.readRegister(rt) & 0xFFFFFF);
+                reg.writeRegister(rt, temp);
+                return;
+    }
 }
-void lwr(unsigned short rt, unsigned short rs, unsigned short imm){
 
+void lwr(unsigned short rt, unsigned short rs, unsigned short imm){
+    unsigned int addr = reg.readRegister(rs) + imm;
+
+    switch(addr%4){
+        unsigned int temp;
+        case 0: temp = r.getfromStack(reg.readRegister(rs)+imm) >> 24;
+                temp = temp | (reg.readRegister(rt) & 0xFFFFFF00);
+                reg.writeRegister(rt, temp);
+                return;
+
+        case 1: temp = r.getfromStack(reg.readRegister(rs)+imm) >> 16;
+                temp = temp | (reg.readRegister(rt) & 0xFFFF0000);
+                reg.writeRegister(rt, temp);
+                return;
+
+        case 2: temp = r.getfromStack(reg.readRegister(rs)+imm) >> 8;
+                temp = temp | (reg.readRegister(rt) & 0xFFFFFF00);
+                reg.writeRegister(rt, temp);
+                return;
+
+        case 3: reg.writeRegister(rt, r.getfromStack(reg.readRegister(rs)+imm));
+                return;
+    }
 }
