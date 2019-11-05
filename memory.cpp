@@ -9,7 +9,7 @@ RAM::RAM(){
 }
 
 RAM::~RAM(){
-    cout << "Clearing RAM and stack memory" << endl;
+    //cerr << "Clearing RAM and stack memory" << endl;
 }
 
 void RAM::loadtoMemory(unsigned char binstr){
