@@ -55,6 +55,6 @@ void sw(unsigned short rt, unsigned short rs, unsigned short imm);
 void xorr(unsigned short& rd, unsigned short rs, unsigned short rt);
 void xori(unsigned short rt, unsigned short rs, unsigned short imm);
 void insexecute(int instype, unsigned short decoded1, unsigned short decoded2, unsigned int decoded3);
-void delayins();
+extern void delayins();
 
 #endif

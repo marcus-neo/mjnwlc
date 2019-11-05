@@ -237,7 +237,7 @@ void insexecute(int instype, unsigned short decoded1, unsigned short decoded2, u
     }
 }
 
-void delayins(){
+extern void delayins(){
     unsigned int binaryinstruction;
     unsigned short decoded1;
     unsigned short decoded2;
