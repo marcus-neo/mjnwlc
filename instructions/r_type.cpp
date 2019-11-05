@@ -10,7 +10,7 @@ void sll(unsigned short& rd, unsigned short rt, unsigned short shamt){
 }
 
 void srl(unsigned short& rd, unsigned short rt, unsigned short shamt){
-    reg.writeRegister(rd, reg.readRegister(rt) >> shamt);
+    reg.writeRegister(rd, (unsigned)reg.readRegister(rt) >> shamt);
 }
 
 void sra(unsigned short& rd, unsigned short rt, unsigned short shamt){
@@ -37,7 +37,7 @@ void sllv(unsigned short& rd, unsigned short rt, unsigned short rs){
 }
 
 void srlv(unsigned short& rd, unsigned short rt, unsigned short rs){
-    reg.writeRegister(rd, reg.readRegister(rt) >> reg.readRegister(rs));
+    reg.writeRegister(rd, (unsigned)reg.readRegister(rt) >> reg.readRegister(rs));
 }
 
 void srav(unsigned short& rd, unsigned short rt, unsigned short rs){
