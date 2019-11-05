@@ -63,21 +63,8 @@ unsigned int RAM::pullfromMemory(unsigned int& ProgCount){
     return data;
 }
 
-unsigned int RAM::get_addr(unsigned int data){
-    unordered_map<unsigned int, unsigned char>::iterator it;
-
-    for(it = memory.begin(); it != memory.end(); it++){
-        if(it->second == data){
-            return it->first;
-        }
-    }
-
-    try{
-        throw "Data not found!";
-    } catch(const char* msg){
-        cerr << msg << endl;
-        exit(-11);
-    }
+unsigned int RAM::get_addr(){
+    return (ADDR_INSTR_OFFSET + offset);
 }
 
 void RAM::jump(int& ProgCount, unsigned int addr){

@@ -1,4 +1,5 @@
 #include "../include/Instructions.hpp"
+#include "../include/memory.hpp"
 #include "../include/RegisterFile.hpp"
 #include "../include/ProgramCounter.hpp"
 #include <iostream>
@@ -66,6 +67,10 @@ void jr(unsigned short rs){
             PC.interference = 1;
         }
 
+        else if(reg.readRegister(rs) >= r.get_addr()){
+            throw "Invalid address!";
+        }
+
         else{
             throw "Invalid address!";
         }
@@ -86,6 +91,10 @@ void jalr(unsigned short& rd, unsigned short rs){
             reg.writeRegister(31, PC.ProgCount+4);
             PC.ProgCount = (PC.ProgCount & 0xF0000000) | (reg.readRegister(rs) << 2);
             PC.interference = 1;
+        }
+
+        else if(reg.readRegister(rs) >= r.get_addr()){
+            throw "Invalid address!";
         }
 
         else{
