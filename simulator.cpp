@@ -18,8 +18,6 @@ void simulator::execute(){
     unsigned int decoded3;
     int instructiontype;
     PC.ProgCount = r.ADDR_INSTR_OFFSET;
-    int i=0;
-    unordered_map<unsigned int, unsigned char>::iterator it;
 
     while(PC.ProgCount != 0){
         // for(it=r.memory.begin(); it!=r.memory.end(); it++){
