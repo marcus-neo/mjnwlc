@@ -22,6 +22,7 @@ class RAM{
         static const unsigned int ADDR_PUTC_LENGTH = 0x4;
 
         vector<unsigned char> memory;
+        int stack[67108864] = {0};
 
         void loadtoMemory(unsigned char binstr);
         unsigned int pullfromMemory(unsigned int& ProgCount);
@@ -34,7 +35,6 @@ class RAM{
         unsigned int offset=0;
 };
 
-extern int stack[67108864] = {0};
 extern RAM r;
 
 #endif
