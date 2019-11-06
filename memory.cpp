@@ -3,7 +3,7 @@
 #include <vector>
 
 RAM::RAM(){
-    
+
 }
 
 RAM::~RAM(){
@@ -22,7 +22,7 @@ void RAM::loadtoMemory(unsigned char binstr){
         exit(-11);
     }
 
-    memory.push_back(binstr);
+    memory[offset] = binstr;
     offset++;
 }
 
