@@ -1,6 +1,6 @@
-#include "memory.hpp"
 #ifndef SIMULATOR_HPP
 #define SIMULATOR_HPP
+#include "memory.hpp"
 
 class simulator{
     public:
