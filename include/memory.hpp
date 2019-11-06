@@ -34,7 +34,7 @@ class RAM{
         unsigned int offset=0;
 };
 
-int stack[67108864] = {0};
+extern int stack[67108864] = {0};
 extern RAM r;
 
 #endif

@@ -1,7 +1,4 @@
-#include <string>
 #include <iostream>
-#include <fstream>
-#include <iterator>
 #include "include/simulator.hpp"
 #include "include/memory.hpp"
 #include "include/Instructions.hpp"
