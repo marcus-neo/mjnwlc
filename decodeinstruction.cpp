@@ -229,7 +229,7 @@ int decodeinstruction(unsigned int bin, unsigned short& decoded1, unsigned short
             case 4:
                 decoded1 = rs;
                 decoded2 = rt;
-                decoded3 - imm;
+                decoded3 = imm;
                 return 44;
 
             case 5:

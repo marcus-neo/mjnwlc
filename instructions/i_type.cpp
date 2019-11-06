@@ -59,7 +59,7 @@ void bgtz(unsigned short rs, unsigned short imm){
 }
 
 void bltz(unsigned short rs, unsigned short imm){
-    if(reg.readRegister(rs) < 0){
+    if((reg.readRegister(rs) & 0x80000000) > 0){
         int ximm = imm << 2;
 
         if((ximm & 0x20000) > 0){
@@ -72,6 +72,11 @@ void bltz(unsigned short rs, unsigned short imm){
 }
 
 void bltzal(unsigned short rs, unsigned short imm){
+    if(rs == 31){
+        cerr << "Invalid instruction!" << endl;
+        exit(-12);
+    }
+
     if(reg.readRegister(rs) < 0){
         int ximm = imm << 2;
 
@@ -99,6 +104,11 @@ void bgez(unsigned short rs, unsigned short imm){
 }
 
 void bgezal(unsigned short rs, unsigned short imm){
+    if(rs == 31){
+        cerr << "Invalid instruction!" << endl;
+        exit(-12);
+    }
+
     if(reg.readRegister(rs) >= 0){
         int ximm = imm << 2;
 
