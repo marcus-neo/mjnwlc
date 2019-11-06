@@ -179,7 +179,7 @@ void sltiu(unsigned short rt, unsigned short rs, unsigned short imm){
         ximm = imm | 0xFFFF0000;
     }
 
-    if((unsigned)reg.readRegister(rs) < (unsigned)imm){
+    if((unsigned)reg.readRegister(rs) < (unsigned)ximm){
         reg.writeRegister(rt, 1);
     }
 
