@@ -23,10 +23,10 @@ RAM r;
 simulator S;
 
 int main(){
-    cout << "prog started" << endl << endl;
+    //cout << "prog started" << endl << endl;
     fstream file;
     unsigned char n;
-    cout << "Opening binary" << endl << endl;
+    //cout << "Opening binary" << endl << endl;
     try{
         file.open("bin/input/input.bin", ios::in | ios::binary);
 
@@ -37,23 +37,23 @@ int main(){
         cerr << msg << endl;
         exit(EXIT_FAILURE);
     }
-    cout << "Reading binary" << endl << endl;
+    //cout << "Reading binary" << endl << endl;
     file.seekg(0, file.end);
     int lengthofbin = file.tellg();
     file.seekg(0, file.beg);
-    cout << "loading instruction to memory" << endl;
+    //cout << "loading instruction to memory" << endl;
     for (int i=0; i<lengthofbin; i++){
         file.read((char *) (&n), sizeof(n));
         r.loadtoMemory(n);
         //cout  << (int32_t)n << endl;
     }
-    cout << "instruction stored in memory" << endl;
-    cout << " executing simulator" << endl;
+    //cout << "instruction stored in memory" << endl;
+    //cout << " executing simulator" << endl;
     S.execute();
 
-    cout << "Simulator has finished execution successfully" << endl;
+    //cout << "Simulator has finished execution successfully" << endl;
+        cerr<< reg.readRegister(2) <<endl;
     
-    
-        return 0;
+        return reg.readRegister(2);
     
 }
