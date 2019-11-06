@@ -3,7 +3,7 @@
 #include <vector>
 
 RAM::RAM(){
-    stack.resize(ADDR_DATA_LENGTH, 0);
+    
 }
 
 RAM::~RAM(){
