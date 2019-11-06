@@ -1,6 +1,5 @@
 #ifndef MEMORY_HPP
 #define MEMORY_HPP
-#include <cstdlib>
 #include <vector>
 using namespace std;
 

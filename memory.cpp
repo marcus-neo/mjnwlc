@@ -1,10 +1,8 @@
 #include "include/memory.hpp"
 #include <iostream>
-#include <iterator>
 #include <vector>
 
 RAM::RAM(){
-    memory.resize(ADDR_INSTR_LENGTH, '\0');
     stack.resize(ADDR_DATA_LENGTH, 0);
 }
 
