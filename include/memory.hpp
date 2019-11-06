@@ -31,8 +31,8 @@ class RAM{
         unsigned int getfromStack(unsigned int addr);
 
     private:
-        int32_t value;
-        int32_t offset=0;
+        unsigned int value;
+        unsigned int offset=0;
 };
 
 extern RAM r;
