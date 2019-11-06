@@ -263,7 +263,7 @@ void addu(unsigned short& rd, unsigned short rs, unsigned short rt){
 void sub(unsigned short& rd, unsigned short rs, unsigned short rt){
     if(reg.readRegister(rs) == 0 && reg.readRegister(rt) == 0x80000000){
         cerr << "Arithmetic error!" << endl;
-        
+
         exit(-10);
     }
 
@@ -283,14 +283,7 @@ void sub(unsigned short& rd, unsigned short rs, unsigned short rt){
 }
 
 void subu(unsigned short& rd, unsigned short rs, unsigned short rt){
-    if((unsigned)reg.readRegister(rs) < (unsigned)reg.readRegister(rt)){
-        cerr << "Error: Arithmetic overflow occurred!" << endl;
-        exit(-10);
-    }
-
-    else{
-        reg.writeRegister(rd, ((unsigned)reg.readRegister(rs) - (unsigned)reg.readRegister(rt)));
-    }
+    reg.writeRegister(rd, (reg.readRegister(rs) - reg.readRegister(rt)));
 }
 
 void andd(unsigned short& rd, unsigned short rs, unsigned short rt){
