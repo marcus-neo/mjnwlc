@@ -1,21 +1,12 @@
 #ifndef MEMORY_HPP
 #define MEMORY_HPP
-<<<<<<< HEAD
 #include <vector>
-#include <cstdlib>
-=======
-#include <cstdlib>
-#include <unordered_map>
->>>>>>> parent of 5192c7b... Vector memory
 using namespace std;
 
 class RAM{
     public:
         RAM();
         ~RAM();
-
-        unordered_map<unsigned int, unsigned char> memory;
-        unordered_map<unsigned int, unsigned int> stack;
 
         static const unsigned int ADDR_NULL_OFFSET = 0x00000000;
         static const unsigned int ADDR_NULL_LENGTH = 0x4;
@@ -30,16 +21,18 @@ class RAM{
         static const unsigned int ADDR_PUTC_OFFSET = 0x30000004;
         static const unsigned int ADDR_PUTC_LENGTH = 0x4;
 
+        vector<unsigned char> memory;
+        vector<int> stack;
+
         void loadtoMemory(unsigned char binstr);
         unsigned int pullfromMemory(unsigned int& ProgCount);
         unsigned int get_addr();
-        void jump(int& ProgCount, unsigned int addr);
         void loadtoStack(unsigned int addr, unsigned int data);
         unsigned int getfromStack(unsigned int addr);
 
     private:
-        int32_t value;
-        int32_t offset=0;
+        unsigned int value;
+        unsigned int offset=0;
 };
 
 extern RAM r;
