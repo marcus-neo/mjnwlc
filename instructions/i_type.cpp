@@ -7,59 +7,108 @@ using namespace std;
 
 void beq(unsigned short rs, unsigned short rt, unsigned short imm){
     if(reg.readRegister(rs) == reg.readRegister(rt)){
+        int ximm = imm << 2;
+
+        if((ximm & 0x20000) > 0){
+            ximm = ximm | 0xFFFC0000;
+        }
+
         delayins();
-        PC.ProgCount += (imm << 2);
+        PC.ProgCount += (ximm);
+
     }
 }
 
 void bne(unsigned short rs, unsigned short rt, unsigned short imm){
     if(reg.readRegister(rs) != reg.readRegister(rt)){
+        int ximm = imm << 2;
+
+        if((ximm & 0x20000) > 0){
+            ximm = ximm | 0xFFFC0000;
+        }
+
         delayins();
-        PC.ProgCount += (imm << 2);
+        PC.ProgCount += (ximm);
     }
 }
 
 void blez(unsigned short rs, unsigned short imm){
     if(reg.readRegister(rs) <= 0){
+        int ximm = imm << 2;
+
+        if((ximm & 0x20000) > 0){
+            ximm = ximm | 0xFFFC0000;
+        }
+
         delayins();
-        PC.ProgCount += (imm << 2);
+        PC.ProgCount += (ximm);
     }
 }
 
 void bgtz(unsigned short rs, unsigned short imm){
     if(reg.readRegister(rs) > 0){
+        int ximm = imm << 2;
+
+        if((ximm & 0x20000) > 0){
+            ximm = ximm | 0xFFFC0000;
+        }
+
         delayins();
-        PC.ProgCount += (imm << 2);
+        PC.ProgCount += (ximm);
     }
 }
 
 void bltz(unsigned short rs, unsigned short imm){
     if(reg.readRegister(rs) < 0){
+        int ximm = imm << 2;
+
+        if((ximm & 0x20000) > 0){
+            ximm = ximm | 0xFFFC0000;
+        }
+
         delayins();
-        PC.ProgCount += (imm << 2);
+        PC.ProgCount += (ximm);
     }
 }
 
 void bltzal(unsigned short rs, unsigned short imm){
     if(reg.readRegister(rs) < 0){
+        int ximm = imm << 2;
+
+        if((ximm & 0x20000) > 0){
+            ximm = ximm | 0xFFFC0000;
+        }
+
         delayins();
         reg.writeRegister(31, PC.ProgCount+4);
-        PC.ProgCount += (imm << 2);
+        PC.ProgCount += (ximm);
     }
 }
 
 void bgez(unsigned short rs, unsigned short imm){
     if(reg.readRegister(rs) >= 0){
+        int ximm = imm << 2;
+
+        if((ximm & 0x20000) > 0){
+            ximm = ximm | 0xFFFC0000;
+        }
+
         delayins();
-        PC.ProgCount += (imm << 2);
+        PC.ProgCount += (ximm);
     }
 }
 
 void bgezal(unsigned short rs, unsigned short imm){
     if(reg.readRegister(rs) >= 0){
+        int ximm = imm << 2;
+
+        if((ximm & 0x20000) > 0){
+            ximm = ximm | 0xFFFC0000;
+        }
+
         delayins();
         reg.writeRegister(31, PC.ProgCount+4);
-        PC.ProgCount += (imm << 2);
+        PC.ProgCount += (ximm);
     }
 }
 
@@ -98,16 +147,13 @@ void addi(unsigned short rt, unsigned short rs, signed short imm){
 }
 
 void addiu(unsigned short rt, unsigned short rs, unsigned short imm){
-    unsigned int sum = (unsigned)reg.readRegister(rs) + (unsigned)imm;
+    int ximm=imm;
 
-    if(((reg.readRegister(rs) & 0x80000000) > 0) && ((sum & 0x80000000) == 0)){
-        cerr << "Error: Arithmetic overflow occurred!" << endl;
-        exit(-10);
+    if((imm & 0x8000) > 0){
+        ximm = imm | 0xFFFF0000;
     }
 
-    else{
-        reg.writeRegister(rt, sum);
-    }
+    reg.writeRegister(rt, (unsigned)reg.readRegister(rs) + ximm);
 }
 
 void slti(unsigned short rt, unsigned short rs, unsigned short imm){
@@ -137,33 +183,15 @@ void sltiu(unsigned short rt, unsigned short rs, unsigned short imm){
 }
 
 void andi(unsigned short rt, unsigned short rs, unsigned short imm){
-    int ximm=imm;
-
-    /* if((imm & 0x8000) > 0){
-        ximm = ximm | 0xFFFF0000;
-    } */
-
-    reg.writeRegister(rt, (reg.readRegister(rs) & ximm));
+    reg.writeRegister(rt, (reg.readRegister(rs) & imm));
 }
 
 void ori(unsigned short rt, unsigned short rs, unsigned short imm){
-    int ximm=imm;
-
-    /* if((imm & 0x8000) > 0){
-        ximm = ximm | 0xFFFF0000;
-    } */
-
-    reg.writeRegister(rt, (reg.readRegister(rs) | ximm));
+    reg.writeRegister(rt, (reg.readRegister(rs) | imm));
 }
 
 void xori(unsigned short rt, unsigned short rs, unsigned short imm){
-    int ximm=imm;
-
-    /* if((imm & 0x8000) > 0){
-        ximm = ximm | 0xFFFF0000;
-    } */
-
-    reg.writeRegister(rt, (reg.readRegister(rs) ^ ximm));
+    reg.writeRegister(rt, (reg.readRegister(rs) ^ imm));
 }
 
 void lui(unsigned short rt, unsigned short imm){
