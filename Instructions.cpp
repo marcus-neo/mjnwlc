@@ -248,5 +248,4 @@ extern void delayins(){
     binaryinstruction = r.pullfromMemory(PC.ProgCount);
     instructiontype = decodeinstruction(binaryinstruction, decoded1, decoded2, decoded3);
     insexecute(instructiontype, decoded1, decoded2, decoded3);
-    cout << "delay instruction successfully executed" << endl;
 }
