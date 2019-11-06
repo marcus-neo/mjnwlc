@@ -72,11 +72,6 @@ void bltz(unsigned short rs, unsigned short imm){
 }
 
 void bltzal(unsigned short rs, unsigned short imm){
-    if(rs == 31){
-        cerr << "Invalid instruction!" << endl;
-        exit(-12);
-    }
-
     if(reg.readRegister(rs) < 0){
         int ximm = imm << 2;
 
@@ -104,11 +99,6 @@ void bgez(unsigned short rs, unsigned short imm){
 }
 
 void bgezal(unsigned short rs, unsigned short imm){
-    if(rs == 31){
-        cerr << "Invalid instruction!" << endl;
-        exit(-12);
-    }
-
     if(reg.readRegister(rs) >= 0){
         int ximm = imm << 2;
 
@@ -218,10 +208,10 @@ void lb(unsigned short rt, unsigned short rs, unsigned short imm){
     int byte;
 
     try{
-        byte = r.getfromStack(reg.readRegister(rs)+imm);
+        byte = r.getfromStack(reg.readRegister(rs)+imm, num);
 
         if((byte & 0xFFFFFF00) > 0){
-            throw "Invalid instruction! Memory does not contain a byte!";
+            throw "Invalid address!";
         }
 
         else{
@@ -232,6 +222,7 @@ void lb(unsigned short rt, unsigned short rs, unsigned short imm){
         }
     } catch(const char* msg){
         cerr << msg << endl;
+        exit(-11);
     }
 }
 

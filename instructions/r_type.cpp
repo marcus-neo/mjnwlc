@@ -33,11 +33,11 @@ void sra(unsigned short& rd, unsigned short rt, unsigned short shamt){
 }
 
 void sllv(unsigned short& rd, unsigned short rt, unsigned short rs){
-    reg.writeRegister(rd, reg.readRegister(rt) << reg.readRegister(rs));
+    reg.writeRegister(rd, reg.readRegister(rt) << (reg.readRegister(rs) & 0x1F));
 }
 
 void srlv(unsigned short& rd, unsigned short rt, unsigned short rs){
-    reg.writeRegister(rd, (unsigned)reg.readRegister(rt) >> reg.readRegister(rs));
+    reg.writeRegister(rd, (unsigned)reg.readRegister(rt) >> (reg.readRegister(rs) & 0x1F));
 }
 
 void srav(unsigned short& rd, unsigned short rt, unsigned short rs){
@@ -156,11 +156,6 @@ void multu(unsigned short rs, unsigned short rt){
 }
 
 void div(unsigned short rs, unsigned short rt){
-    if(reg.readRegister(rt) == 0){
-        cerr << "Arithmetic error!" << endl;
-        exit(-10);
-    }
-
     int xs = reg.readRegister(rs);
     int xt = reg.readRegister(rt);
     bool s=0, t=0;
@@ -191,38 +186,13 @@ void div(unsigned short rs, unsigned short rt){
         quotient = -quotient;
     }
 
-    if(((reg.readRegister(rs) > 0) && (reg.readRegister(rt) > 0) && (quotient < 0)) || ((reg.readRegister(rs) < 0) && (reg.readRegister(rt) < 0) && (quotient > 0))){
-        cerr << "Arithmetic error!" << endl;
-        exit(-10);
-    }
-
-    if(((reg.readRegister(rs) > 0) && (reg.readRegister(rt) > 0) && (remainder < 0)) || ((reg.readRegister(rs) < 0) && (reg.readRegister(rt) < 0) && (remainder > 0))){
-        cerr << "Arithmetic error!" << endl;
-        exit(-10);
-    }
-
     reg.writeRegister(33, quotient);
     reg.writeRegister(32, remainder);
 }
 
 void divu(unsigned short rs, unsigned short rt){
-    if(reg.readRegister(rt) == 0){
-        cerr << "Arithmetic error!" << endl;
-        exit(-10);
-    }
-
     unsigned int quotient = (unsigned)reg.readRegister(rs) / (unsigned)reg.readRegister(rt);
     unsigned int remainder = (unsigned)reg.readRegister(rs) % (unsigned)reg.readRegister(rt);
-
-    if(((reg.readRegister(rs) > 0) && (reg.readRegister(rt) > 0) && (quotient < 0)) || ((reg.readRegister(rs) < 0) && (reg.readRegister(rt) < 0) && (quotient > 0))){
-        cerr << "Arithmetic error!" << endl;
-        exit(-10);
-    }
-
-    if(((reg.readRegister(rs) > 0) && (reg.readRegister(rt) > 0) && (remainder < 0)) || ((reg.readRegister(rs) < 0) && (reg.readRegister(rt) < 0) && (remainder > 0))){
-        cerr << "Arithmetic error!" << endl;
-        exit(-10);
-    }
 
     reg.writeRegister(33, quotient);
     reg.writeRegister(32, remainder);

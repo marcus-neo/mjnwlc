@@ -245,11 +245,5 @@ extern void delayins(){
 
     binaryinstruction = r.pullfromMemory(PC.ProgCount);
     instructiontype = decodeinstruction(binaryinstruction, decoded1, decoded2, decoded3);
-
-    if((instructiontype >= 40 && instructiontype <= 47) || instructiontype == 7 || instructiontype == 8 || instructiontype == 30 || instructiontype == 31){
-        cerr << "Invalid instruction!" << endl;
-        exit(-12);
-    }
-
     insexecute(instructiontype, decoded1, decoded2, decoded3);
 }

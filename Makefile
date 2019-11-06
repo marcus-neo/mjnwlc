@@ -35,4 +35,4 @@ run:
 	./prog
 
 clean:
-	rm *.o prog
+	rm *.o instructions/*.o prog
