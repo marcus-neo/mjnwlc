@@ -42,20 +42,20 @@ void srlv(unsigned short& rd, unsigned short rt, unsigned short rs){
 
 void srav(unsigned short& rd, unsigned short rt, unsigned short rs){
     if((reg.readRegister(rt) & 0x80000000) > 0){
-        int temp = reg.readRegister(rt) >> reg.readRegister(rs);
+        int temp = reg.readRegister(rt) >> (reg.readRegister(rs) & 0x1F);
         int sign = 0;
 
         for(int i=0; i<reg.readRegister(rs); i++){
             sign++;
             sign = sign << 1;
         }
-        sign = sign << (31-reg.readRegister(rs));
+        sign = sign << (31-(reg.readRegister(rs) & 0x1F));
 
         reg.writeRegister(rd, temp | sign);
     }
 
     else{
-        reg.writeRegister(rd, reg.readRegister(rt) >> reg.readRegister(rs));
+        reg.writeRegister(rd, reg.readRegister(rt) >> (reg.readRegister(rs) & 0x1F));
     }
 }
 
@@ -129,15 +129,10 @@ void mult(unsigned short rs, unsigned short rt){
         t=1;
     }
 
-    signed long product = xs * xt;
+    signed int product = xs * xt;
 
     if((s ^ t) == 1){
         product = -product;
-    }
-
-    if(((reg.readRegister(rs) > 0) && (reg.readRegister(rt) > 0) && (product < 0)) || ((reg.readRegister(rs) < 0) && (reg.readRegister(rt) < 0) && (product > 0))){
-        cerr << "Arithmetic error!" << endl;
-        exit(-10);
     }
 
     reg.writeRegister(32, (product & 0xFFFFFFFF00000000) >> 32);
@@ -145,14 +140,9 @@ void mult(unsigned short rs, unsigned short rt){
 }
 
 void multu(unsigned short rs, unsigned short rt){
-    unsigned long product = (unsigned)reg.readRegister(rs) * (unsigned)reg.readRegister(rt);
+    unsigned int product = (unsigned)reg.readRegister(rs) * (unsigned)reg.readRegister(rt);
     reg.writeRegister(32, (product & 0xFFFFFFFF00000000) >> 32);
     reg.writeRegister(33, product & 0xFFFFFFFF);
-
-    if(((reg.readRegister(rs) > 0) && (reg.readRegister(rt) > 0) && (product < 0)) || ((reg.readRegister(rs) < 0) && (reg.readRegister(rt) < 0) && (product > 0))){
-        cerr << "Arithmetic error!" << endl;
-        exit(-10);
-    }
 }
 
 void div(unsigned short rs, unsigned short rt){

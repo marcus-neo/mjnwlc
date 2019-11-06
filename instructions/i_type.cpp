@@ -173,6 +173,12 @@ void slti(unsigned short rt, unsigned short rs, unsigned short imm){
 }
 
 void sltiu(unsigned short rt, unsigned short rs, unsigned short imm){
+    int ximm=imm;
+
+    if((imm & 0x8000) > 0){
+        ximm = imm | 0xFFFF0000;
+    }
+
     if((unsigned)reg.readRegister(rs) < (unsigned)imm){
         reg.writeRegister(rt, 1);
     }
@@ -205,10 +211,14 @@ void lui(unsigned short rt, unsigned short imm){
 }
 
 void lb(unsigned short rt, unsigned short rs, unsigned short imm){
-    int byte;
+    int byte, ximm=imm;
+
+    if((imm & 0x8000) > 0){
+        ximm = ximm | 0xFFFF0000;
+    }
 
     try{
-        byte = r.getfromStack(reg.readRegister(rs)+imm);
+        byte = r.getfromStack(reg.readRegister(rs)+ximm, 0);
 
         if((byte & 0xFFFFFF00) > 0){
             throw "Invalid address!";
@@ -227,10 +237,14 @@ void lb(unsigned short rt, unsigned short rs, unsigned short imm){
 }
 
 void lh(unsigned short rt, unsigned short rs, unsigned short imm){
-    int hw;
+    int hw, ximm=imm;
+
+    if((imm & 0x8000) > 0){
+        ximm = ximm | 0xFFFF0000;
+    }
 
     try{
-        hw = r.getfromStack(reg.readRegister(rs)+imm);
+        hw = r.getfromStack(reg.readRegister(rs)+ximm, 1);
 
         if((hw & 0xFFFF0000) > 0){
             throw "Invalid instruction! Memory does not contain a byte!";
@@ -248,10 +262,14 @@ void lh(unsigned short rt, unsigned short rs, unsigned short imm){
 }
 
 void lbu(unsigned short rt, unsigned short rs, unsigned short imm){
-    int byte;
+    int byte, ximm=imm;
+
+    if((imm & 0x8000) > 0){
+        ximm = ximm | 0xFFFF0000;
+    }
 
     try{
-        byte = r.getfromStack(reg.readRegister(rs)+imm);
+        byte = r.getfromStack(reg.readRegister(rs)+ximm, 0);
 
         if((byte & 0xFFFFFF00) > 0){
             throw "Invalid instruction! Memory does not contain a byte!";
@@ -266,10 +284,14 @@ void lbu(unsigned short rt, unsigned short rs, unsigned short imm){
 }
 
 void lhu(unsigned short rt, unsigned short rs, unsigned short imm){
-    int hw;
+    int hw, ximm=imm;
+
+    if((imm & 0x8000) > 0){
+        ximm = ximm | 0xFFFF0000;
+    }
 
     try{
-        hw = r.getfromStack(reg.readRegister(rs)+imm);
+        hw = r.getfromStack(reg.readRegister(rs)+ximm, 1);
 
         if((hw & 0xFFFF0000) > 0){
             throw "Invalid instruction! Memory does not contain a byte!";
@@ -285,41 +307,71 @@ void lhu(unsigned short rt, unsigned short rs, unsigned short imm){
 
 void sb(unsigned short rt, unsigned short rs, unsigned short imm){
     int byte = reg.readRegister(rt) & 0xFF;
-    r.loadtoStack(reg.readRegister(rs)+imm, byte);
+    int ximm=imm;
+
+    if((imm & 0x8000) > 0){
+        ximm = ximm | 0xFFFF0000;
+    }
+
+    r.loadtoStack(reg.readRegister(rs)+ximm, byte, 0);
 }
 
 void sh(unsigned short rt, unsigned short rs, unsigned short imm){
     int hw = reg.readRegister(rt) & 0xFFFF;
-    r.loadtoStack(reg.readRegister(rs)+imm, hw);
+    int ximm=imm;
+
+    if((imm & 0x8000) > 0){
+        ximm = ximm | 0xFFFF0000;
+    }
+
+    r.loadtoStack(reg.readRegister(rs)+ximm, hw, 1);
 }
 
 void sw(unsigned short rt, unsigned short rs, unsigned short imm){
-    r.loadtoStack(reg.readRegister(rs)+imm, reg.readRegister(rt));
+    int ximm=imm;
+
+    if((imm & 0x8000) > 0){
+        ximm = ximm | 0xFFFF0000;
+    }
+
+    r.loadtoStack(reg.readRegister(rs)+ximm, reg.readRegister(rt), 2);
 }
 
-void lw(unsigned short rt, unsigned short rs, unsigned short imm){
-    reg.writeRegister(rt, r.getfromStack(reg.readRegister(rs)+imm));
+void lw(unsigned short rt,   unsigned short rs, unsigned short imm){
+    int ximm=imm;
+
+    if((imm & 0x8000) > 0){
+        ximm = ximm | 0xFFFF0000;
+    }
+
+    reg.writeRegister(rt, r.getfromStack(reg.readRegister(rs)+ximm, 2));
 }
 
 void lwl(unsigned short rt, unsigned short rs, unsigned short imm){
-    unsigned int addr = reg.readRegister(rs) + imm;
+    int ximm=imm;
+
+    if((imm & 0x8000) > 0){
+        ximm = ximm | 0xFFFF0000;
+    }
+
+    unsigned int addr = reg.readRegister(rs) + ximm;
 
     switch(addr%4){
         unsigned int temp;
-        case 0: reg.writeRegister(rt, r.getfromStack(reg.readRegister(rs)+imm));
+        case 0: reg.writeRegister(rt, r.getfromStack(addr, 2));
                 return;
 
-        case 1: temp = r.getfromStack(reg.readRegister(rs)+imm) << 8;
+        case 1: temp = r.getfromStack(addr-1, 2) << 8;
                 temp = temp | (reg.readRegister(rt) & 0xFF);
                 reg.writeRegister(rt, temp);
                 return;
 
-        case 2: temp = r.getfromStack(reg.readRegister(rs)+imm) << 16;
+        case 2: temp = r.getfromStack(addr-2, 2) << 16;
                 temp = temp | (reg.readRegister(rt) & 0xFFFF);
                 reg.writeRegister(rt, temp);
                 return;
 
-        case 3: temp = r.getfromStack(reg.readRegister(rs)+imm) << 24;
+        case 3: temp = r.getfromStack(addr-3, 2) << 24;
                 temp = temp | (reg.readRegister(rt) & 0xFFFFFF);
                 reg.writeRegister(rt, temp);
                 return;
@@ -327,26 +379,32 @@ void lwl(unsigned short rt, unsigned short rs, unsigned short imm){
 }
 
 void lwr(unsigned short rt, unsigned short rs, unsigned short imm){
-    unsigned int addr = reg.readRegister(rs) + imm;
+    int ximm=imm;
+
+    if((imm & 0x8000) > 0){
+        ximm = ximm | 0xFFFF0000;
+    }
+
+    unsigned int addr = reg.readRegister(rs) + ximm;
 
     switch(addr%4){
         unsigned int temp;
-        case 0: temp = r.getfromStack(reg.readRegister(rs)+imm) >> 24;
+        case 0: temp = r.getfromStack(addr, 2) >> 24;
                 temp = temp | (reg.readRegister(rt) & 0xFFFFFF00);
                 reg.writeRegister(rt, temp);
                 return;
 
-        case 1: temp = r.getfromStack(reg.readRegister(rs)+imm) >> 16;
+        case 1: temp = r.getfromStack(addr-1, 2) >> 16;
                 temp = temp | (reg.readRegister(rt) & 0xFFFF0000);
                 reg.writeRegister(rt, temp);
                 return;
 
-        case 2: temp = r.getfromStack(reg.readRegister(rs)+imm) >> 8;
+        case 2: temp = r.getfromStack(addr-2, 2) >> 8;
                 temp = temp | (reg.readRegister(rt) & 0xFFFFFF00);
                 reg.writeRegister(rt, temp);
                 return;
 
-        case 3: reg.writeRegister(rt, r.getfromStack(reg.readRegister(rs)+imm));
+        case 3: reg.writeRegister(rt, r.getfromStack(addr-3, 2));
                 return;
     }
 }
