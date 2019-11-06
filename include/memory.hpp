@@ -1,6 +1,7 @@
 #ifndef MEMORY_HPP
 #define MEMORY_HPP
 #include <vector>
+#include <cstdlib>
 using namespace std;
 
 class RAM{
