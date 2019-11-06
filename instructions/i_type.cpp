@@ -208,7 +208,7 @@ void lb(unsigned short rt, unsigned short rs, unsigned short imm){
     int byte;
 
     try{
-        byte = r.getfromStack(reg.readRegister(rs)+imm, num);
+        byte = r.getfromStack(reg.readRegister(rs)+imm);
 
         if((byte & 0xFFFFFF00) > 0){
             throw "Invalid address!";

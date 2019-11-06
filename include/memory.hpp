@@ -27,8 +27,8 @@ class RAM{
         void loadtoMemory(unsigned char binstr);
         unsigned int pullfromMemory(unsigned int& ProgCount);
         unsigned int get_addr();
-        void loadtoStack(unsigned int addr, unsigned int data, int num);
-        unsigned int getfromStack(unsigned int addr, int num);
+        void loadtoStack(unsigned int addr, unsigned int data);
+        unsigned int getfromStack(unsigned int addr);
 
     private:
         unsigned int value;
