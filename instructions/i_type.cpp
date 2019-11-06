@@ -189,15 +189,18 @@ void sltiu(unsigned short rt, unsigned short rs, unsigned short imm){
 }
 
 void andi(unsigned short rt, unsigned short rs, unsigned short imm){
-    reg.writeRegister(rt, (reg.readRegister(rs) & imm));
+    int ximm = imm & 0xFFFF;
+    reg.writeRegister(rt, (reg.readRegister(rs) & ximm));
 }
 
 void ori(unsigned short rt, unsigned short rs, unsigned short imm){
-    reg.writeRegister(rt, (reg.readRegister(rs) | imm));
+    int ximm = imm & 0xFFFF;
+    reg.writeRegister(rt, (reg.readRegister(rs) | ximm));
 }
 
 void xori(unsigned short rt, unsigned short rs, unsigned short imm){
-    reg.writeRegister(rt, (reg.readRegister(rs) ^ imm));
+    int ximm = imm & 0xFFFF;
+    reg.writeRegister(rt, (reg.readRegister(rs) ^ ximm));
 }
 
 void lui(unsigned short rt, unsigned short imm){
