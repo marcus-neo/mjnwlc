@@ -51,7 +51,7 @@ do
 		STATUS="Failure"
 	fi
 	rm bin/test/temp.bin;
-	echo "$field1" "$field2" "$field3" "$field4"
+	echo "$field1" "$field2" "$STATUS" "$field3" "$field4"
 	printf "%s, %s, %s, %s, %s" "$field1" "$field2" "$STATUS" "$field3"  "$field4" >> bin/output.csv
 done < $INPUT
 

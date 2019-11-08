@@ -58,7 +58,7 @@ int main(int argc, char** argv){
     S.execute();
 
     //cout << "Simulator has finished execution successfully" << endl;
-        cerr<< reg.readRegister(2) <<endl;
+        //cerr<< reg.readRegister(2) <<endl;
 
         return (reg.readRegister(2) & 0xFFFFFF00);
 }
