@@ -43,7 +43,7 @@ if [ -f $i ]; then
 	echo $filename;
 else
 	echo "bin/testbench contains no binary files!"
-	exit 0;
+	exit 0
 fi
 done
 
