@@ -1,4 +1,4 @@
-simulator: main.o ./o/decodeinstruction.o ./o/Instructions.o memory.o ProgramCounter.o RegisterFile.o simulator.o instructions/r_type.o instructions/j_type.o instructions/i_type.o
+all: main.o ./o/decodeinstruction.o ./o/Instructions.o memory.o ProgramCounter.o RegisterFile.o simulator.o instructions/r_type.o instructions/j_type.o instructions/i_type.o
 	g++ -o2 main.o decodeinstruction.o Instructions.o memory.o ProgramCounter.o RegisterFile.o simulator.o instructions/r_type.o instructions/j_type.o instructions/i_type.o -o prog
 
 testbench:
