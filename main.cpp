@@ -22,15 +22,21 @@ RAM r;
 
 simulator S;
 
-int main(){
+int main(int argc, char** argv){
     //cout << "prog started" << endl << endl;
     fstream file;
     unsigned char n;
     //cout << "Opening binary" << endl << endl;
     try{
-        file.open("bin/input/input.bin", ios::in | ios::binary);
+        if(argc < 2){
+            file.open("bin/test/temp.bin", ios::in | ios::binary);
+        }
 
-        if (!file.is_open()) {
+        else{
+            file.open(argv[1], ios::in | ios::binary);
+        }
+
+        if(!file.is_open()){
             throw "Error opening binary file!";
         }
     } catch(const char* msg){
@@ -42,7 +48,7 @@ int main(){
     int lengthofbin = file.tellg();
     file.seekg(0, file.beg);
     //cout << "loading instruction to memory" << endl;
-    for (int i=0; i<lengthofbin; i++){
+    for(int i=0; i<lengthofbin; i++){
         file.read((char *) (&n), sizeof(n));
         r.loadtoMemory(n);
         //cout  << (int32_t)n << endl;
@@ -53,7 +59,6 @@ int main(){
 
     //cout << "Simulator has finished execution successfully" << endl;
         cerr<< reg.readRegister(2) <<endl;
-    
+
         return reg.readRegister(2);
-    
 }
