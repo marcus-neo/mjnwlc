@@ -15,7 +15,7 @@ int decodeinstruction(unsigned int bin, unsigned short& decoded1, unsigned short
         rd = rd & 0b11111;
         unsigned int shamt = (bin << 21) >> 27;
         shamt = shamt & 0b11111;
-        
+
         switch(function){
             case 1:
                 return 0;
@@ -119,7 +119,7 @@ int decodeinstruction(unsigned int bin, unsigned short& decoded1, unsigned short
             case 34:
                 decoded1 = rd;
                 decoded2 = rs;
-                decoded3 = rt;  
+                decoded3 = rt;
                 return 20;
 
             case 35:
@@ -193,7 +193,7 @@ int decodeinstruction(unsigned int bin, unsigned short& decoded1, unsigned short
         unsigned short rt = (bin << 11) >> 27;
         rt = rt & 0b11111;
         unsigned int imm = bin & 0xffff;
-        
+
         switch (opcode){
             case 1:
                 switch(rt){
@@ -201,29 +201,29 @@ int decodeinstruction(unsigned int bin, unsigned short& decoded1, unsigned short
                         decoded1 = rs;
                         decoded3 = imm;
                         return 40;
-        
+
                     case 17:
                         decoded1 = rs;
                         decoded3 = imm;
                         return 41;
-        
+
                     case 0:
                         decoded1 = rs;
                         decoded3 = imm;
                         return 42;
-        
+
                     case 16:
                         decoded1 = rs;
                         decoded3 = imm;
                         return 43;
-        
+
                     default:
                         try{
                             throw "Invalid instruction!";
                         } catch(const char* msg){
                             cerr << msg << endl;
                         }
-        
+
                         exit(-12);
                 }
             case 4:

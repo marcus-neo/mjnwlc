@@ -30,6 +30,9 @@ class RAM{
         void loadtoStack(unsigned int addr, unsigned int data, int num);
         unsigned int getfromStack(unsigned int addr, int num);
 
+        //unsigned int getchar();
+        //void putchar();
+
     private:
         unsigned int value;
         unsigned int offset=0;

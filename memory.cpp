@@ -175,3 +175,18 @@ unsigned int RAM::getfromStack(unsigned int addr, int num){
 
     return data;
 }
+
+/* unsigned int RAM::getchar(){
+    unsigned char x = 'a';
+
+    cout << "Enter a character:" << endl;
+    cin >> x;
+
+    if(x)
+
+    }
+}
+
+void RAM::putchar(){
+
+} */

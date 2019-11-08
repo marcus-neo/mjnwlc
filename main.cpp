@@ -41,7 +41,7 @@ int main(int argc, char** argv){
         }
     } catch(const char* msg){
         cerr << msg << endl;
-        exit(EXIT_FAILURE);
+        exit(-21);
     }
     //cout << "Reading binary" << endl << endl;
     file.seekg(0, file.end);
@@ -60,5 +60,5 @@ int main(int argc, char** argv){
     //cout << "Simulator has finished execution successfully" << endl;
         cerr<< reg.readRegister(2) <<endl;
 
-        return reg.readRegister(2);
+        return (reg.readRegister(2) & 0xFFFFFF00);
 }
