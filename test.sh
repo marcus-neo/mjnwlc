@@ -2,7 +2,8 @@
 
 for i in bin/testbench/*.bin ; do
 	if [ -f "$i" ] ; then
-		cp $i bin/test/temp.bin; 
+
+		cp $i bin/test/temp.bin;
 
 		filename=$(basename $i .bin);
 		if [ -f "bin/testanswer/$filename.txt" ] ; then
@@ -11,22 +12,21 @@ for i in bin/testbench/*.bin ; do
 			echo $filename;
 			echo $output;
 		else
-			echo "bin/testanswer/$filename.txt not found!"
+			echo "bin/testanswer/$filename.txt does not exist!"
 			rm bin/test/temp.bin;
 			exit 0
 		fi
 
-		if [ -z "$1" ] ;	then
-			./prog
+		if [ -z "$1" ] ; then
+		    ./prog
 		else
-			if [ -f "$1" ] ; then
+	    		if [ -f "$1" ] ; then
 				./$1
-			else
+		    	else
 				echo "The file $1 does not exist!"
 				exit 0
-			fi
+	    		fi
 		fi
-
 		RETCODE=$?
 		echo $RETCODE
 
@@ -35,14 +35,17 @@ for i in bin/testbench/*.bin ; do
 			echo "Success";
 		else
 			echo "Failure";
+
 		fi
 
 		rm bin/test/temp.bin;
+		echo $filename;
 
-	echo $filename;
-else
-	echo "bin/testbench contains no binary files!"
-	exit 0
-fi
+
+	else
+		echo "bin/testbench contains no binary files!"
+		exit 0
+
+	fi
 done
 
