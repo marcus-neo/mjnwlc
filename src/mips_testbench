@@ -51,6 +51,6 @@ do
 	fi
 	rm bin/test/temp.bin;
 	echo -e "$field1\t" "$field2\t" "$STATUS\t" "$field3\t" "$field4"
-	printf "%s, %s, %s, %s, %s" "$field1" "$field2" "$STATUS" "$field3"  "$field4" >> bin/output.csv
+	printf "%s, %s, %s, %s, %s\n" "$field1" "$field2" "$STATUS" "$field3"  "$field4" >> bin/output.csv
 done < $INPUT
 
