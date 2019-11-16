@@ -2,10 +2,10 @@
 
 
 void programCounter::increment(){
-    if(interference == 0){
+    if(delayslot == 0){
         ProgCount+=4;
     }
     else{
-        interference = 0;
+        delayslot = 0;
     }
 }

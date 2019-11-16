@@ -64,7 +64,6 @@ void jr(unsigned short rs){
         if((reg.readRegister(rs)%4 == 0 && reg.readRegister(rs) >= 0x10000000 && reg.readRegister(rs) < r.get_addr()) || reg.readRegister(rs) == 0){
             delayins();
             PC.ProgCount = reg.readRegister(rs);
-            PC.interference = 1;
         }
 
         else{
@@ -86,7 +85,6 @@ void jalr(unsigned short& rd, unsigned short rs){
             delayins();
             reg.writeRegister(31, PC.ProgCount+4);
             PC.ProgCount = (PC.ProgCount & 0xF0000000) | (reg.readRegister(rs) << 2);
-            PC.interference = 1;
         }
 
         else{

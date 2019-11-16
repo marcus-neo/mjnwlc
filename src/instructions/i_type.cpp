@@ -10,22 +10,23 @@ void beq(unsigned short rs, unsigned short rt, unsigned short imm){
         int ximm = imm << 2;
 
         if((ximm & 0x20000) > 0){
-            ximm = ximm | 0xFFFC0000;
+            ximm = ximm | 0xFFFE0000;
         }
 
         delayins();
         PC.ProgCount += (ximm);
-
     }
 }
 
 void bne(unsigned short rs, unsigned short rt, unsigned short imm){
+    cout << reg.readRegister(rs) << " " << reg.readRegister(rt) << endl;
     if(reg.readRegister(rs) != reg.readRegister(rt)){
         int ximm = imm << 2;
 
         if((ximm & 0x20000) > 0){
-            ximm = ximm | 0xFFFC0000;
+            ximm = ximm | 0xFFFE0000;
         }
+        cout << "ximm is " << ximm << endl;
 
         delayins();
         PC.ProgCount += (ximm);

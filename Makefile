@@ -39,3 +39,5 @@ run:
 
 clean:
 	rm bin/*.o bin/mips_simulator
+cleantb:
+	rm bin/mips_testbench

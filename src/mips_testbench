@@ -9,9 +9,11 @@ fi
 [ ! -f $INPUT ] && { echo "$INPUT file not found!"; exit 99; }
 while read field1 field2 field3 field4
 do
-
+	dos2unix testbinary/testanswer/$field1.txt testbinary/testanswer/$field1.txt;
 	i=testbinary/testbench/$field1.bin
 	j=testbinary/testanswer/$field1.txt
+
+
 	if [ ! -f $i ] ; then
 		echo " ";
 		echo "ERROR!";
@@ -44,6 +46,7 @@ do
 		fi
 	fi
 	RETCODE=$?
+	echo $RETCODE;
 	if [[ "$RETCODE" == "$OUTPUT" ]] ; then
 		STATUS="Passed";
 	else
