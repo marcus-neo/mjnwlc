@@ -19,14 +19,12 @@ void beq(unsigned short rs, unsigned short rt, unsigned short imm){
 }
 
 void bne(unsigned short rs, unsigned short rt, unsigned short imm){
-    cout << reg.readRegister(rs) << " " << reg.readRegister(rt) << endl;
     if(reg.readRegister(rs) != reg.readRegister(rt)){
         int ximm = imm << 2;
 
         if((ximm & 0x20000) > 0){
             ximm = ximm | 0xFFFE0000;
         }
-        cout << "ximm is " << ximm << endl;
 
         delayins();
         PC.ProgCount += (ximm-4);
@@ -491,13 +489,14 @@ void sw(unsigned short rt, unsigned short rs, unsigned short imm){
     }
 
     if(reg.readRegister(rs)+ximm == 0x30000004){
-        char x = reg.readRegister(rs)+ximm & 0xFF;
+        char x = reg.readRegister(rt) & 0xFF;
         cout << x << endl;
-
         return;
     }
 
-    r.loadtoDataMem(reg.readRegister(rs)+ximm, reg.readRegister(rt), 2);
+    else {
+        r.loadtoDataMem(reg.readRegister(rs)+ximm, reg.readRegister(rt), 2);
+    }
 }
 
 void lw(unsigned short rt, unsigned short rs, unsigned short imm){
@@ -509,7 +508,6 @@ void lw(unsigned short rt, unsigned short rs, unsigned short imm){
 
     if(reg.readRegister(rs)+ximm == 0x30000000){
         string line;
-        cin >> line;
 
         if(std::getline(std::cin, line)){
             int x = line[0];

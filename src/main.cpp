@@ -55,6 +55,5 @@ int main(int argc, char** argv){
     }
 
     S.execute();
-
     return (reg.readRegister(2) & 0xFF);
 }

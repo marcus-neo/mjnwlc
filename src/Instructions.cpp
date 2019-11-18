@@ -242,7 +242,6 @@ extern void delayins(){
     unsigned int decoded3;
     int instructiontype;
     PC.ProgCount+=4;
-    cout << "ProgCount during delay is " << hex << PC.ProgCount << endl;
 
     binaryinstruction = r.pullfromMemory(PC.ProgCount);
     instructiontype = decodeinstruction(binaryinstruction, decoded1, decoded2, decoded3);
