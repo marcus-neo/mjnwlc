@@ -221,8 +221,39 @@ void lb(unsigned short rt, unsigned short rs, unsigned short imm){
         ximm = ximm | 0xFFFF0000;
     }
 
+    if(reg.readRegister(rs)+ximm >= 0x30000000 && reg.readRegister(rs)+ximm <= 30000002){
+        string line;
+        cin >> line;
+
+        if(std::getline(std::cin, line)){
+            reg.writeRegister(rt, 0);
+        }
+
+        else{
+            reg.writeRegister(rt, -1);
+        }
+
+        return;
+    }
+
+    else if(reg.readRegister(rs)+ximm == 0x30000003){
+        string line;
+        cin >> line;
+
+        if(std::getline(std::cin, line)){
+            int x = line[0];
+            reg.writeRegister(rt, x);
+        }
+
+        else{
+            reg.writeRegister(rt, -1);
+        }
+
+        return;
+    }
+
     try{
-        byte = r.getfromStack(reg.readRegister(rs)+ximm, 0);
+        byte = r.getfromDataMem(reg.readRegister(rs)+ximm, 0);
 
         if((byte & 0xFFFFFF00) > 0){
             throw "Invalid address!";
@@ -247,8 +278,39 @@ void lh(unsigned short rt, unsigned short rs, unsigned short imm){
         ximm = ximm | 0xFFFF0000;
     }
 
+    if(reg.readRegister(rs)+ximm == 0x30000000){
+        string line;
+        cin >> line;
+
+        if(std::getline(std::cin, line)){
+            reg.writeRegister(rt, 0);
+        }
+
+        else{
+            reg.writeRegister(rt, -1);
+        }
+
+        return;
+    }
+
+    else if(reg.readRegister(rs)+ximm == 0x30000002){
+        string line;
+        cin >> line;
+
+        if(std::getline(std::cin, line)){
+            int x = line[0];
+            reg.writeRegister(rt, x);
+        }
+
+        else{
+            reg.writeRegister(rt, -1);
+        }
+
+        return;
+    }
+
     try{
-        hw = r.getfromStack(reg.readRegister(rs)+ximm, 1);
+        hw = r.getfromDataMem(reg.readRegister(rs)+ximm, 1);
 
         if((hw & 0xFFFF0000) > 0){
             throw "Invalid instruction! Memory does not contain a byte!";
@@ -272,8 +334,39 @@ void lbu(unsigned short rt, unsigned short rs, unsigned short imm){
         ximm = ximm | 0xFFFF0000;
     }
 
+    if(reg.readRegister(rs)+ximm >= 0x30000000 && reg.readRegister(rs)+ximm <= 30000002){
+        string line;
+        cin >> line;
+
+        if(std::getline(std::cin, line)){
+            reg.writeRegister(rt, 0);
+        }
+
+        else{
+            reg.writeRegister(rt, -1);
+        }
+
+        return;
+    }
+
+    else if(reg.readRegister(rs)+ximm == 0x30000003){
+        string line;
+        cin >> line;
+
+        if(std::getline(std::cin, line)){
+            int x = line[0];
+            reg.writeRegister(rt, x);
+        }
+
+        else{
+            reg.writeRegister(rt, -1);
+        }
+
+        return;
+    }
+
     try{
-        byte = r.getfromStack(reg.readRegister(rs)+ximm, 0);
+        byte = r.getfromDataMem(reg.readRegister(rs)+ximm, 0);
 
         if((byte & 0xFFFFFF00) > 0){
             throw "Invalid instruction! Memory does not contain a byte!";
@@ -294,8 +387,39 @@ void lhu(unsigned short rt, unsigned short rs, unsigned short imm){
         ximm = ximm | 0xFFFF0000;
     }
 
+    if(reg.readRegister(rs)+ximm == 0x30000000){
+        string line;
+        cin >> line;
+
+        if(std::getline(std::cin, line)){
+            reg.writeRegister(rt, 0);
+        }
+
+        else{
+            reg.writeRegister(rt, -1);
+        }
+
+        return;
+    }
+
+    else if(reg.readRegister(rs)+ximm == 0x30000002){
+        string line;
+        cin >> line;
+
+        if(std::getline(std::cin, line)){
+            int x = line[0];
+            reg.writeRegister(rt, x);
+        }
+
+        else{
+            reg.writeRegister(rt, -1);
+        }
+
+        return;
+    }
+
     try{
-        hw = r.getfromStack(reg.readRegister(rs)+ximm, 1);
+        hw = r.getfromDataMem(reg.readRegister(rs)+ximm, 1);
 
         if((hw & 0xFFFF0000) > 0){
             throw "Invalid instruction! Memory does not contain a byte!";
@@ -317,7 +441,21 @@ void sb(unsigned short rt, unsigned short rs, unsigned short imm){
         ximm = ximm | 0xFFFF0000;
     }
 
-    r.loadtoStack(reg.readRegister(rs)+ximm, byte, 0);
+    if(reg.readRegister(rs)+ximm >= 0x30000004 && reg.readRegister(rs)+ximm <= 0x30000006){
+        char x = 0;
+        cout << x << endl;
+
+        return;
+    }
+
+    else if(reg.readRegister(rs)+ximm == 0x30000007){
+        char x = reg.readRegister(rs)+ximm & 0xFF;
+        cout << x << endl;
+
+        return;
+    }
+
+    r.loadtoDataMem(reg.readRegister(rs)+ximm, byte, 0);
 }
 
 void sh(unsigned short rt, unsigned short rs, unsigned short imm){
@@ -328,7 +466,21 @@ void sh(unsigned short rt, unsigned short rs, unsigned short imm){
         ximm = ximm | 0xFFFF0000;
     }
 
-    r.loadtoStack(reg.readRegister(rs)+ximm, hw, 1);
+    if(reg.readRegister(rs)+ximm == 0x30000004){
+        char x = 0;
+        cout << x << endl;
+
+        return;
+    }
+
+    else if(reg.readRegister(rs)+ximm == 0x30000006){
+        char x = reg.readRegister(rs)+ximm & 0xFF;
+        cout << x << endl;
+
+        return;
+    }
+
+    r.loadtoDataMem(reg.readRegister(rs)+ximm, hw, 1);
 }
 
 void sw(unsigned short rt, unsigned short rs, unsigned short imm){
@@ -338,17 +490,40 @@ void sw(unsigned short rt, unsigned short rs, unsigned short imm){
         ximm = ximm | 0xFFFF0000;
     }
 
-    r.loadtoStack(reg.readRegister(rs)+ximm, reg.readRegister(rt), 2);
+    if(reg.readRegister(rs)+ximm == 0x30000004){
+        char x = reg.readRegister(rs)+ximm & 0xFF;
+        cout << x << endl;
+
+        return;
+    }
+
+    r.loadtoDataMem(reg.readRegister(rs)+ximm, reg.readRegister(rt), 2);
 }
 
-void lw(unsigned short rt,   unsigned short rs, unsigned short imm){
+void lw(unsigned short rt, unsigned short rs, unsigned short imm){
     int ximm=imm;
 
     if((imm & 0x8000) > 0){
         ximm = ximm | 0xFFFF0000;
     }
 
-    reg.writeRegister(rt, r.getfromStack(reg.readRegister(rs)+ximm, 2));
+    if(reg.readRegister(rs)+ximm == 0x30000000){
+        string line;
+        cin >> line;
+
+        if(std::getline(std::cin, line)){
+            int x = line[0];
+            reg.writeRegister(rt, x);
+        }
+
+        else{
+            reg.writeRegister(rt, -1);
+        }
+
+        return;
+    }
+
+    reg.writeRegister(rt, r.getfromDataMem(reg.readRegister(rs)+ximm, 2));
 }
 
 void lwl(unsigned short rt, unsigned short rs, unsigned short imm){
@@ -360,22 +535,38 @@ void lwl(unsigned short rt, unsigned short rs, unsigned short imm){
 
     unsigned int addr = reg.readRegister(rs) + ximm;
 
+    if(addr == 0x30000000){
+        string line;
+        cin >> line;
+
+        if(std::getline(std::cin, line)){
+            int x = line[0];
+            reg.writeRegister(rt, x);
+        }
+
+        else{
+            reg.writeRegister(rt, -1);
+        }
+
+        return;
+    }
+
     switch(addr%4){
         unsigned int temp;
-        case 0: reg.writeRegister(rt, r.getfromStack(addr, 2));
+        case 0: reg.writeRegister(rt, r.getfromDataMem(addr, 2));
                 return;
 
-        case 1: temp = r.getfromStack(addr-1, 2) << 8;
+        case 1: temp = r.getfromDataMem(addr-1, 2) << 8;
                 temp = temp | (reg.readRegister(rt) & 0xFF);
                 reg.writeRegister(rt, temp);
                 return;
 
-        case 2: temp = r.getfromStack(addr-2, 2) << 16;
+        case 2: temp = r.getfromDataMem(addr-2, 2) << 16;
                 temp = temp | (reg.readRegister(rt) & 0xFFFF);
                 reg.writeRegister(rt, temp);
                 return;
 
-        case 3: temp = r.getfromStack(addr-3, 2) << 24;
+        case 3: temp = r.getfromDataMem(addr-3, 2) << 24;
                 temp = temp | (reg.readRegister(rt) & 0xFFFFFF);
                 reg.writeRegister(rt, temp);
                 return;
@@ -391,24 +582,40 @@ void lwr(unsigned short rt, unsigned short rs, unsigned short imm){
 
     unsigned int addr = reg.readRegister(rs) + ximm;
 
+    if(addr == 0x30000000){
+        string line;
+        cin >> line;
+
+        if(std::getline(std::cin, line)){
+            int x = line[0];
+            reg.writeRegister(rt, x);
+        }
+
+        else{
+            reg.writeRegister(rt, -1);
+        }
+
+        return;
+    }
+
     switch(addr%4){
         unsigned int temp;
-        case 0: temp = r.getfromStack(addr, 2) >> 24;
+        case 0: temp = r.getfromDataMem(addr, 2) >> 24;
                 temp = temp | (reg.readRegister(rt) & 0xFFFFFF00);
                 reg.writeRegister(rt, temp);
                 return;
 
-        case 1: temp = r.getfromStack(addr-1, 2) >> 16;
+        case 1: temp = r.getfromDataMem(addr-1, 2) >> 16;
                 temp = temp | (reg.readRegister(rt) & 0xFFFF0000);
                 reg.writeRegister(rt, temp);
                 return;
 
-        case 2: temp = r.getfromStack(addr-2, 2) >> 8;
+        case 2: temp = r.getfromDataMem(addr-2, 2) >> 8;
                 temp = temp | (reg.readRegister(rt) & 0xFFFFFF00);
                 reg.writeRegister(rt, temp);
                 return;
 
-        case 3: reg.writeRegister(rt, r.getfromStack(addr-3, 2));
+        case 3: reg.writeRegister(rt, r.getfromDataMem(addr-3, 2));
                 return;
     }
 }

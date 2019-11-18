@@ -7,7 +7,7 @@ RAM::RAM(){
 }
 
 RAM::~RAM(){
-    //cerr << "Clearing RAM and stack memory" << endl;
+
 }
 
 void RAM::loadtoMemory(unsigned char binstr){
@@ -67,7 +67,7 @@ unsigned int RAM::get_addr(){
     return (ADDR_INSTR_OFFSET + offset);
 }
 
-void RAM::loadtoStack(unsigned int addr, unsigned int data, int num){
+void RAM::loadtoDataMem(unsigned int addr, unsigned int data, int num){
     try{
         if(addr < ADDR_DATA_OFFSET || addr >= (ADDR_DATA_OFFSET + ADDR_DATA_LENGTH)){
             throw "Accessing out of bounds memory!";
@@ -123,7 +123,7 @@ void RAM::loadtoStack(unsigned int addr, unsigned int data, int num){
     }
 }
 
-unsigned int RAM::getfromStack(unsigned int addr, int num){
+unsigned int RAM::getfromDataMem(unsigned int addr, int num){
     unsigned int data;
 
     try{
@@ -175,18 +175,3 @@ unsigned int RAM::getfromStack(unsigned int addr, int num){
 
     return data;
 }
-
-/* unsigned int RAM::getchar(){
-    unsigned char x = 'a';
-
-    cout << "Enter a character:" << endl;
-    cin >> x;
-
-    if(x)
-
-    }
-}
-
-void RAM::putchar(){
-
-} */
