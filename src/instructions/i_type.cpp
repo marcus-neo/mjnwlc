@@ -14,7 +14,7 @@ void beq(unsigned short rs, unsigned short rt, unsigned short imm){
         }
 
         delayins();
-        PC.ProgCount += (ximm);
+        PC.ProgCount += (ximm-4);
     }
 }
 
@@ -29,7 +29,7 @@ void bne(unsigned short rs, unsigned short rt, unsigned short imm){
         cout << "ximm is " << ximm << endl;
 
         delayins();
-        PC.ProgCount += (ximm);
+        PC.ProgCount += (ximm-4);
     }
 }
 
@@ -42,7 +42,7 @@ void blez(unsigned short rs, unsigned short imm){
         }
 
         delayins();
-        PC.ProgCount += (ximm);
+        PC.ProgCount += (ximm-4);
     }
 }
 
@@ -55,7 +55,7 @@ void bgtz(unsigned short rs, unsigned short imm){
         }
 
         delayins();
-        PC.ProgCount += (ximm);
+        PC.ProgCount += (ximm-4);
     }
 }
 
@@ -68,7 +68,7 @@ void bltz(unsigned short rs, unsigned short imm){
         }
 
         delayins();
-        PC.ProgCount += (ximm);
+        PC.ProgCount += (ximm-4);
     }
 }
 
@@ -82,7 +82,7 @@ void bltzal(unsigned short rs, unsigned short imm){
 
         delayins();
         reg.writeRegister(31, PC.ProgCount+4);
-        PC.ProgCount += (ximm);
+        PC.ProgCount += (ximm-4);
     }
 }
 
@@ -95,7 +95,7 @@ void bgez(unsigned short rs, unsigned short imm){
         }
 
         delayins();
-        PC.ProgCount += (ximm);
+        PC.ProgCount += (ximm-4);
     }
 }
 
@@ -109,7 +109,7 @@ void bgezal(unsigned short rs, unsigned short imm){
 
         delayins();
         reg.writeRegister(31, PC.ProgCount+4);
-        PC.ProgCount += (ximm);
+        PC.ProgCount += (ximm-4);
     }
 }
 
