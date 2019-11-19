@@ -24,10 +24,9 @@ RAM r;
 simulator S;
 
 int main(int argc, char** argv){
-    //cout << "prog started" << endl << endl;
     fstream file;
     unsigned char n;
-    //cout << "Opening binary" << endl << endl;
+
     try{
         if(argc < 2){
             file.open("bin/test/temp.bin", ios::in | ios::binary);
@@ -50,9 +49,21 @@ int main(int argc, char** argv){
     file.seekg(0, file.beg);
 
     for(int i=0; i<lengthofbin; i++){
-        file.read((char *) (&n), sizeof(n));
+        try{
+            file.read((char *) (&n), sizeof(n));
+
+            if(!file){
+                throw "Internal error!";
+            }
+        } catch(const char* msg){
+            cerr << msg << endl;
+            exit(-20);
+        }
+
         r.loadtoMemory(n);
     }
+
+    file.close();
 
     S.execute();
     return (reg.readRegister(2) & 0xFF);

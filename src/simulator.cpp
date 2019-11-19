@@ -42,6 +42,15 @@ void simulator::execute(){
         //cout << "r2 = " << reg.readRegister(2) << endl;
         PC.increment();
     }
+
+    try{
+        if(PC.ProgCount != 0){
+            throw "Internal error!";
+        }
+    } catch(const char* msg){
+        cerr << msg << endl;
+        exit(-20);
+    }
 }
 
 //Implementing Register File
