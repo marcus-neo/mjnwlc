@@ -367,7 +367,7 @@ void sb(unsigned short rt, unsigned short rs, unsigned short imm){
     }
 
     else if(reg.readRegister(rs)+ximm == 0x30000007){
-        char x = reg.readRegister(rs)+ximm & 0xFF;
+        char x = reg.readRegister(rt) & 0xFF;
         r.putchar(1, x);
 
         return;
@@ -392,7 +392,7 @@ void sh(unsigned short rt, unsigned short rs, unsigned short imm){
     }
 
     else if(reg.readRegister(rs)+ximm == 0x30000006){
-        char x = reg.readRegister(rs)+ximm & 0xFF;
+        char x = reg.readRegister(rt) & 0xFF;
         r.putchar(1, x);
 
         return;
@@ -455,50 +455,17 @@ void lwl(unsigned short rt, unsigned short rs, unsigned short imm){
                 return;
 
         case 1: temp = r.getfromDataMem(addr-1, 2) << 8;
-
-                try{
-                    temp = temp | (reg.readRegister(rt) & 0xFF);
-
-                    if((temp & 0xFFFFFF00) > 0){
-                        throw "Internal error!";
-                    }
-                } catch(const char* msg){
-                    cerr << msg << endl;
-                    exit(-20);
-                }
-
+                temp = temp | (reg.readRegister(rt) & 0xFF);
                 reg.writeRegister(rt, temp);
                 return;
 
         case 2: temp = r.getfromDataMem(addr-2, 2) << 16;
-
-                try{
-                    temp = temp | (reg.readRegister(rt) & 0xFFFF);
-
-                    if((temp & 0xFFFF0000) > 0){
-                        throw "Internal error!";
-                    }
-                } catch(const char* msg){
-                    cerr << msg << endl;
-                    exit(-20);
-                }
-
+                temp = temp | (reg.readRegister(rt) & 0xFFFF);
                 reg.writeRegister(rt, temp);
                 return;
 
         case 3: temp = r.getfromDataMem(addr-3, 2) << 24;
-
-                try{
-                    temp = temp | (reg.readRegister(rt) & 0xFFFFFF);
-
-                    if((temp & 0xFF000000) > 0){
-                        throw "Internal error!";
-                    }
-                } catch(const char* msg){
-                    cerr << msg << endl;
-                    exit(-20);
-                }
-
+                temp = temp | (reg.readRegister(rt) & 0xFFFFFF);
                 reg.writeRegister(rt, temp);
                 return;
     }
@@ -521,50 +488,17 @@ void lwr(unsigned short rt, unsigned short rs, unsigned short imm){
     switch(addr%4){
         unsigned int temp;
         case 0: temp = r.getfromDataMem(addr, 2) >> 24;
-
-                try{
-                    temp = temp | (reg.readRegister(rt) & 0xFF000000);
-
-                    if((temp & 0xFFFFFF) > 0){
-                        throw "Internal error!";
-                    }
-                } catch(const char* msg){
-                    cerr << msg << endl;
-                    exit(-20);
-                }
-
+                temp = temp | (reg.readRegister(rt) & 0xFFFFFF00);
                 reg.writeRegister(rt, temp);
                 return;
 
         case 1: temp = r.getfromDataMem(addr-1, 2) >> 16;
-
-                try{
-                    temp = temp | (reg.readRegister(rt) & 0xFFFF0000);
-
-                    if((temp & 0xFFFF) > 0){
-                        throw "Internal error!";
-                    }
-                } catch(const char* msg){
-                    cerr << msg << endl;
-                    exit(-20);
-                }
-
+                temp = temp | (reg.readRegister(rt) & 0xFFFF0000);
                 reg.writeRegister(rt, temp);
                 return;
 
         case 2: temp = r.getfromDataMem(addr-2, 2) >> 8;
-
-                try{
-                    temp = temp | (reg.readRegister(rt) & 0xFFFFFF00);
-
-                    if((temp & 0xFF) > 0){
-                        throw "Internal error!";
-                    }
-                } catch(const char* msg){
-                    cerr << msg << endl;
-                    exit(-20);
-                }
-
+                temp = temp | (reg.readRegister(rt) & 0xFF000000);
                 reg.writeRegister(rt, temp);
                 return;
 

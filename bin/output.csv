@@ -2,3 +2,10 @@ GETCHAR1, GETCHAR, Passed, mjnwlc, getchar X
 GETCHAR2, GETCHAR, Passed, mjnwlc, getchar2 Z
 GETCHAR3, GETCHAR, Passed, mjnwlc, getchar3 eof
 GETCHAR4, GETCHAR, Passed, mjnwlc, getchar4 W
+PUTCHAR1, PUTCHAR, Passed, mjnwlc, putchar XXXXX
+PUTCHAR2, PUTCHAR, Passed, mjnwlc, putchar unaligned
+PUTCHAR3, PUTCHAR, Passed, mjnwlc, putchar sb XXXXX
+LB1, LB, Passed, mjnwlc, LB -1
+LBU1, LBU, Passed, mjnwlc, LBU -1
+LWLLWR1, LWLLWR, Passed, mjnwlc, LWL LWR FFFF8001
+LWLLWR2, LWLLWR, Passed, mjnwlc, LWL LWR FF800101

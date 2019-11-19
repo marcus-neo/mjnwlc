@@ -124,9 +124,9 @@ void RAM::loadtoDataMem(unsigned int addr, unsigned int data, int num){
 
 unsigned int RAM::getfromDataMem(unsigned int addr, int num){
     unsigned int data;
-
+    
     try{
-        if(addr < ADDR_DATA_OFFSET || addr >= (ADDR_DATA_OFFSET + ADDR_DATA_LENGTH)){
+        if((addr < ADDR_DATA_OFFSET) || (addr >= (ADDR_DATA_OFFSET + ADDR_DATA_LENGTH))){
             throw "Accessing out of bounds memory!";
         }
     } catch(const char* msg){
@@ -287,7 +287,7 @@ void RAM::putchar(int num, char ch){
         char x = 0;
 
         try{
-            cout << x;
+            cout << x << endl;
 
             if(cout.fail()){
                 throw "I/O error!";
@@ -300,7 +300,7 @@ void RAM::putchar(int num, char ch){
 
     else if(num == 1){
         try{
-            cout << ch;
+            cout << ch << endl;
 
             if(cout.fail()){
                 throw "I/O error!";
