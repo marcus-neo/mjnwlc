@@ -85,7 +85,7 @@ void bltzal(unsigned short rs, unsigned short imm){
 }
 
 void bgez(unsigned short rs, unsigned short imm){
-    if(reg.readRegister(rs) >= 0){
+    if((signed)reg.readRegister(rs) >= 0){
         int ximm = imm << 2;
 
         if((ximm & 0x20000) > 0){
