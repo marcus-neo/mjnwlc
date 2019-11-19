@@ -1,12 +1,10 @@
-BEQ1, BEQ, Passed, mjnwlc, Positive Branch with Delay Slot Check
-BEQ2, BEQ, Passed, mjnwlc, Negative Branch followed by No Branch with Delay Slot Check
-BEQ3, BEQ, Passed, mjnwlc, Branch Out of Bounds (Negative)
-BEQ4, BEQ, Passed, mjnwlc, Branch out of bounds (Positive)
-BNE1, BNE, Passed, mjnwlc, Positive Branch + Delay Slot Check
-BNE2, BNE, Passed, mjnwlc, Negative Branch + No Branch + Delay Slot Check
-BNE3, BNE, Passed, mjnwlc, Jump Out of Bounds Negative
-BNE4, BNE, Passed, mjnwlc, Jump Out of Bounds Positive
-BGEZ2, BGEZ, Failed, mjnwlc, Negative Branch (GZ) + Negative Branch (EZ) + No Branch + Delay Slot Check
-BGEZ1, BGEZ, Failed, mjnwlc, Positive Branch (GZ) + Positive Branch (EZ) + Delay Slot Check
-BGEZ3, BGEZ, Failed, mjnwlc, Jump Out of Bounds Negative
-BGEZ4, BGEZ, Failed, mjnwlc, Jump Out of Bounds Positive
+BLEZ1, BLEZ, Passed, mjnwlc, Positive Branch (LZ) + Positive Branch (EZ) + Delay Slot Check
+BLEZ3, BLEZ, Passed, mjnwlc, Jump Out of Bounds Negative
+BLTZ4, BLTZ, Passed, mjnwlc, Jumo Out of Bounds Positive
+BLTZ3, BLTZ, Passed, mjnwlc, Jump Out of Memory Negative
+BLTZAL3, BLTZAL, Passed, mjnwlc, Branch Out of Bounds Negative
+BLTZAL4, BLTZAL, Passed, mjnwlc, Branch Out of Bounds Positive
+BLTZ1, BLTZ, Passed, mjnwlc, Positive Branch + No Branch + Delay Slot Check
+BLTZ2, BLTZ, Passed, mjnwlc, Negative Branch + No Branch + Delay Slot Checkl
+BLTZAL1, BLTZAL, Passed, mjnwlc, Positive Branch + No Branch + Delay Slot Check + Link Check
+BLTZAL2, BLTZAL, Passed, mjnwlc, Negative Branch + No Branch + Delay Slot Check + Link Check

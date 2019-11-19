@@ -1,12 +1,1 @@
-BEQ1,BEQ,mjnwlc,Positive Branch with Delay Slot Check
-BEQ2,BEQ,mjnwlc,Negative Branch followed by No Branch with Delay Slot Check
-BEQ3,BEQ,mjnwlc,Branch Out of Bounds (Negative)
-BEQ4,BEQ,mjnwlc,Branch out of bounds (Positive)
-BNE1,BNE,mjnwlc,Positive Branch + Delay Slot Check
-BNE2,BNE,mjnwlc,Negative Branch + No Branch + Delay Slot Check
-BNE3,BNE,mjnwlc,Jump Out of Bounds Negative
-BNE4,BNE,mjnwlc,Jump Out of Bounds Positive
-BGEZ2,BGEZ,mjnwlc,Negative Branch (GZ) + Negative Branch (EZ) + No Branch + Delay Slot Check
-BGEZ1,BGEZ,mjnwlc,Positive Branch (GZ) + Positive Branch (EZ) + Delay Slot Check
-BGEZ3,BGEZ,mjnwlc,Jump Out of Bounds Negative
-BGEZ4,BGEZ,mjnwlc,Jump Out of Bounds Positive
+BLTZAL2,BLTZAL,mjnwlc,Negative Branch + No Branch + Delay Slot Check + Link Check

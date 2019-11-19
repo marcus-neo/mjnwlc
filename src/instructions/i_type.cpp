@@ -91,7 +91,6 @@ void bgez(unsigned short rs, unsigned short imm){
         if((ximm & 0x20000) > 0){
             ximm = ximm | 0xFFFE0000;
         }
-
         delayins();
         PC.ProgCount += (ximm-4);
     }
