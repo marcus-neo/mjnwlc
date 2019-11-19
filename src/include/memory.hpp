@@ -32,12 +32,13 @@ class RAM{
 
         int getchar(int num);
         void putchar(int num);
+        string line;
+        bool eof = 0;
 
     private:
         unsigned int value;
         unsigned int offset = 0;
-        string line = "";
-        bool eof = 0;
+        
 };
 
 extern RAM r;

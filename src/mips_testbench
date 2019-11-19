@@ -32,7 +32,7 @@ do
 	cp $i bin/test/temp.bin;
 
 	if [ -z "$1" ] ; then
-		printf "%s\n" Xjshfgkjgh Y Z | ./bin/mips_simulator;
+		printf "%s\n" "XYZ" "W" | ./bin/mips_simulator;
 	else
 		if [ -f "$1" ] ; then
 			./$1;

@@ -209,9 +209,12 @@ int RAM::getchar(int num){
     }
 
     else if(num == 1){
-        if(line.empty()){
-            try{
-                cin >> line;
+        if(line.empty() && eof == 0){
+            string str;
+
+            try{ 
+                cin >> str;
+                line = str;
 
                 if(cin.fail()){
                     throw "I/O error!";
@@ -223,7 +226,7 @@ int RAM::getchar(int num){
 
             int x;
 
-            if(std::getline(std::cin, line)){
+            if(std::getline(std::cin, str)){
                 try{
                     x = line[0];
 
@@ -235,9 +238,9 @@ int RAM::getchar(int num){
                     exit(-21);
                 }
 
-                line.erase(0);
+                line.erase(line.begin());
 
-                if(line == ""){
+                if(line.empty()){
                     eof = 1;
                 }
 
@@ -252,6 +255,29 @@ int RAM::getchar(int num){
         else if(eof == 1){
             eof = 0;
             return -1;
+        }
+
+        else{
+            int x;
+
+            try{
+                x = line[0];
+
+                if(x > 255 || x < 0){
+                    throw "I/O error! Character not recognised!";
+                }
+            } catch(const char* msg){
+                cerr << msg << endl;
+                exit(-21);
+            }
+
+            line.erase(line.begin());
+
+            if(line.empty()){
+                eof = 1;
+            }
+
+            return x;
         }
     }
 }

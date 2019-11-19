@@ -38,8 +38,10 @@ void simulator::execute(){
         //cout << "executing instruction" << endl;
         insexecute(instructiontype, decoded1, decoded2, decoded3);
         //cout << "instruction successfully executed" << endl;
-        //cout << "r1 = " << reg.readRegister(1) << endl;
-        //cout << "r2 = " << reg.readRegister(2) << endl;
+        // cout << "r1 = " << reg.readRegister(1) << endl;
+        // cout << "r2 = " << reg.readRegister(2) << endl;
+        // cout << "hi = " << reg.readRegister(32) << endl;
+        // cout << "lo = " << reg.readRegister(33) << endl;
         PC.increment();
     }
 

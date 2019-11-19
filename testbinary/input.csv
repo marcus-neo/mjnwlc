@@ -1,2 +1,4 @@
-BLTZAL2,BLTZAL,mjnwlc,Negative Branch + No Branch + Delay Slot Check + Link Check
-TESTWHEELNONSENZ,TESTWHEELNONSEN,mjnwlc,lemao
+GETCHAR1,GETCHAR,mjnwlc,getchar X
+GETCHAR2,GETCHAR,mjnwlc,getchar2 Z
+GETCHAR3,GETCHAR,mjnwlc,getchar3 eof
+GETCHAR4,GETCHAR,mjnwlc,getchar4 W
