@@ -85,7 +85,7 @@ void bltzal(unsigned short rs, unsigned short imm){
 }
 
 void bgez(unsigned short rs, unsigned short imm){
-    if((signed)reg.readRegister(rs) >= 0){
+    if(reg.readRegister(rs) >= 0){
         int ximm = imm << 2;
 
         if((ximm & 0x20000) > 0){
@@ -308,7 +308,17 @@ void lh(unsigned short rt, unsigned short rs, unsigned short imm){
 
     if(reg.readRegister(rs)+ximm == 0x30000000){
         string line;
-        cin >> line;
+
+        try{
+            cin >> line;
+
+            if(cin.fail()){
+                throw "I/O error!";
+            }
+        } catch(const char* msg){
+            cerr << msg << endl;
+            exit(-21);
+        }
 
         if(std::getline(std::cin, line)){
             reg.writeRegister(rt, 0);
@@ -322,11 +332,32 @@ void lh(unsigned short rt, unsigned short rs, unsigned short imm){
     }
 
     else if(reg.readRegister(rs)+ximm == 0x30000002){
+        int x;
         string line;
-        cin >> line;
+
+        try{
+            cin >> line;
+
+            if(cin.fail()){
+                throw "I/O error!";
+            }
+        } catch(const char* msg){
+            cerr << msg << endl;
+            exit(-21);
+        }
 
         if(std::getline(std::cin, line)){
-            int x = line[0];
+            try{
+                x = line[0];
+
+                if(x > 255 || x < 0){
+                    throw "I/O error! Character not recognised!";
+                }
+            } catch(const char* msg){
+                cerr << msg << endl;
+                exit(-21);
+            }
+
             reg.writeRegister(rt, x);
         }
 
@@ -428,7 +459,7 @@ void lbu(unsigned short rt, unsigned short rs, unsigned short imm){
         byte = r.getfromDataMem(reg.readRegister(rs)+ximm, 0);
 
         if((byte & 0xFFFFFF00) > 0){
-            throw "Invalid instruction! Memory does not contain a byte!";
+            throw "Internal error!";
         }
 
         else{
@@ -436,6 +467,7 @@ void lbu(unsigned short rt, unsigned short rs, unsigned short imm){
         }
     } catch(const char* msg){
         cerr << msg << endl;
+        exit(-20);
     }
 }
 
@@ -448,7 +480,17 @@ void lhu(unsigned short rt, unsigned short rs, unsigned short imm){
 
     if(reg.readRegister(rs)+ximm == 0x30000000){
         string line;
-        cin >> line;
+
+        try{
+            cin >> line;
+
+            if(cin.fail()){
+                throw "I/O error!";
+            }
+        } catch(const char* msg){
+            cerr << msg << endl;
+            exit(-21);
+        }
 
         if(std::getline(std::cin, line)){
             reg.writeRegister(rt, 0);
@@ -462,11 +504,32 @@ void lhu(unsigned short rt, unsigned short rs, unsigned short imm){
     }
 
     else if(reg.readRegister(rs)+ximm == 0x30000002){
+        int x;
         string line;
-        cin >> line;
+
+        try{
+            cin >> line;
+
+            if(cin.fail()){
+                throw "I/O error!";
+            }
+        } catch(const char* msg){
+            cerr << msg << endl;
+            exit(-21);
+        }
 
         if(std::getline(std::cin, line)){
-            int x = line[0];
+            try{
+                x = line[0];
+
+                if(x > 255 || x < 0){
+                    throw "I/O error! Character not recognised!";
+                }
+            } catch(const char* msg){
+                cerr << msg << endl;
+                exit(-21);
+            }
+
             reg.writeRegister(rt, x);
         }
 
@@ -481,7 +544,7 @@ void lhu(unsigned short rt, unsigned short rs, unsigned short imm){
         hw = r.getfromDataMem(reg.readRegister(rs)+ximm, 1);
 
         if((hw & 0xFFFF0000) > 0){
-            throw "Invalid instruction! Memory does not contain a byte!";
+            throw "Internal error!";
         }
 
         else{
@@ -489,6 +552,7 @@ void lhu(unsigned short rt, unsigned short rs, unsigned short imm){
         }
     } catch(const char* msg){
         cerr << msg << endl;
+        exit(-20);
     }
 }
 
@@ -502,14 +566,34 @@ void sb(unsigned short rt, unsigned short rs, unsigned short imm){
 
     if(reg.readRegister(rs)+ximm >= 0x30000004 && reg.readRegister(rs)+ximm <= 0x30000006){
         char x = 0;
-        cout << x << endl;
+
+        try{
+            cout << x << endl;
+
+            if(cout.fail()){
+                throw "I/O error!";
+            }
+        } catch(const char* msg){
+            cerr << msg << endl;
+            exit(-21);
+        }
 
         return;
     }
 
     else if(reg.readRegister(rs)+ximm == 0x30000007){
         char x = reg.readRegister(rs)+ximm & 0xFF;
-        cout << x << endl;
+
+        try{
+            cout << x << endl;
+
+            if(cout.fail()){
+                throw "I/O error!";
+            }
+        } catch(const char* msg){
+            cerr << msg << endl;
+            exit(-21);
+        }
 
         return;
     }
@@ -527,14 +611,34 @@ void sh(unsigned short rt, unsigned short rs, unsigned short imm){
 
     if(reg.readRegister(rs)+ximm == 0x30000004){
         char x = 0;
-        cout << x << endl;
+
+        try{
+            cout << x << endl;
+
+            if(cout.fail()){
+                throw "I/O error!";
+            }
+        } catch(const char* msg){
+            cerr << msg << endl;
+            exit(-21);
+        }
 
         return;
     }
 
     else if(reg.readRegister(rs)+ximm == 0x30000006){
         char x = reg.readRegister(rs)+ximm & 0xFF;
-        cout << x << endl;
+
+        try{
+            cout << x << endl;
+
+            if(cout.fail()){
+                throw "I/O error!";
+            }
+        } catch(const char* msg){
+            cerr << msg << endl;
+            exit(-21);
+        }
 
         return;
     }
@@ -551,7 +655,18 @@ void sw(unsigned short rt, unsigned short rs, unsigned short imm){
 
     if(reg.readRegister(rs)+ximm == 0x30000004){
         char x = reg.readRegister(rt) & 0xFF;
-        cout << x << endl;
+
+        try{
+            cout << x << endl;
+
+            if(cout.fail()){
+                throw "I/O error!";
+            }
+        } catch(const char* msg){
+            cerr << msg << endl;
+            exit(-21);
+        }
+
         return;
     }
 
@@ -568,10 +683,32 @@ void lw(unsigned short rt, unsigned short rs, unsigned short imm){
     }
 
     if(reg.readRegister(rs)+ximm == 0x30000000){
+        int x;
         string line;
 
+        try{
+            cin >> line;
+
+            if(cin.fail()){
+                throw "I/O error!";
+            }
+        } catch(const char* msg){
+            cerr << msg << endl;
+            exit(-21);
+        }
+
         if(std::getline(std::cin, line)){
-            int x = line[0];
+            try{
+                x = line[0];
+
+                if(x > 255 || x < 0){
+                    throw "Internal error!";
+                }
+            } catch(const char* msg){
+                cerr << msg << endl;
+                exit(-20);
+            }
+
             reg.writeRegister(rt, x);
         }
 
@@ -595,11 +732,32 @@ void lwl(unsigned short rt, unsigned short rs, unsigned short imm){
     unsigned int addr = reg.readRegister(rs) + ximm;
 
     if(addr == 0x30000000){
+        int x;
         string line;
-        cin >> line;
+
+        try{
+            cin >> line;
+
+            if(cin.fail()){
+                throw "I/O error!";
+            }
+        } catch(const char* msg){
+            cerr << msg << endl;
+            exit(-21);
+        }
 
         if(std::getline(std::cin, line)){
-            int x = line[0];
+            try{
+                x = line[0];
+
+                if(x > 255 || x < 0){
+                    throw "I/O error! Character not recognised!";
+                }
+            } catch(const char* msg){
+                cerr << msg << endl;
+                exit(-21);
+            }
+
             reg.writeRegister(rt, x);
         }
 
@@ -616,17 +774,50 @@ void lwl(unsigned short rt, unsigned short rs, unsigned short imm){
                 return;
 
         case 1: temp = r.getfromDataMem(addr-1, 2) << 8;
-                temp = temp | (reg.readRegister(rt) & 0xFF);
+
+                try{
+                    temp = temp | (reg.readRegister(rt) & 0xFF);
+
+                    if((temp & 0xFFFFFF00) > 0){
+                        throw "Internal error!";
+                    }
+                } catch(const char* msg){
+                    cerr << msg << endl;
+                    exit(-20);
+                }
+
                 reg.writeRegister(rt, temp);
                 return;
 
         case 2: temp = r.getfromDataMem(addr-2, 2) << 16;
-                temp = temp | (reg.readRegister(rt) & 0xFFFF);
+
+                try{
+                    temp = temp | (reg.readRegister(rt) & 0xFFFF);
+
+                    if((temp & 0xFFFF0000) > 0){
+                        throw "Internal error!";
+                    }
+                } catch(const char* msg){
+                    cerr << msg << endl;
+                    exit(-20);
+                }
+
                 reg.writeRegister(rt, temp);
                 return;
 
         case 3: temp = r.getfromDataMem(addr-3, 2) << 24;
-                temp = temp | (reg.readRegister(rt) & 0xFFFFFF);
+
+                try{
+                    temp = temp | (reg.readRegister(rt) & 0xFFFFFF);
+
+                    if((temp & 0xFF000000) > 0){
+                        throw "Internal error!";
+                    }
+                } catch(const char* msg){
+                    cerr << msg << endl;
+                    exit(-20);
+                }
+
                 reg.writeRegister(rt, temp);
                 return;
     }
@@ -642,11 +833,32 @@ void lwr(unsigned short rt, unsigned short rs, unsigned short imm){
     unsigned int addr = reg.readRegister(rs) + ximm;
 
     if(addr == 0x30000000){
+        int x;
         string line;
-        cin >> line;
+
+        try{
+            cin >> line;
+
+            if(cin.fail()){
+                throw "I/O error!";
+            }
+        } catch(const char* msg){
+            cerr << msg << endl;
+            exit(-21);
+        }
 
         if(std::getline(std::cin, line)){
-            int x = line[0];
+            try{
+                x = line[0];
+
+                if(x > 255 || x < 0){
+                    throw "I/O error! Character not recognised!";
+                }
+            } catch(const char* msg){
+                cerr << msg << endl;
+                exit(-21);
+            }
+
             reg.writeRegister(rt, x);
         }
 
@@ -660,17 +872,50 @@ void lwr(unsigned short rt, unsigned short rs, unsigned short imm){
     switch(addr%4){
         unsigned int temp;
         case 0: temp = r.getfromDataMem(addr, 2) >> 24;
-                temp = temp | (reg.readRegister(rt) & 0xFFFFFF00);
+
+                try{
+                    temp = temp | (reg.readRegister(rt) & 0xFF000000);
+
+                    if((temp & 0xFFFFFF) > 0){
+                        throw "Internal error!";
+                    }
+                } catch(const char* msg){
+                    cerr << msg << endl;
+                    exit(-20);
+                }
+
                 reg.writeRegister(rt, temp);
                 return;
 
         case 1: temp = r.getfromDataMem(addr-1, 2) >> 16;
-                temp = temp | (reg.readRegister(rt) & 0xFFFF0000);
+
+                try{
+                    temp = temp | (reg.readRegister(rt) & 0xFFFF0000);
+
+                    if((temp & 0xFFFF) > 0){
+                        throw "Internal error!";
+                    }
+                } catch(const char* msg){
+                    cerr << msg << endl;
+                    exit(-20);
+                }
+
                 reg.writeRegister(rt, temp);
                 return;
 
         case 2: temp = r.getfromDataMem(addr-2, 2) >> 8;
-                temp = temp | (reg.readRegister(rt) & 0xFFFFFF00);
+
+                try{
+                    temp = temp | (reg.readRegister(rt) & 0xFFFFFF00);
+
+                    if((temp & 0xFF) > 0){
+                        throw "Internal error!";
+                    }
+                } catch(const char* msg){
+                    cerr << msg << endl;
+                    exit(-20);
+                }
+
                 reg.writeRegister(rt, temp);
                 return;
 
