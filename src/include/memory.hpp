@@ -22,8 +22,8 @@ class RAM{
         static const unsigned int ADDR_PUTC_OFFSET = 0x30000004;
         static const unsigned int ADDR_PUTC_LENGTH = 0x4;
 
-        unsigned char memory[16777216];
-        int stack[67108864] = {0};
+        unsigned char memory[16777216] = {0};
+        int datamem[67108864] = {0};
 
         void loadtoMemory(unsigned char binstr);
         unsigned int pullfromMemory(unsigned int& ProgCount);

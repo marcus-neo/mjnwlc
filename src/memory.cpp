@@ -1,6 +1,5 @@
 #include "include/memory.hpp"
 #include <iostream>
-#include <vector>
 
 RAM::RAM(){
 
@@ -34,14 +33,14 @@ unsigned int RAM::pullfromMemory(unsigned int& ProgCount){
         return 1;
     }
 
-    try{
+    /* try{
         if(ProgCount < ADDR_INSTR_OFFSET || ProgCount > (ADDR_INSTR_OFFSET + offset)){
             throw "Accessing out of bounds memory!";
         }
     } catch(const char* msg){
         cerr << msg << endl;
         exit(-11);
-    }
+    } */
 
     unsigned int addr = ProgCount - ADDR_INSTR_OFFSET;
 
@@ -85,14 +84,14 @@ void RAM::loadtoDataMem(unsigned int addr, unsigned int data, int num){
     unsigned int index = addr - ADDR_DATA_OFFSET;
 
     if(num == 0){
-        stack[index] = lsb;
+        datamem[index] = lsb;
     }
 
     else if(num == 1){
         try{
             if(addr%2 == 0){
-                stack[index] = xlsb;
-                stack[index+1] = lsb;
+                datamem[index] = xlsb;
+                datamem[index+1] = lsb;
             }
 
             else{
@@ -107,10 +106,10 @@ void RAM::loadtoDataMem(unsigned int addr, unsigned int data, int num){
     else if(num == 2){
         try{
             if(addr%4 == 0){
-                stack[index] = msb;
-                stack[index+1] = xmsb;
-                stack[index+2] = xlsb;
-                stack[index+3] = lsb;
+                datamem[index] = msb;
+                datamem[index+1] = xmsb;
+                datamem[index+2] = xlsb;
+                datamem[index+3] = lsb;
             }
 
             else{
@@ -138,13 +137,13 @@ unsigned int RAM::getfromDataMem(unsigned int addr, int num){
     unsigned int index = addr - ADDR_DATA_OFFSET;
 
     if(num == 0){
-        data = stack[index];
+        data = datamem[index];
     }
 
     else if(num == 1){
         try{
             if(addr%2 == 0){
-                data = (stack[index] << 8) + stack[index+1];
+                data = (datamem[index] << 8) + datamem[index+1];
             }
 
             else{
@@ -159,9 +158,9 @@ unsigned int RAM::getfromDataMem(unsigned int addr, int num){
     else if(num == 2){
         try{
             if(addr%4 == 0){
-                data = ((stack[index] << 8) + stack[index+1]) << 8;
-                data = (data + stack[index+2]) << 8;
-                data = data + stack[index+3];
+                data = ((datamem[index] << 8) + datamem[index+1]) << 8;
+                data = (data + datamem[index+2]) << 8;
+                data = data + datamem[index+3];
             }
 
             else{
