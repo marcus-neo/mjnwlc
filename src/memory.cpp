@@ -282,16 +282,32 @@ int RAM::getchar(int num){
     }
 }
 
-void RAM::putchar(int num){
+void RAM::putchar(int num, char ch){
     if(num == 0){
+        char x = 0;
 
+        try{
+            cout << x;
+
+            if(cout.fail()){
+                throw "I/O error!";
+            }
+        } catch(const char* msg){
+            cerr << msg << endl;
+            exit(-21);
+        }
     }
 
     else if(num == 1){
+        try{
+            cout << ch;
 
-    }
-
-    else if(num == 2){
-        
+            if(cout.fail()){
+                throw "I/O error!";
+            }
+        } catch(const char* msg){
+            cerr << msg << endl;
+            exit(-21);
+        }
     }
 }

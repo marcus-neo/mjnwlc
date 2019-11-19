@@ -361,34 +361,14 @@ void sb(unsigned short rt, unsigned short rs, unsigned short imm){
 
     if(reg.readRegister(rs)+ximm >= 0x30000004 && reg.readRegister(rs)+ximm <= 0x30000006){
         char x = 0;
-
-        try{
-            cout << x << endl;
-
-            if(cout.fail()){
-                throw "I/O error!";
-            }
-        } catch(const char* msg){
-            cerr << msg << endl;
-            exit(-21);
-        }
+        r.putchar(0, x);
 
         return;
     }
 
     else if(reg.readRegister(rs)+ximm == 0x30000007){
         char x = reg.readRegister(rs)+ximm & 0xFF;
-
-        try{
-            cout << x << endl;
-
-            if(cout.fail()){
-                throw "I/O error!";
-            }
-        } catch(const char* msg){
-            cerr << msg << endl;
-            exit(-21);
-        }
+        r.putchar(1, x);
 
         return;
     }
@@ -406,34 +386,14 @@ void sh(unsigned short rt, unsigned short rs, unsigned short imm){
 
     if(reg.readRegister(rs)+ximm == 0x30000004){
         char x = 0;
-
-        try{
-            cout << x << endl;
-
-            if(cout.fail()){
-                throw "I/O error!";
-            }
-        } catch(const char* msg){
-            cerr << msg << endl;
-            exit(-21);
-        }
+        r.putchar(0, x);
 
         return;
     }
 
     else if(reg.readRegister(rs)+ximm == 0x30000006){
         char x = reg.readRegister(rs)+ximm & 0xFF;
-
-        try{
-            cout << x << endl;
-
-            if(cout.fail()){
-                throw "I/O error!";
-            }
-        } catch(const char* msg){
-            cerr << msg << endl;
-            exit(-21);
-        }
+        r.putchar(1, x);
 
         return;
     }
@@ -450,17 +410,7 @@ void sw(unsigned short rt, unsigned short rs, unsigned short imm){
 
     if(reg.readRegister(rs)+ximm == 0x30000004){
         char x = reg.readRegister(rt) & 0xFF;
-
-        try{
-            cout << x << endl;
-
-            if(cout.fail()){
-                throw "I/O error!";
-            }
-        } catch(const char* msg){
-            cerr << msg << endl;
-            exit(-21);
-        }
+        r.putchar(1, x);
 
         return;
     }

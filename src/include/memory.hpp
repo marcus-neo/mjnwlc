@@ -31,7 +31,7 @@ class RAM{
         unsigned int getfromDataMem(unsigned int addr, int num);
 
         int getchar(int num);
-        void putchar(int num);
+        void putchar(int num, char ch);
         string line;
         bool eof = 0;
 
