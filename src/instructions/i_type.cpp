@@ -28,7 +28,7 @@ void bne(unsigned short rs, unsigned short rt, unsigned short imm){
         }
 
         delayins();
-        PC.ProgCount += (ximm-4);
+        PC.ProgCount += ximm;
     }
 }
 
@@ -41,7 +41,7 @@ void blez(unsigned short rs, unsigned short imm){
         }
 
         delayins();
-        PC.ProgCount += (ximm-4);
+        PC.ProgCount += ximm;
     }
 }
 
@@ -54,7 +54,7 @@ void bgtz(unsigned short rs, unsigned short imm){
         }
 
         delayins();
-        PC.ProgCount += (ximm-4);
+        PC.ProgCount += ximm;
     }
 }
 
@@ -67,7 +67,7 @@ void bltz(unsigned short rs, unsigned short imm){
         }
 
         delayins();
-        PC.ProgCount += (ximm-4);
+        PC.ProgCount += ximm;
     }
 }
 
@@ -81,7 +81,7 @@ void bltzal(unsigned short rs, unsigned short imm){
 
         delayins();
         reg.writeRegister(31, PC.ProgCount+4);
-        PC.ProgCount += (ximm-4);
+        PC.ProgCount += ximm;
     }
 }
 
@@ -93,7 +93,7 @@ void bgez(unsigned short rs, unsigned short imm){
             ximm = ximm | 0xFFFE0000;
         }
         delayins();
-        PC.ProgCount += (ximm-4);
+        PC.ProgCount += ximm;
     }
 }
 
@@ -107,7 +107,7 @@ void bgezal(unsigned short rs, unsigned short imm){
 
         delayins();
         reg.writeRegister(31, PC.ProgCount+4);
-        PC.ProgCount += (ximm-4);
+        PC.ProgCount += ximm;
     }
 }
 
