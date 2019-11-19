@@ -1,6 +1,5 @@
 #ifndef MEMORY_HPP
 #define MEMORY_HPP
-#include <vector>
 #include <string>
 using namespace std;
 
@@ -31,10 +30,14 @@ class RAM{
         void loadtoDataMem(unsigned int addr, unsigned int data, int num);
         unsigned int getfromDataMem(unsigned int addr, int num);
 
+        int getchar(int num);
+        void putchar(int num);
+
     private:
         unsigned int value;
-        unsigned int offset=0;
-
+        unsigned int offset = 0;
+        string line = "";
+        bool eof = 0;
 };
 
 extern RAM r;

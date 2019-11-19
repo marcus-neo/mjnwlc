@@ -174,3 +174,98 @@ unsigned int RAM::getfromDataMem(unsigned int addr, int num){
 
     return data;
 }
+
+int RAM::getchar(int num){
+    if(num == 0){
+        if(line.empty()){
+            try{
+                cin >> line;
+
+                if(cin.fail()){
+                    throw "I/O error!";
+                }
+            } catch(const char* msg){
+                cerr << msg << endl;
+                exit(-21);
+            }
+
+            if(std::getline(std::cin, line)){
+                return 0;
+            }
+
+            else{
+                return -1;
+            }
+        }
+
+        else if(eof == 1){
+            eof = 0;
+            return -1;
+        }
+
+        else{
+            return 0;
+        }
+    }
+
+    else if(num == 1){
+        if(line.empty()){
+            try{
+                cin >> line;
+
+                if(cin.fail()){
+                    throw "I/O error!";
+                }
+            } catch(const char* msg){
+                cerr << msg << endl;
+                exit(-21);
+            }
+
+            int x;
+
+            if(std::getline(std::cin, line)){
+                try{
+                    x = line[0];
+
+                    if(x > 255 || x < 0){
+                        throw "I/O error! Character not recognised!";
+                    }
+                } catch(const char* msg){
+                    cerr << msg << endl;
+                    exit(-21);
+                }
+
+                line.erase(0);
+
+                if(line == ""){
+                    eof = 1;
+                }
+
+                return x;
+            }
+
+            else{
+                return -1;
+            }
+        }
+
+        else if(eof == 1){
+            eof = 0;
+            return -1;
+        }
+    }
+}
+
+void RAM::putchar(int num){
+    if(num == 0){
+
+    }
+
+    else if(num == 1){
+
+    }
+
+    else if(num == 2){
+        
+    }
+}

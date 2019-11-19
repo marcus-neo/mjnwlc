@@ -3,6 +3,7 @@
 #include "../include/RegisterFile.hpp"
 #include "../include/ProgramCounter.hpp"
 #include <iostream>
+#include <string>
 using namespace std;
 
 void beq(unsigned short rs, unsigned short rt, unsigned short imm){
@@ -219,64 +220,12 @@ void lb(unsigned short rt, unsigned short rs, unsigned short imm){
     }
 
     if(reg.readRegister(rs)+ximm >= 0x30000000 && reg.readRegister(rs)+ximm <= 30000002){
-        string line;
-
-        try{
-            cin >> line;
-
-            if(cin.fail()){
-                throw "I/O error!";
-            }
-        } catch(const char* msg){
-            cerr << msg << endl;
-            exit(-21);
-        }
-
-        if(std::getline(std::cin, line)){
-            reg.writeRegister(rt, 0);
-        }
-
-        else{
-            reg.writeRegister(rt, -1);
-        }
-
+        reg.writeRegister(rt, r.getchar(0));
         return;
     }
 
     else if(reg.readRegister(rs)+ximm == 0x30000003){
-        int x;
-        string line;
-
-        try{
-            cin >> line;
-
-            if(cin.fail()){
-                throw "I/O error!";
-            }
-        } catch(const char* msg){
-            cerr << msg << endl;
-            exit(-21);
-        }
-
-        if(std::getline(std::cin, line)){
-            try{
-                x = line[0];
-
-                if(x > 255 || x < 0){
-                    throw "I/O error! Character not recognised!";
-                }
-            } catch(const char* msg){
-                cerr << msg << endl;
-                exit(-21);
-            }
-
-            reg.writeRegister(rt, x);
-        }
-
-        else{
-            reg.writeRegister(rt, -1);
-        }
-
+        reg.writeRegister(rt, r.getchar(1));
         return;
     }
 
@@ -307,64 +256,12 @@ void lh(unsigned short rt, unsigned short rs, unsigned short imm){
     }
 
     if(reg.readRegister(rs)+ximm == 0x30000000){
-        string line;
-
-        try{
-            cin >> line;
-
-            if(cin.fail()){
-                throw "I/O error!";
-            }
-        } catch(const char* msg){
-            cerr << msg << endl;
-            exit(-21);
-        }
-
-        if(std::getline(std::cin, line)){
-            reg.writeRegister(rt, 0);
-        }
-
-        else{
-            reg.writeRegister(rt, -1);
-        }
-
+        reg.writeRegister(rt, r.getchar(0));
         return;
     }
 
     else if(reg.readRegister(rs)+ximm == 0x30000002){
-        int x;
-        string line;
-
-        try{
-            cin >> line;
-
-            if(cin.fail()){
-                throw "I/O error!";
-            }
-        } catch(const char* msg){
-            cerr << msg << endl;
-            exit(-21);
-        }
-
-        if(std::getline(std::cin, line)){
-            try{
-                x = line[0];
-
-                if(x > 255 || x < 0){
-                    throw "I/O error! Character not recognised!";
-                }
-            } catch(const char* msg){
-                cerr << msg << endl;
-                exit(-21);
-            }
-
-            reg.writeRegister(rt, x);
-        }
-
-        else{
-            reg.writeRegister(rt, -1);
-        }
-
+        reg.writeRegister(rt, r.getchar(1));
         return;
     }
 
@@ -379,6 +276,7 @@ void lh(unsigned short rt, unsigned short rs, unsigned short imm){
             if((hw & 0x8000) > 0){
                 hw = hw | 0xFFFF0000;
             }
+
             reg.writeRegister(rt, hw);
         }
     } catch(const char* msg){
@@ -395,63 +293,12 @@ void lbu(unsigned short rt, unsigned short rs, unsigned short imm){
     }
 
     if(reg.readRegister(rs)+ximm >= 0x30000000 && reg.readRegister(rs)+ximm <= 30000002){
-        string line;
-        try{
-            cin >> line;
-
-            if(cin.fail()){
-                throw "I/O error!";
-            }
-        } catch(const char* msg){
-            cerr << msg << endl;
-            exit(-21);
-        }
-
-        if(std::getline(std::cin, line)){
-            reg.writeRegister(rt, 0);
-        }
-
-        else{
-            reg.writeRegister(rt, -1);
-        }
-
+        reg.writeRegister(rt, r.getchar(0));
         return;
     }
 
     else if(reg.readRegister(rs)+ximm == 0x30000003){
-        int x;
-        string line;
-
-        try{
-            cin >> line;
-
-            if(cin.fail()){
-                throw "I/O error!";
-            }
-        } catch(const char* msg){
-            cerr << msg << endl;
-            exit(-21);
-        }
-
-        if(std::getline(std::cin, line)){
-            try{
-                x = line[0];
-
-                if(x > 255 || x < 0){
-                    throw "I/O error! Character not recognised!";
-                }
-            } catch(const char* msg){
-                cerr << msg << endl;
-                exit(-21);
-            }
-
-            reg.writeRegister(rt, x);
-        }
-
-        else{
-            reg.writeRegister(rt, -1);
-        }
-
+        reg.writeRegister(rt, r.getchar(1));
         return;
     }
 
@@ -479,64 +326,12 @@ void lhu(unsigned short rt, unsigned short rs, unsigned short imm){
     }
 
     if(reg.readRegister(rs)+ximm == 0x30000000){
-        string line;
-
-        try{
-            cin >> line;
-
-            if(cin.fail()){
-                throw "I/O error!";
-            }
-        } catch(const char* msg){
-            cerr << msg << endl;
-            exit(-21);
-        }
-
-        if(std::getline(std::cin, line)){
-            reg.writeRegister(rt, 0);
-        }
-
-        else{
-            reg.writeRegister(rt, -1);
-        }
-
+        reg.writeRegister(rt, r.getchar(0));
         return;
     }
 
     else if(reg.readRegister(rs)+ximm == 0x30000002){
-        int x;
-        string line;
-
-        try{
-            cin >> line;
-
-            if(cin.fail()){
-                throw "I/O error!";
-            }
-        } catch(const char* msg){
-            cerr << msg << endl;
-            exit(-21);
-        }
-
-        if(std::getline(std::cin, line)){
-            try{
-                x = line[0];
-
-                if(x > 255 || x < 0){
-                    throw "I/O error! Character not recognised!";
-                }
-            } catch(const char* msg){
-                cerr << msg << endl;
-                exit(-21);
-            }
-
-            reg.writeRegister(rt, x);
-        }
-
-        else{
-            reg.writeRegister(rt, -1);
-        }
-
+        reg.writeRegister(rt, r.getchar(1));
         return;
     }
 
@@ -683,39 +478,7 @@ void lw(unsigned short rt, unsigned short rs, unsigned short imm){
     }
 
     if(reg.readRegister(rs)+ximm == 0x30000000){
-        int x;
-        string line;
-
-        try{
-            cin >> line;
-
-            if(cin.fail()){
-                throw "I/O error!";
-            }
-        } catch(const char* msg){
-            cerr << msg << endl;
-            exit(-21);
-        }
-
-        if(std::getline(std::cin, line)){
-            try{
-                x = line[0];
-
-                if(x > 255 || x < 0){
-                    throw "Internal error!";
-                }
-            } catch(const char* msg){
-                cerr << msg << endl;
-                exit(-20);
-            }
-
-            reg.writeRegister(rt, x);
-        }
-
-        else{
-            reg.writeRegister(rt, -1);
-        }
-
+        reg.writeRegister(rt, r.getchar(1));
         return;
     }
 
@@ -732,39 +495,7 @@ void lwl(unsigned short rt, unsigned short rs, unsigned short imm){
     unsigned int addr = reg.readRegister(rs) + ximm;
 
     if(addr == 0x30000000){
-        int x;
-        string line;
-
-        try{
-            cin >> line;
-
-            if(cin.fail()){
-                throw "I/O error!";
-            }
-        } catch(const char* msg){
-            cerr << msg << endl;
-            exit(-21);
-        }
-
-        if(std::getline(std::cin, line)){
-            try{
-                x = line[0];
-
-                if(x > 255 || x < 0){
-                    throw "I/O error! Character not recognised!";
-                }
-            } catch(const char* msg){
-                cerr << msg << endl;
-                exit(-21);
-            }
-
-            reg.writeRegister(rt, x);
-        }
-
-        else{
-            reg.writeRegister(rt, -1);
-        }
-
+        reg.writeRegister(rt, r.getchar(1));
         return;
     }
 
@@ -833,39 +564,7 @@ void lwr(unsigned short rt, unsigned short rs, unsigned short imm){
     unsigned int addr = reg.readRegister(rs) + ximm;
 
     if(addr == 0x30000000){
-        int x;
-        string line;
-
-        try{
-            cin >> line;
-
-            if(cin.fail()){
-                throw "I/O error!";
-            }
-        } catch(const char* msg){
-            cerr << msg << endl;
-            exit(-21);
-        }
-
-        if(std::getline(std::cin, line)){
-            try{
-                x = line[0];
-
-                if(x > 255 || x < 0){
-                    throw "I/O error! Character not recognised!";
-                }
-            } catch(const char* msg){
-                cerr << msg << endl;
-                exit(-21);
-            }
-
-            reg.writeRegister(rt, x);
-        }
-
-        else{
-            reg.writeRegister(rt, -1);
-        }
-
+        reg.writeRegister(rt, r.getchar(1));
         return;
     }
 
