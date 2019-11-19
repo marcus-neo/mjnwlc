@@ -53,7 +53,7 @@ int main(int argc, char** argv){
             file.read((char *) (&n), sizeof(n));
 
             if(!file){
-                throw "Internal error!";
+                throw "Error reading binary file!";
             }
         } catch(const char* msg){
             cerr << msg << endl;
