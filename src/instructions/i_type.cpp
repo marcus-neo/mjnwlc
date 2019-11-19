@@ -15,7 +15,7 @@ void beq(unsigned short rs, unsigned short rt, unsigned short imm){
         }
 
         delayins();
-        PC.ProgCount += (ximm-4);
+        PC.ProgCount += ximm;
     }
 }
 
