@@ -177,7 +177,7 @@ unsigned int RAM::getfromDataMem(unsigned int addr, int num){
 
 int RAM::getchar(int num){
     if(num == 0){
-        if(line.empty()){
+        if(line.empty() && eof == 0){
             try{
                 cin >> line;
 
@@ -212,7 +212,7 @@ int RAM::getchar(int num){
         if(line.empty() && eof == 0){
             string str;
 
-            try{ 
+            try{
                 cin >> str;
                 line = str;
 
