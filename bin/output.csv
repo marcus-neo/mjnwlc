@@ -2,12 +2,3 @@ BEQ1, BEQ, Passed, mjnwlc, Positive Branch with Delay Slot Check
 BEQ2, BEQ, Passed, mjnwlc, Negative Branch followed by No Branch with Delay Slot Check
 BEQ3, BEQ, Passed, mjnwlc, Branch Out of Bounds (Negative)
 BEQ4, BEQ, Passed, mjnwlc, Branch out of bounds (Positive)
-BEQ1, BEQ, Passed, mjnwlc, Positive Branch with Delay Slot Check
-BEQ4, BEQ, Passed, mjnwlc, Branch out of bounds (Positive)
-BEQ4, BEQ, Passed, mjnwlc, Branch out of bounds (Positive)
-GETC1, GETC, Passed, mjnwlc, getchar X
-GETC2, GETC, Passed, mjnwlc, getchar X Y Z
-PUTC1, PUTC, Passed, mjnwlc, putc 88
-PUTC1, PUTC, Passed, mjnwlc, putc 88
-PUTC1, PUTC, Passed, mjnwlc, putc88
-PUTC1, PUTC, Passed, mjnwlc, putc88

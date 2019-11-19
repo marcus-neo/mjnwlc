@@ -7,9 +7,9 @@ if [ -f bin/output.csv ] ; then
 fi
 
 [ ! -f $INPUT ] && { echo "$INPUT file not found!"; exit 99; }
-while read field1 field2 field3 field4
+while read field1 field2 field3 field4 
 do
-	dos2unix testbinary/testanswer/$field1.txt testbinary/testanswer/$field1.txt;
+	dos2unix testbinary/testanswer/$field1.txt;
 	i=testbinary/testbench/$field1.bin
 	j=testbinary/testanswer/$field1.txt
 
@@ -29,7 +29,6 @@ do
 		echo " ";
 		exit 99;
 	fi
-
 	cp $i bin/test/temp.bin;
 
 	if [ -z "$1" ] ; then
@@ -54,6 +53,6 @@ do
 	fi
 	rm bin/test/temp.bin;
 	echo -e "$field1\t" "$field2\t" "$STATUS\t" "$field3\t" "$field4"
-	printf "%s, %s, %s, %s, %s\n" "$field1" "$field2" "$STATUS" "$field3"  "$field4" >> bin/output.csv
+	printf "%s, %s, %s, %s, %s\n" "$field1" "$field2" "$STATUS" "$field3" "$field4" >> bin/output.csv
 done < $INPUT
 
