@@ -127,7 +127,7 @@ void mult(unsigned short rs, unsigned short rt){
         t=1;
     }
 
-    signed int product = xs * xt;
+    unsigned int product = xs * xt;
 
     if((s ^ t) == 1){
         product = -product;
