@@ -128,6 +128,7 @@ void mult(unsigned short rs, unsigned short rt){
     }
 
     long product = xs * xt;
+
     if((s ^ t) == 1){
         product = -product;
     }
@@ -137,7 +138,10 @@ void mult(unsigned short rs, unsigned short rt){
 }
 
 void multu(unsigned short rs, unsigned short rt){
-    unsigned int product = (unsigned)reg.readRegister(rs) * (unsigned)reg.readRegister(rt);
+    unsigned long xs = reg.readRegister(rs);
+    unsigned long xt = reg.readRegister(rt);
+
+    unsigned long product = xs * xt;
     reg.writeRegister(32, (product & 0xFFFFFFFF00000000) >> 32);
     reg.writeRegister(33, product & 0xFFFFFFFF);
 }
