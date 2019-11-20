@@ -137,3 +137,22 @@ BLTZ1,BLTZ,mjnwlc,Positive Branch + No Branch + Delay Slot Check
 BLTZ2,BLTZ,mjnwlc,Negative Branch + No Branch + Delay Slot Checkl
 BLTZAL1,BLTZAL,mjnwlc,Positive Branch + No Branch + Delay Slot Check + Link Check
 BLTZAL2,BLTZAL,mjnwlc,Negative Branch + No Branch + Delay Slot Check + Link Check
+DIV1,DIV,mjnwlc,(Regular Division) 1967556744/605365266 then LO + HI
+DIV2,DIV,mjnwlc,(Signed Division) -7/-3
+DIV3,DIV,mjnwlc,(Signed Division) -7/3
+DIV4,DIV,mjnwlc,(Signed Division) 7/-3
+DIVU1,DIVU,mjnwlc,(Regular Division) 1967556744/605365266
+DIVU2,DIVU,mjnwlc,(Interpreted Signed Division) -7/-3 
+DIVU3,DIVU,mjnwlc,(Interpreted Signed Division) -7/3
+DIVU4,DIVU,mjnwlc,(Interpreted Signed Division) 7/-3
+GETCHAR1,GETCHAR,mjnwlc,getchar X
+GETCHAR2,GETCHAR,mjnwlc,getchar2 Z
+GETCHAR3,GETCHAR,mjnwlc,getchar3 eof
+GETCHAR4,GETCHAR,mjnwlc,getchar4 W
+PUTCHAR1,PUTCHAR,mjnwlc,putchar XXXXX
+PUTCHAR2,PUTCHAR,mjnwlc,putchar unaligned
+PUTCHAR3,PUTCHAR,mjnwlc,putchar sb XXXXX
+LB1,LB,mjnwlc,LB -1
+LBU1,LBU,mjnwlc,LBU -1
+LWLLWR1,LWLLWR,mjnwlc,LWL LWR FFFF8001
+LWLLWR2,LWLLWR,mjnwlc,LWL LWR FF800101
