@@ -79,8 +79,8 @@ void bltzal(unsigned short rs, unsigned short imm){
             ximm = ximm | 0xFFFE0000;
         }
 
+        reg.writeRegister(31, PC.ProgCount+8);
         delayins();
-        reg.writeRegister(31, PC.ProgCount+4);
         PC.ProgCount += ximm;
     }
 }
@@ -105,8 +105,8 @@ void bgezal(unsigned short rs, unsigned short imm){
             ximm = ximm | 0xFFFE0000;
         }
 
+        reg.writeRegister(31, PC.ProgCount+8);
         delayins();
-        reg.writeRegister(31, PC.ProgCount+4);
         PC.ProgCount += ximm;
     }
 }
