@@ -7,7 +7,6 @@ int RegisterFile::readRegister(int RegisterNumber){
 
         case 1:
             return $at;
-            break;
 
         case 2:
             return $v0;
@@ -111,6 +110,7 @@ void RegisterFile::writeRegister(int RegisterNumber, int input){
     switch(RegisterNumber){
         case 0:
             break;
+
         case 1:
             $at = input;
             break;
