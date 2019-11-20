@@ -1,4 +1,16 @@
 ADD1, ADD, Passed, mjnwlc, (normal case) 349756+ 2387468
 J1, J, Passed, mjnwlc, Insane Jumps
 J2, J, Passed, mjnwlc, Small Jump
-JALR1, JALR, Failed, mjnwlc, "JALR 0, Check Delay Slot, Check Link Register When rd not 0"
+JALR1, JALR, Passed, mjnwlc, "JALR 0, Check Delay Slot, Check Link Register When rd not 0"
+JALR2, JALR, Passed, mjnwlc, "JALR R1, R1 = 0x10000010, Default Store in 31, Link Check, Delay Slot Check"
+JAL1, JAL, Passed, mjnwlc, "Insane Jump, Delay Slot Check, Link Register Check"
+JAL2, JAL, Passed, mjnwlc, "Small Jump, Delay Slot Check, Link Register Check"
+JR1, JR, Passed, mjnwlc, "JR 0, Delay Slot Check"
+JR2, JR, Passed, mjnwlc, "JR R1, R1 = 0x10000014, Delay Slot Check"
+BLTZAL1, BLTZAL, Passed, mjnwlc, Positive Branch + No Branch + Delay Slot Check + Link Check
+BLTZAL2, BLTZAL, Passed, mjnwlc, Negative Branch + No Branch + Delay Slot Check + Link Check
+BGEZAL1, BGEZAL, Passed, mjnwlc, Positive Branch (GZ) + Positive Branch (EZ) + Delay Slot Check + Link Check
+BGEZAL2, BGEZAL, Passed, mjnwlc, Negative Branch (GZ) + Negative Branch (EZ) + No Branch + Delay Slot Check + Link Check
+BGEZAL3, BGEZAL, Passed, mjnwlc, Reg31 is in delay slot
+BLTZAL3, BLTZAL, Passed, mjnwlc, When R31 is in delay slot
+HILO1, HILO, Passed, mjnwlc, "Test MTHI, MTLO, MFHI, MFLO"

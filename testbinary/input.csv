@@ -2,3 +2,15 @@ ADD1,ADD,mjnwlc,(normal case) 349756+ 2387468
 J1,J,mjnwlc,Insane Jumps
 J2,J,mjnwlc,Small Jump
 JALR1,JALR,mjnwlc,"JALR 0, Check Delay Slot, Check Link Register When rd not 0"
+JALR2,JALR,mjnwlc,"JALR R1, R1 = 0x10000010, Default Store in 31, Link Check, Delay Slot Check"
+JAL1,JAL,mjnwlc,"Insane Jump, Delay Slot Check, Link Register Check"
+JAL2,JAL,mjnwlc,"Small Jump, Delay Slot Check, Link Register Check"
+JR1,JR,mjnwlc,"JR 0, Delay Slot Check"
+JR2,JR,mjnwlc,"JR R1, R1 = 0x10000014, Delay Slot Check"
+BLTZAL1,BLTZAL,mjnwlc,Positive Branch + No Branch + Delay Slot Check + Link Check
+BLTZAL2,BLTZAL,mjnwlc,Negative Branch + No Branch + Delay Slot Check + Link Check
+BGEZAL1,BGEZAL,mjnwlc,Positive Branch (GZ) + Positive Branch (EZ) + Delay Slot Check + Link Check
+BGEZAL2,BGEZAL,mjnwlc,Negative Branch (GZ) + Negative Branch (EZ) + No Branch + Delay Slot Check + Link Check
+BGEZAL3,BGEZAL,mjnwlc,Reg31 is in delay slot
+BLTZAL3,BLTZAL,mjnwlc,When R31 is in delay slot
+HILO1,HILO,mjnwlc,"Test MTHI, MTLO, MFHI, MFLO"
