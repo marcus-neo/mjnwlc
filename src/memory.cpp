@@ -54,6 +54,10 @@ unsigned int RAM::pullfromMemory(unsigned int& ProgCount){
     return data;
 }
 
+unsigned int RAM::get_addr(){
+    return (ADDR_INSTR_OFFSET + offset);
+}
+
 void RAM::loadtoDataMem(unsigned int addr, unsigned int data, int num){
     try{
         if(addr < ADDR_DATA_OFFSET || addr >= (ADDR_DATA_OFFSET + ADDR_DATA_LENGTH)){

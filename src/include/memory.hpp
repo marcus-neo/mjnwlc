@@ -21,7 +21,7 @@ class RAM{
 
         void loadtoMemory(unsigned char binstr);
         unsigned int pullfromMemory(unsigned int& ProgCount);
-
+        unsigned int get_addr();
         void loadtoDataMem(unsigned int addr, unsigned int data, int num);
         unsigned int getfromDataMem(unsigned int addr, int num);
 
