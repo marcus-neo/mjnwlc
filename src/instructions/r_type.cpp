@@ -141,9 +141,9 @@ void multu(unsigned short rs, unsigned short rt){
     unsigned long xs = reg.readRegister(rs);
     unsigned long xt = reg.readRegister(rt);
 
-    unsigned long product = xs * xt;
+    long product = xs * xt;
     reg.writeRegister(32, (product & 0xFFFFFFFF00000000) >> 32);
-    reg.writeRegister(33, product & 0xFFFFFFFF);
+    reg.writeRegister(33, (product & 0xFFFFFFFF));
 }
 
 void div(unsigned short rs, unsigned short rt){
