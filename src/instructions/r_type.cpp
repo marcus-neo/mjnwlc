@@ -83,7 +83,7 @@ void jalr(unsigned short& rd, unsigned short rs){
     try{
         if(reg.readRegister(rs)%4 == 0 && reg.readRegister(rs) >= 0x10000000 && reg.readRegister(rs) < r.get_addr()){
             delayins();
-            reg.writeRegister(31, PC.ProgCount+4);
+            reg.writeRegister(rd, PC.ProgCount+4);
             PC.ProgCount = (PC.ProgCount & 0xF0000000) | (reg.readRegister(rs) << 2);
         }
 
