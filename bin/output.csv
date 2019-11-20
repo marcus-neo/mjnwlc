@@ -1,5 +1,11 @@
-GETCHAR2, GETCHAR, Failed, mjnwlc, Getchar all unsigned loads
-GETCHAR2, GETCHAR, Failed, mjnwlc, gesdgdg
-GETCHAR2, GETCHAR, Failed, mjnwlc, asfasf
+GETCHAR2, GETCHAR, Passed, mjnwlc, Getchar all unsigned loads
+GETCHAR2, GETCHAR, Passed, mjnwlc, gesdgdg
+GETCHAR2, GETCHAR, Passed, mjnwlc, asfasf
 MULT1, MULT, Passed, mjnwlc, "(Unsigned) 0x7FFFFFFF * 0x31415926, ADDU HI + LO"
-GETCHAR2, GETCHAR, Failed, mjnwlc, GetChar all Unsigned Loads
+GETCHAR2, GETCHAR, Passed, mjnwlc, GetChar all Unsigned Loads
+MULT2, MULT, Passed, mjnwlc, "(Signed) 0xFACEBAFF * 0XDADDB0DD, ADDU HI + LO"
+MULT3, MULT, Passed, mjnwlc, "(Signed) 14285 * -7142, ADDU HI + LO"
+GETCHAR2, GETCHAR, Passed, mjnwlc, Getchar unaligned LH
+GETCHAR3, GETCHAR, Passed, mjnwlc, Getchar Unaligned LHU
+GETCHAR4, GETCHAR, Passed, mjnwlc, Getchar Unaligned LB
+GETCHAR5, GETCHAR, Passed, mjnwlc, Getchar Unaligned LBU

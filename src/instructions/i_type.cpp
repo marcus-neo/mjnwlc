@@ -215,11 +215,15 @@ void lui(unsigned short rt, unsigned short imm){
 void lb(unsigned short rt, unsigned short rs, unsigned short imm){
     int byte, ximm=imm;
 
+    cout << "rs " << reg.readRegister(rs) << endl;
+
     if((imm & 0x8000) > 0){
         ximm = ximm | 0xFFFF0000;
     }
 
-    if((reg.readRegister(rs)+ximm >= 0x30000000) && (reg.readRegister(rs)+ximm <= 30000002)){
+    cout << reg.readRegister(rs)+ximm << endl;
+
+    if(reg.readRegister(rs)+ximm == 0x30000000 || reg.readRegister(rs)+ximm == 0x30000001 || reg.readRegister(rs)+ximm == 0x30000002){
         reg.writeRegister(rt, r.getchar(0));
         cout << "lb" << endl;
         return;
@@ -229,7 +233,7 @@ void lb(unsigned short rt, unsigned short rs, unsigned short imm){
         reg.writeRegister(rt, r.getchar(1));
         return;
     }
-
+    cout << "hi" << endl;
     try{
         byte = r.getfromDataMem(reg.readRegister(rs)+ximm, 0);
 
@@ -294,7 +298,7 @@ void lbu(unsigned short rt, unsigned short rs, unsigned short imm){
         ximm = ximm | 0xFFFF0000;
     }
 
-    if((reg.readRegister(rs)+ximm >= 0x30000000) && (reg.readRegister(rs)+ximm <= 30000002)){
+    if(reg.readRegister(rs)+ximm == 0x30000000 || reg.readRegister(rs)+ximm == 0x30000001 || reg.readRegister(rs)+ximm == 0x30000002){
         reg.writeRegister(rt, r.getchar(0));
         cout << "lbu" << endl;
         return;

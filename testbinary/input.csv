@@ -3,3 +3,9 @@ GETCHAR2,GETCHAR,mjnwlc,gesdgdg
 GETCHAR2,GETCHAR,mjnwlc,asfasf
 MULT1,MULT,mjnwlc,"(Unsigned) 0x7FFFFFFF * 0x31415926, ADDU HI + LO"
 GETCHAR2,GETCHAR,mjnwlc,GetChar all Unsigned Loads
+MULT2,MULT,mjnwlc,"(Signed) 0xFACEBAFF * 0XDADDB0DD, ADDU HI + LO"
+MULT3,MULT,mjnwlc,"(Signed) 14285 * -7142, ADDU HI + LO"
+GETCHAR2,GETCHAR,mjnwlc,Getchar unaligned LH
+GETCHAR3,GETCHAR,mjnwlc,Getchar Unaligned LHU
+GETCHAR4,GETCHAR,mjnwlc,Getchar Unaligned LB
+GETCHAR5,GETCHAR,mjnwlc,Getchar Unaligned LBU
