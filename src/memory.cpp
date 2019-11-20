@@ -1,14 +1,6 @@
 #include "include/memory.hpp"
 #include <iostream>
 
-RAM::RAM(){
-
-}
-
-RAM::~RAM(){
-
-}
-
 void RAM::loadtoMemory(unsigned char binstr){
     unsigned int addr = ADDR_INSTR_OFFSET + offset;
 
@@ -60,10 +52,6 @@ unsigned int RAM::pullfromMemory(unsigned int& ProgCount){
     }
 
     return data;
-}
-
-unsigned int RAM::get_addr(){
-    return (ADDR_INSTR_OFFSET + offset);
 }
 
 void RAM::loadtoDataMem(unsigned int addr, unsigned int data, int num){
@@ -124,7 +112,7 @@ void RAM::loadtoDataMem(unsigned int addr, unsigned int data, int num){
 
 unsigned int RAM::getfromDataMem(unsigned int addr, int num){
     unsigned int data;
-    
+
     try{
         if((addr < ADDR_DATA_OFFSET) || (addr >= (ADDR_DATA_OFFSET + ADDR_DATA_LENGTH))){
             throw "Accessing out of bounds memory!";
