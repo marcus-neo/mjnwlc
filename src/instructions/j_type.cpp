@@ -10,7 +10,7 @@ void j(unsigned int address){
 }
 
 void jal(unsigned int address){
-    delayins();
     reg.writeRegister(31, PC.ProgCount+4);
+    delayins();
     PC.ProgCount = (PC.ProgCount & 0xF0000000) | (address << 2);
 }
