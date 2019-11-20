@@ -113,22 +113,24 @@ void mtlo(unsigned short rs){
 }
 
 void mult(unsigned short rs, unsigned short rt){
-    int xs = reg.readRegister(rs);
-    int xt = reg.readRegister(rt);
+    long xs = reg.readRegister(rs);
+    cout << "rs " << xs << endl;
+    long xt = reg.readRegister(rt);
+    cout << "rt " << xt << endl;
     bool s=0, t=0;
 
-    if((reg.readRegister(rs) & 0x80000000) > 1){
+    if((reg.readRegister(rs) & 0x80000000) > 0){
         xs = -reg.readRegister(rs);
         s=1;
     }
 
-    if((reg.readRegister(rt) & 0x80000000) > 1){
+    if((reg.readRegister(rt) & 0x80000000) > 0){
         xt = -reg.readRegister(rt);
         t=1;
     }
 
-    unsigned int product = xs * xt;
-
+    long product = xs * xt;
+    cout << "product " << hex << product << dec << endl;
     if((s ^ t) == 1){
         product = -product;
     }

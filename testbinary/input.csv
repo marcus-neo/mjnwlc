@@ -1,4 +1,5 @@
-GETCHAR1,GETCHAR,mjnwlc,"Getchar all loads (A-G, EOF, H)"
 GETCHAR2,GETCHAR,mjnwlc,Getchar all unsigned loads
 GETCHAR2,GETCHAR,mjnwlc,gesdgdg
 GETCHAR2,GETCHAR,mjnwlc,asfasf
+MULT1,MULT,mjnwlc,"(Unsigned) 0x7FFFFFFF * 0x31415926, ADDU HI + LO"
+GETCHAR2,GETCHAR,mjnwlc,GetChar all Unsigned Loads

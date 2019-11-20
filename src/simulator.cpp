@@ -19,6 +19,9 @@ void simulator::execute(){
         binaryinstruction = r.pullfromMemory(PC.ProgCount);
         instructiontype = decodeinstruction(binaryinstruction, decoded1, decoded2, decoded3);
         insexecute(instructiontype, decoded1, decoded2, decoded3);
+        cout << "R1 " << reg.readRegister(1) << endl;
+        cout << "R2 " << reg.readRegister(2) << endl;
+         
         PC.increment();
     }
 
