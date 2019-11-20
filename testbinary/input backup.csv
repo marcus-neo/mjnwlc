@@ -29,6 +29,49 @@ AND3,AND,mjnwlc,0xFFFFFFFFF & 0xFFFFFFFF
 ANDI1,ANDI,mjnwlc,0x0 & 0x0
 ANDI2,ANDI,mjnwlc,0xAAAAAAAA & 0x5555
 ANDI3,ANDI,mjnwlc,0xFFFFFFFF & 0xFFFF
+BEQ1,BEQ,mjnwlc,Positive Branch with Delay Slot Check
+BEQ2,BEQ,mjnwlc,Negative Branch followed by No Branch with Delay Slot Check
+BEQ3,BEQ,mjnwlc,Branch Out of Bounds (Negative)
+BEQ4,BEQ,mjnwlc,Branch out of bounds (Positive)
+BGEZ1,BGEZ,mjnwlc,Positive Branch (GZ) + Positive Branch (EZ) + Delay Slot Check
+BGEZ2,BGEZ,mjnwlc,Negative Branch (GZ) + Negative Branch (EZ) + No Branch + Delay Slot Check
+BGEZ3,BGEZ,mjnwlc,Jump Out of Bounds Negative
+BGEZ4,BGEZ,mjnwlc,Jump Out of Bounds Positive
+BGEZAL1,BGEZAL,mjnwlc,Positive Branch (GZ) + Positive Branch (EZ) + Delay Slot Check + Link Check
+BGEZAL2,BGEZAL,mjnwlc,Negative Branch (GZ) + Negative Branch (EZ) + No Branch + Delay Slot Check + Link Check
+BGEZAL3,BGEZAL,mjnwlc,Jump Out of Bounds Negative
+BGEZAL4,BGEZAL,mjnwlc,Jump Out of Bounds Positive
+BGTZ1,BGTZ,mjnwlc,Negative Branch + No Branch + Delay Slot Check
+BGTZ2,BGTZ,mjnwlc,Positive Branch + No Branch + Delay Slot Check
+BGTZ3,BGTZ,mjnwlc,Jump Out of Bounds Negative
+BGTZ4,BGTZ,mjnwlc,Jump Out of Bounds Positive
+BLEZ1,BLEZ,mjnwlc,Positive Branch (LZ) + Positive Branch (EZ) + Delay Slot Check
+BLEZ2,BLEZ,mjnwlc,Negative Branch (LZ) + Negative Branch (EZ) + No Branch + Delay Slot Check
+BLEZ3,BLEZ,mjnwlc,Jump Out of Bounds Negative
+BLTZ1,BLTZ,mjnwlc,Positive Branch + No Branch + Delay Slot Check
+BLTZ2,BLTZ,mjnwlc,Negative Branch + No Branch + Delay Slot Checkl
+BLTZ3,BLTZ,mjnwlc,Jump Out of Memory Negative
+BLTZ4,BLTZ,mjnwlc,Jumo Out of Bounds Positive
+BLTZAL1,BLTZAL,mjnwlc,Positive Branch + No Branch + Delay Slot Check + Link Check
+BLTZAL2,BLTZAL,mjnwlc,Negative Branch + No Branch + Delay Slot Check + Link Check
+BLTZAL3,BLTZAL,mjnwlc,Branch Out of Bounds Negative
+BLTZAL4,BLTZAL,mjnwlc,Branch Out of Bounds Positive
+BNE1,BNE,mjnwlc,Positive Branch + Delay Slot Check
+BNE2,BNE,mjnwlc,Negative Branch + No Branch + Delay Slot Check
+BNE3,BNE,mjnwlc,Jump Out of Bounds Negative
+BNE4,BNE,mjnwlc,Jump Out of Bounds Positive
+DIV1,DIV,mjnwlc,(Regular Division) 1967556744/605365266 then LO + HI
+DIV2,DIV,mjnwlc,(Signed Division) -7/-3
+DIV3,DIV,mjnwlc,(Signed Division) -7/3
+DIV4,DIV,mjnwlc,(Signed Division) 7/-3
+DIVU1,DIVU,mjnwlc,(Regular Division) 1967556744/605365266
+DIVU2,DIVU,mjnwlc,(Interpreted Signed Division) -7/-3 
+DIVU3,DIVU,mjnwlc,(Interpreted Signed Division) -7/3
+DIVU4,DIVU,mjnwlc,(Interpreted Signed Division) 7/-3
+GETCHAR1,GETCHAR,mjnwlc,getchar X
+GETCHAR2,GETCHAR,mjnwlc,getchar2 Z
+GETCHAR3,GETCHAR,mjnwlc,getchar3 eof
+GETCHAR4,GETCHAR,mjnwlc,getchar4 W
 LUI1,LUI,mjnwlc,0x0
 LUI2,LUI,mjnwlc,0xFFFF
 OR1,OR,mjnwlc,0x0 | 0x0
@@ -106,53 +149,3 @@ XOR3,XOR,mjnwlc,0xFFFFFFFF ^ 0xFFFF
 XORI1,XORI,mjnwlc,0x0 ^ 0x0
 XORI2,XORI,mjnwlc,0xAAAAAAAA & 0x5555
 XORI3,XORI,mjnwlc,0xFFFFFFFF ^ 0xFFFF
-BEQ1,BEQ,mjnwlc,Positive Branch with Delay Slot Check
-BEQ2,BEQ,mjnwlc,Negative Branch followed by No Branch with Delay Slot Check
-BEQ3,BEQ,mjnwlc,Branch Out of Bounds (Negative)
-BEQ4,BEQ,mjnwlc,Branch out of bounds (Positive)
-BNE1,BNE,mjnwlc,Positive Branch + Delay Slot Check
-BNE2,BNE,mjnwlc,Negative Branch + No Branch + Delay Slot Check
-BNE3,BNE,mjnwlc,Jump Out of Bounds Negative
-BNE4,BNE,mjnwlc,Jump Out of Bounds Positive
-BGEZ2,BGEZ,mjnwlc,Negative Branch (GZ) + Negative Branch (EZ) + No Branch + Delay Slot Check
-BGEZ3,BGEZ,mjnwlc,Jump Out of Bounds Negative
-BGEZ4,BGEZ,mjnwlc,Jump Out of Bounds Positive
-BGEZ1,BGEZ,mjnwlc,Positive Branch (GZ) + Positive Branch (EZ) + Delay Slot Check
-BGEZAL1,BGEZAL,mjnwlc,Positive Branch (GZ) + Positive Branch (EZ) + Delay Slot Check + Link Check
-BGEZAL2,BGEZAL,mjnwlc,Negative Branch (GZ) + Negative Branch (EZ) + No Branch + Delay Slot Check + Link Check
-BGEZAL3,BGEZAL,mjnwlc,Jump Out of Bounds Negative
-BGEZAL4,BGEZAL,mjnwlc,Jump Out of Bounds Positive
-BGTZ1,BGTZ,mjnwlc,Negative Branch + No Branch + Delay Slot Check
-BGTZ2,BGTZ,mjnwlc,Positive Branch + No Branch + Delay Slot Check
-BGTZ3,BGTZ,mjnwlc,Jump Out of Bounds Negative
-BGTZ4,BGTZ,mjnwlc,Jump Out of Bounds Positive
-BLEZ1,BLEZ,mjnwlc,Positive Branch (LZ) + Positive Branch (EZ) + Delay Slot Check
-BLEZ2,BLEZ,mjnwlc,Negative Branch (LZ) + Negative Branch (EZ) + No Branch + Delay Slot Check
-BLEZ3,BLEZ,mjnwlc,Jump Out of Bounds Negative
-BLTZ4,BLTZ,mjnwlc,Jumo Out of Bounds Positive
-BLTZ3,BLTZ,mjnwlc,Jump Out of Memory Negative
-BLTZAL3,BLTZAL,mjnwlc,Branch Out of Bounds Negative
-BLTZAL4,BLTZAL,mjnwlc,Branch Out of Bounds Positive
-BLTZ1,BLTZ,mjnwlc,Positive Branch + No Branch + Delay Slot Check
-BLTZ2,BLTZ,mjnwlc,Negative Branch + No Branch + Delay Slot Checkl
-BLTZAL1,BLTZAL,mjnwlc,Positive Branch + No Branch + Delay Slot Check + Link Check
-BLTZAL2,BLTZAL,mjnwlc,Negative Branch + No Branch + Delay Slot Check + Link Check
-DIV1,DIV,mjnwlc,(Regular Division) 1967556744/605365266 then LO + HI
-DIV2,DIV,mjnwlc,(Signed Division) -7/-3
-DIV3,DIV,mjnwlc,(Signed Division) -7/3
-DIV4,DIV,mjnwlc,(Signed Division) 7/-3
-DIVU1,DIVU,mjnwlc,(Regular Division) 1967556744/605365266
-DIVU2,DIVU,mjnwlc,(Interpreted Signed Division) -7/-3 
-DIVU3,DIVU,mjnwlc,(Interpreted Signed Division) -7/3
-DIVU4,DIVU,mjnwlc,(Interpreted Signed Division) 7/-3
-GETCHAR1,GETCHAR,mjnwlc,getchar X
-GETCHAR2,GETCHAR,mjnwlc,getchar2 Z
-GETCHAR3,GETCHAR,mjnwlc,getchar3 eof
-GETCHAR4,GETCHAR,mjnwlc,getchar4 W
-PUTCHAR1,PUTCHAR,mjnwlc,putchar XXXXX
-PUTCHAR2,PUTCHAR,mjnwlc,putchar unaligned
-PUTCHAR3,PUTCHAR,mjnwlc,putchar sb XXXXX
-LB1,LB,mjnwlc,LB -1
-LBU1,LBU,mjnwlc,LBU -1
-LWLLWR1,LWLLWR,mjnwlc,LWL LWR FFFF8001
-LWLLWR2,LWLLWR,mjnwlc,LWL LWR FF800101
