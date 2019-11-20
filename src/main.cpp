@@ -45,10 +45,10 @@ int main(int argc, char** argv){
     }
 
     file.seekg(0, file.end);
-    int lengthofbin = file.tellg();
+    int binlen = file.tellg();
     file.seekg(0, file.beg);
 
-    for(int i=0; i<lengthofbin; i++){
+    for(int i=0; i<binlen; i++){
         try{
             file.read((char *) (&n), sizeof(n));
 
