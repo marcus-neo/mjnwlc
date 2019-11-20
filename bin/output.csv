@@ -14,3 +14,14 @@ BGEZAL2, BGEZAL, Passed, mjnwlc, Negative Branch (GZ) + Negative Branch (EZ) + N
 BGEZAL3, BGEZAL, Passed, mjnwlc, Reg31 is in delay slot
 BLTZAL3, BLTZAL, Passed, mjnwlc, When R31 is in delay slot
 HILO1, HILO, Passed, mjnwlc, "Test MTHI, MTLO, MFHI, MFLO"
+ADD1, ADD, Passed, mjnwlc, asfsa
+ADD2, ADD, Failed, mjnwlc, sdfgsdg
+ADD3, ADD, Passed, mjnwlc, asfa
+ADD4, ADD, Passed, mjnwlc, asfasf
+ADD5, ADD, Passed, mjnwlc, asfsaf
+ADD4, ADD, Passed, mjnwlc, asf
+ADD6, ADD, Passed, mjnwlc, dzgsg
+ADD7, ADD, Passed, mjnwlc, asdfasf
+ADDU1, ADDU, Passed, mjnwlc, asfasf
+ADDU2, ADDU, Passed, mjnwlc, sdgsdg
+ADDU3, ADDU, Passed, mjnwlc, sdgsd
