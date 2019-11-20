@@ -25,14 +25,14 @@ unsigned int RAM::pullfromMemory(unsigned int& ProgCount){
         return 1;
     }
 
-    try{
+    /* try{
         if(ProgCount < ADDR_INSTR_OFFSET || ProgCount > (ADDR_INSTR_OFFSET + offset)){
             throw "Accessing out of bounds memory!";
         }
     } catch(const char* msg){
         cerr << msg << endl;
         exit(-11);
-    }
+    } */
 
     unsigned int addr = ProgCount - ADDR_INSTR_OFFSET;
 
