@@ -6,7 +6,7 @@ using namespace std;
 
 void j(unsigned int address){
     delayins();
-    PC.ProgCount = (PC.ProgCount & 0xFC000000) | (address << 2);
+    PC.ProgCount = ((PC.ProgCount & 0xFC000000) | (address << 2));
 }
 
 void jal(unsigned int address){
