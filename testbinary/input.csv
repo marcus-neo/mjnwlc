@@ -1,3 +1,4 @@
 ADD1,ADD,mjnwlc,(normal case) 349756+ 2387468
 J1,J,mjnwlc,Insane Jumps
 J2,J,mjnwlc,Small Jump
+JALR1,JALR,mjnwlc,"JALR 0, Check Delay Slot, Check Link Register When rd not 0"

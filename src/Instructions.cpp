@@ -118,7 +118,6 @@ void insexecute(int instype, unsigned short decoded1, unsigned short decoded2, u
             return;
 
         case 30:
-            cout << "next decoded3 is " << decoded3 << endl;
             j(decoded3);
             return;
 
