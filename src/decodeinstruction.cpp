@@ -169,7 +169,10 @@ int decodeinstruction(unsigned int bin, unsigned short& decoded1, unsigned short
         }
     }
     else if (opcode == 2 || opcode == 3){
-        unsigned int decoded3 = bin & 0x03ffff;
+        unsigned int address;
+        address = bin & 0x3fffff;
+
+        decoded3 = address;
         switch(opcode){
             case 2:
                 return 30;
