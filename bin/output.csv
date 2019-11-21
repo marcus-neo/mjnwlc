@@ -9,3 +9,10 @@ GETCHAR2, GETCHAR, Passed, mjnwlc, Getchar unaligned LH
 GETCHAR3, GETCHAR, Passed, mjnwlc, Getchar Unaligned LHU
 GETCHAR4, GETCHAR, Passed, mjnwlc, Getchar Unaligned LB
 GETCHAR5, GETCHAR, Passed, mjnwlc, Getchar Unaligned LBU
+MULT4, MULT, Passed, mjnwlc, "(Signed) 0XACEDCODE * 0X23, ADDU HI + LO"
+MULT4, MULT, Passed, mjnwlc, asfsa
+MULT4, MULT, Passed, mjnwlc, asf
+MULTU1, MULTU, Passed, mjnwlc, "(Unsigned) 0x7FFFFFFF * 0x31415926, HI + LO"
+MULTU1, MULTU, Passed, mjnwlc, asfsf
+MULTU2, MULTU, Passed, mjnwlc, "(Interpreted Signed) 0xFACEBAFF * 0xDADDB0DD, ADDU HI + LO"
+MULTU3, MULTU, Failed, mjnwlc, "(Interpreted Signed) 14285 * -7142, ADDU HI + LO"

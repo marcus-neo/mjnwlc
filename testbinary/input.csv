@@ -9,3 +9,10 @@ GETCHAR2,GETCHAR,mjnwlc,Getchar unaligned LH
 GETCHAR3,GETCHAR,mjnwlc,Getchar Unaligned LHU
 GETCHAR4,GETCHAR,mjnwlc,Getchar Unaligned LB
 GETCHAR5,GETCHAR,mjnwlc,Getchar Unaligned LBU
+MULT4,MULT,mjnwlc,"(Signed) 0XACEDCODE * 0X23, ADDU HI + LO"
+MULT4,MULT,mjnwlc,asfsa
+MULT4,MULT,mjnwlc,asf
+MULTU1,MULTU,mjnwlc,"(Unsigned) 0x7FFFFFFF * 0x31415926, HI + LO"
+MULTU1,MULTU,mjnwlc,asfsf
+MULTU2,MULTU,mjnwlc,"(Interpreted Signed) 0xFACEBAFF * 0xDADDB0DD, ADDU HI + LO"
+MULTU3,MULTU,mjnwlc,"(Interpreted Signed) 14285 * -7142, ADDU HI + LO"
