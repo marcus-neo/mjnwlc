@@ -140,7 +140,6 @@ void mult(unsigned short rs, unsigned short rt){
 void multu(unsigned short rs, unsigned short rt){
     unsigned long xs = (unsigned)reg.readRegister(rs);
     unsigned long xt = (unsigned)reg.readRegister(rt);
-
     long product = xs * xt;
     reg.writeRegister(32, (product & 0xFFFFFFFF00000000) >> 32);
     reg.writeRegister(33, (product & 0xFFFFFFFF));

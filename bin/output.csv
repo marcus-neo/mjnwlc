@@ -15,4 +15,13 @@ MULT4, MULT, Passed, mjnwlc, asf
 MULTU1, MULTU, Passed, mjnwlc, "(Unsigned) 0x7FFFFFFF * 0x31415926, HI + LO"
 MULTU1, MULTU, Passed, mjnwlc, asfsf
 MULTU2, MULTU, Passed, mjnwlc, "(Interpreted Signed) 0xFACEBAFF * 0xDADDB0DD, ADDU HI + LO"
-MULTU3, MULTU, Failed, mjnwlc, "(Interpreted Signed) 14285 * -7142, ADDU HI + LO"
+MULTU3, MULTU, Passed, mjnwlc, "(Interpreted Signed) 14285 * -7142, ADDU HI + LO"
+MULTU3, MULTU, Passed, mjnwlc, asfsaf
+MULT3, MULT, Passed, mjnwlc, ASFASF
+MULT3, MULT, Passed, mjnwlc, asfasf
+MULTU3, MULTU, Passed, mjnwlc, asfasf
+MULTU4, MULTU, Passed, mjnwlc, "(Interpreted Signed) 0xACEDC0DE * 0X23, ADDU HI + LO"
+LB1, LB, Passed, mjnwlc, Store and load 0xCD
+LB2, LB, Passed, mjnwlc, LB out of bounds
+LBU1, LBU, Passed, mjnwlc, Store and load 0xCD
+LBU2, LBU, Failed, mjnwlc, LBU Out of Bounds
