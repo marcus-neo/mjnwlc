@@ -32,10 +32,10 @@ do
 	cp $i bin/test/temp.bin;
 
 	if [ -z "$1" ] ; then
-		printf "%s\n" "ABCDEFG" "H" | ./bin/mips_simulator;
+		printf "%s\n" "ABCDEFG" "H" | ./bin/mips_simulator bin/test/temp.bin;
 	else
 		if [ -f "$1" ] ; then
-			./$1;
+			./$1 bin/test/temp.bin;
 		else
 			echo " ";
 			echo "ERROR!";
@@ -49,7 +49,7 @@ do
 	if [[ "$RETCODE" == "$OUTPUT" ]] ; then
 		STATUS="Passed";
 	else
-		STATUS="Failed"
+		STATUS="Failed Returned $RETCODE instead of expected $OUTPUT";
 	fi
 	rm bin/test/temp.bin;
 	echo -e "$field1\t" "$field2\t" "$STATUS\t" "$field3\t" "$field4"

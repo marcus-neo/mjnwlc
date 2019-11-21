@@ -119,48 +119,56 @@ unsigned int RAM::getfromDataMem(unsigned int addr, int num){
 
     try{
         if((addr < ADDR_DATA_OFFSET) || (addr >= (ADDR_DATA_OFFSET + ADDR_DATA_LENGTH))){
-            throw "Accessing out of bounds memory!";
+            if((addr < ADDR_INSTR_OFFSET) || (addr >= (ADDR_INSTR_OFFSET + ADDR_INSTR_LENGTH))){
+                throw "Accessing out of bounds memory!";
+            }
         }
     } catch(const char* msg){
         cerr << msg << endl;
         exit(-11);
     }
 
-    unsigned int index = addr - ADDR_DATA_OFFSET;
+    if((addr & 0x10000000) > 0){
 
-    if(num == 0){
-        data = datamem[index];
     }
 
-    else if(num == 1){
-        try{
-            if(addr%2 == 0){
-                data = (datamem[index] << 8) + datamem[index+1];
-            }
+    else if((addr & 0x30000000) > 0){
+        unsigned int index = addr - ADDR_DATA_OFFSET;
 
-            else{
-                throw "Invalid address!";
-            }
-        } catch(const char* msg){
-            cerr << msg << endl;
-            exit(-11);
+        if(num == 0){
+            data = datamem[index];
         }
-    }
 
-    else if(num == 2){
-        try{
-            if(addr%4 == 0){
-                data = ((datamem[index] << 8) + datamem[index+1]) << 8;
-                data = (data + datamem[index+2]) << 8;
-                data = data + datamem[index+3];
-            }
+        else if(num == 1){
+            try{
+                if(addr%2 == 0){
+                    data = (datamem[index] << 8) + datamem[index+1];
+                }
 
-            else{
-                throw "Invalid address!";
+                else{
+                    throw "Invalid address!";
+                }
+            } catch(const char* msg){
+                cerr << msg << endl;
+                exit(-11);
             }
-        } catch(const char* msg){
-            cerr << msg << endl;
-            exit(-11);
+        }
+
+        else if(num == 2){
+            try{
+                if(addr%4 == 0){
+                    data = ((datamem[index] << 8) + datamem[index+1]) << 8;
+                    data = (data + datamem[index+2]) << 8;
+                    data = data + datamem[index+3];
+                }
+
+                else{
+                    throw "Invalid address!";
+                }
+            } catch(const char* msg){
+                cerr << msg << endl;
+                exit(-11);
+            }
         }
     }
 
