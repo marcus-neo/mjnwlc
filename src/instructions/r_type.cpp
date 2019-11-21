@@ -62,8 +62,9 @@ void srav(unsigned short& rd, unsigned short rt, unsigned short rs){
 void jr(unsigned short rs){
     try{
         if((reg.readRegister(rs)%4 == 0 && reg.readRegister(rs) >= 0x10000000 && reg.readRegister(rs) < r.get_addr()) || reg.readRegister(rs) == 0){
+            unsigned int nPC = reg.readRegister(rs);
             delayins();
-            PC.ProgCount = reg.readRegister(rs);
+            PC.ProgCount = nPC;
         }
 
         else{
@@ -83,8 +84,9 @@ void jalr(unsigned short& rd, unsigned short rs){
     try{
         if((reg.readRegister(rs)%4 == 0 && reg.readRegister(rs) >= 0x10000000 && reg.readRegister(rs) < r.get_addr()) || reg.readRegister(rs) == 0){
             reg.writeRegister(rd, PC.ProgCount+8);
+            unsigned int nPC = reg.readRegister(rs);
             delayins();
-            PC.ProgCount = reg.readRegister(rs);
+            PC.ProgCount = nPC;
         }
 
         else{
