@@ -215,17 +215,14 @@ void lui(unsigned short rt, unsigned short imm){
 void lb(unsigned short rt, unsigned short rs, unsigned short imm){
     int byte, ximm=imm;
 
-    cout << "rs " << reg.readRegister(rs) << endl;
 
     if((imm & 0x8000) > 0){
         ximm = ximm | 0xFFFF0000;
     }
 
-    cout << reg.readRegister(rs)+ximm << endl;
 
     if(reg.readRegister(rs)+ximm == 0x30000000 || reg.readRegister(rs)+ximm == 0x30000001 || reg.readRegister(rs)+ximm == 0x30000002){
         reg.writeRegister(rt, r.getchar(0));
-        cout << "lb" << endl;
         return;
     }
 
@@ -262,7 +259,6 @@ void lh(unsigned short rt, unsigned short rs, unsigned short imm){
 
     if(reg.readRegister(rs)+ximm == 0x30000000){
         reg.writeRegister(rt, r.getchar(0));
-        cout << "lh" << endl;
         return;
     }
 
@@ -300,7 +296,6 @@ void lbu(unsigned short rt, unsigned short rs, unsigned short imm){
 
     if(reg.readRegister(rs)+ximm == 0x30000000 || reg.readRegister(rs)+ximm == 0x30000001 || reg.readRegister(rs)+ximm == 0x30000002){
         reg.writeRegister(rt, r.getchar(0));
-        cout << "lbu" << endl;
         return;
     }
 
@@ -334,7 +329,6 @@ void lhu(unsigned short rt, unsigned short rs, unsigned short imm){
 
     if(reg.readRegister(rs)+ximm == 0x30000000){
         reg.writeRegister(rt, r.getchar(0));
-        cout << "lhu" << endl;
         return;
     }
 
