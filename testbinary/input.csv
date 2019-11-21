@@ -16,3 +16,12 @@ MULTU1,MULTU,mjnwlc,"(Unsigned) 0x7FFFFFFF * 0x31415926, HI + LO"
 MULTU1,MULTU,mjnwlc,asfsf
 MULTU2,MULTU,mjnwlc,"(Interpreted Signed) 0xFACEBAFF * 0xDADDB0DD, ADDU HI + LO"
 MULTU3,MULTU,mjnwlc,"(Interpreted Signed) 14285 * -7142, ADDU HI + LO"
+MULTU3,MULTU,mjnwlc,asfsaf
+MULT3,MULT,mjnwlc,ASFASF
+MULT3,MULT,mjnwlc,asfasf
+MULTU3,MULTU,mjnwlc,asfasf
+MULTU4,MULTU,mjnwlc,"(Interpreted Signed) 0xACEDC0DE * 0X23, ADDU HI + LO"
+LB1,LB,mjnwlc,Store and load 0xCD
+LB2,LB,mjnwlc,LB out of bounds
+LBU1,LBU,mjnwlc,Store and load 0xCD
+LBU2,LBU,mjnwlc,LBU Out of Bounds
