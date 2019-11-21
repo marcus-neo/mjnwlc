@@ -121,7 +121,7 @@ OR3,OR,mjnwlc,0x0FFFFFFF | 0x0FFFFFFF
 ORI1,ORI,mjnwlc,0x0 | 0x0
 ORI2,ORI,mjnwlc,0xAAAAAAAA | 0x5555
 ORI3,ORI,mjnwlc,0x0FFFFFFF | 0xFFFF
-PUTC1,PUTC,mjnwlc,Putchar aligned & unaligned X NULL X NULL X
+PUTC1,PUTC,mjnwlc,Putchar XXX
 REG1,REG,mjnwlc,Reading and Writing Registers
 SB1,SB,mjnwlc,Store and load CD (-51)
 SB2,SB,mjnwlc,SB out of bounds
@@ -200,5 +200,3 @@ XOR3,XOR,mjnwlc,0xFFFFFFFF ^ 0xFFFF
 XORI1,XORI,mjnwlc,0x0 ^ 0x0
 XORI2,XORI,mjnwlc,0xAAAAAAAA & 0x5555
 XORI3,XORI,mjnwlc,0xFFFFFFFF ^ 0xFFFF
-PUTCHAR2,PUTCHAR,mjnwlc,"Putchar aligned & unaligned, X NULL X NULL X"
-PUTC2,PUTC,mjnwlc,"Putchar aligned & unaligned, X NULL X NULL X"

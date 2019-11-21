@@ -6,14 +6,10 @@ if [ -f bin/output.csv ] ; then
 	rm bin/output.csv;
 fi
 
-if [ -f bin/tempcout ] ; then
-	rm bin/tempcout;
-fi
-
 [ ! -f $INPUT ] && { echo "$INPUT file not found!"; exit 99; }
 while read field1 field2 field3 field4 
 do
-	#dos2unix testbinary/testanswer/$field1.txt testbinary/output/$field1"output.txt";
+	dos2unix testbinary/testanswer/$field1.txt testbinary/output/$field1"output.txt";
 	i=testbinary/testbench/$field1.bin
 	j=testbinary/testanswer/$field1.txt
 
@@ -35,13 +31,14 @@ do
 	cp $i bin/test/temp.bin;
 	
 	if [ -z "$1" ] ; then
-		(printf "%s\n" "ABCDEFG" "H" | ./bin/mips_simulator bin/test/temp.bin)>bin/tempcout;
-		RETCODE=$?
+		printf "%s\n" "ABCDEFG" "H" | ./bin/mips_simulator bin/test/temp.bin;
+		1>STDOUT;
+		echo $STDOUT;
 	else
 		if [ -f "$1" ] ; then
-			(printf "%s" "ABCDEFG" "H" | ./$1 bin/test/temp.bin)>bin/tempcout;
-			RETCODE=$?
-		else
+			printf "%s" "ABCDEFG" "H" | ./$1 bin/test/temp.bin;
+			
+else
 			echo " ";
 			echo "ERROR!";
 			echo "The file $1 does not exist!";
@@ -49,9 +46,12 @@ do
 			exit 99;
 		fi
 	fi
-	STDOUT=$(<bin/tempcout);
-	rm bin/tempcout
+	RETCODE=$?
 	ACOUT=$(<testbinary/output/$field1"output.txt")
+	echo " ";
+	echo "Stdout is "$STDOUT;
+	echo "Acout is "$ACOUT;
+
 	if [[ "$RETCODE" == "$OUTPUT" ]] ; then
 		if [[ "$STDOUT" == "$ACOUT" ]] ; then
 			STATUS="Passed";
