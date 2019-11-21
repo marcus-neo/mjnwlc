@@ -68,11 +68,11 @@ DIVU1, DIVU, Passed, mjnwlc, (Regular Division) 1967556744/605365266
 DIVU2, DIVU, Passed, mjnwlc, (Interpreted Signed Division) -7/-3 
 DIVU3, DIVU, Passed, mjnwlc, (Interpreted Signed Division) -7/3
 DIVU4, DIVU, Passed, mjnwlc, (Interpreted Signed Division) 7/-3
-GETCHAR1, GETCHAR, Passed, mjnwlc, "Getchar all loads (A-G, EOF, H)"
-GETCHAR2, GETCHAR, Passed, mjnwlc, Getchar unaligned LH
-GETCHAR3, GETCHAR, Passed, mjnwlc, Getchar unaligned LHU
-GETCHAR4, GETCHAR, Passed, mjnwlc, Getchar unaligned LB
-GETCHAR5, GETCHAR, Passed, mjnwlc, Getchar unaligned LBU
+GETC1, GETC, Passed, mjnwlc, "Getchar all loads (A-G, EOF, H)"
+GETC2, GETC, Passed, mjnwlc, Getchar unaligned LH
+GETC3, GETC, Passed, mjnwlc, Getchar unaligned LHU
+GETC4, GETC, Passed, mjnwlc, Getchar unaligned LB
+GETC5, GETC, Passed, mjnwlc, Getchar unaligned LBU
 J1, J, Passed, mjnwlc, Large Jump
 J2, J, Passed, mjnwlc, Small Jump
 JAL1, JAL, Passed, mjnwlc, Large Jump
@@ -116,7 +116,7 @@ OR3, OR, Passed, mjnwlc, 0x0FFFFFFF | 0x0FFFFFFF
 ORI1, ORI, Passed, mjnwlc, 0x0 | 0x0
 ORI2, ORI, Passed, mjnwlc, 0xAAAAAAAA | 0x5555
 ORI3, ORI, Passed, mjnwlc, 0x0FFFFFFF | 0xFFFF
-PUTCHAR1, PUTCHAR, Passed, mjnwlc, "Putchar aligned & unaligned, X NULL X NULL X"
+PUTC1, PUTC, Passed, mjnwlc, "Putchar aligned & unaligned, X NULL X NULL X"
 SB1, SB, Passed, mjnwlc, Store and load CD (-51)
 SB2, SB, Passed, mjnwlc, SB out of bounds
 SH1, SH, Passed, mjnwlc, Store and load ABCD (-21555)
