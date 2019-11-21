@@ -25,3 +25,7 @@ LB1,LB,mjnwlc,Store and load 0xCD
 LB2,LB,mjnwlc,LB out of bounds
 LBU1,LBU,mjnwlc,Store and load 0xCD
 LBU2,LBU,mjnwlc,LBU Out of Bounds
+LB1,LB,mjnwlc,Store and load 0xCD (-51)
+LB2,LB,mjnwlc,LB out of bounds
+LBU1,LBU,mjnwlc,Store and load CD (205)
+LBU2,LBU,mjnwlc,LBU out of bounds
