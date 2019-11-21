@@ -20,6 +20,7 @@ void simulator::execute(){
         instructiontype = decodeinstruction(binaryinstruction, decoded1, decoded2, decoded3);
         insexecute(instructiontype, decoded1, decoded2, decoded3);
         PC.increment();
+        cout << reg.readRegister(2) << endl;
     }
 
     try{

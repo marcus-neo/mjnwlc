@@ -68,7 +68,7 @@ DIVU1,DIVU,mjnwlc,(Regular Division) 1967556744/605365266
 DIVU2,DIVU,mjnwlc,(Interpreted Signed Division) -7/-3 
 DIVU3,DIVU,mjnwlc,(Interpreted Signed Division) -7/3
 DIVU4,DIVU,mjnwlc,(Interpreted Signed Division) 7/-3
-GETC1,GETC,mjnwlc,"Getchar all loads (A-G, EOF, H)"
+GETC1,GETC,mjnwlc,Getchar all loads (A-G EOF H)
 GETC2,GETC,mjnwlc,Getchar unaligned LH
 GETC3,GETC,mjnwlc,Getchar unaligned LHU
 GETC4,GETC,mjnwlc,Getchar unaligned LB
@@ -77,10 +77,10 @@ J1,J,mjnwlc,Large Jump
 J2,J,mjnwlc,Small Jump
 JAL1,JAL,mjnwlc,Large Jump
 JAL2,JAL,mjnwlc,Small Jump
-JALR1,JALR,mjnwlc,"JALR 0, Store in R6, Settle Delay Slot"
-JALR2,JALR,mjnwlc,"JALR R1, R1 = 0x10000010, Default Store in 31"
-JR1,JR,mjnwlc,"JR 0, Settle Delay Slot"
-JR2,JR,mjnwlc,"JR R1, R1 = 0x10000010, Delay Slot Check"
+JALR1,JALR,mjnwlc,JALR 0 Store in R6 Settle Delay Slot
+JALR2,JALR,mjnwlc,JALR R1 R1 = 0x10000010 Default Store in 31
+JR1,JR,mjnwlc,JR 0 Settle Delay Slot
+JR2,JR,mjnwlc,JR R1 R1 = 0x10000010 Delay Slot Check
 LB1,LB,mjnwlc,Store and load 0xCD (-51)
 LB2,LB,mjnwlc,LB out of bounds
 LBU1,LBU,mjnwlc,Store and load CD (205)
@@ -102,21 +102,21 @@ LWLLWR2,LWLLWR,mjnwlc,Load bytes 1-4
 LWLLWR3,LWLLWR,mjnwlc,Load bytes 2-5
 LWLLWR4,LWLLWR,mjnwlc,Load bytes 3-6
 LWR1,LWR,mjnwlc,LWR out of bounds
-MULT1,MULT,mjnwlc,"(Unsigned) 0x7FFFFFFF * 0x31415926, ADDU HI + LO"
-MULT2,MULT,mjnwlc,"(Signed) 0xFACEBAFF * 0XDADDB0DD, ADDU HI + LO"
-MULT3,MULT,mjnwlc,"(Signed) 14285 * -7142, ADDU HI + LO"
-MULT4,MULT,mjnwlc,"(Signed) 0XACEDCODE * 0X23, ADDU HI + LO"
-MULTU1,MULTU,mjnwlc,"(Unsigned) 0x7FFFFFFF * 0x31415926, HI + LO"
-MULTU2,MULTU,mjnwlc,"(Interpreted Signed) 0xFACEBAFF * 0xDADDB0DD, ADDU HI + LO"
-MULTU3,MULTU,mjnwlc,"(Interpreted Signed) 14285 * -7142, ADDU HI + LO"
-MULTU4,MULTU,mjnwlc,"(Interpreted Signed) 0xACEDC0DE * 0X23, ADDU HI + LO"
+MULT1,MULT,mjnwlc,(Unsigned) 0x7FFFFFFF * 0x31415926 ADDU HI + LO
+MULT2,MULT,mjnwlc,(Signed) 0xFACEBAFF * 0XDADDB0DD ADDU HI + LO
+MULT3,MULT,mjnwlc,(Signed) 14285 * -7142 ADDU HI + LO
+MULT4,MULT,mjnwlc,(Signed) 0XACEDCODE * 0X23 ADDU HI + LO
+MULTU1,MULTU,mjnwlc,(Unsigned) 0x7FFFFFFF * 0x31415926 HI + LO
+MULTU2,MULTU,mjnwlc,(Interpreted Signed) 0xFACEBAFF * 0xDADDB0DD ADDU HI + LO
+MULTU3,MULTU,mjnwlc,(Interpreted Signed) 14285 * -7142 ADDU HI + LO
+MULTU4,MULTU,mjnwlc,(Interpreted Signed) 0xACEDC0DE * 0X23 ADDU HI + LO
 OR1,OR,mjnwlc,0x0 | 0x0
 OR2,OR,mjnwlc,0xAAAAAAAA | 0x55555555
 OR3,OR,mjnwlc,0x0FFFFFFF | 0x0FFFFFFF
 ORI1,ORI,mjnwlc,0x0 | 0x0
 ORI2,ORI,mjnwlc,0xAAAAAAAA | 0x5555
 ORI3,ORI,mjnwlc,0x0FFFFFFF | 0xFFFF
-PUTC1,PUTC,mjnwlc,"Putchar aligned & unaligned, X NULL X NULL X"
+PUTC1,PUTC,mjnwlc,Putchar aligned & unaligned X NULL X NULL X
 SB1,SB,mjnwlc,Store and load CD (-51)
 SB2,SB,mjnwlc,SB out of bounds
 SH1,SH,mjnwlc,Store and load ABCD (-21555)
@@ -194,3 +194,4 @@ XOR3,XOR,mjnwlc,0xFFFFFFFF ^ 0xFFFF
 XORI1,XORI,mjnwlc,0x0 ^ 0x0
 XORI2,XORI,mjnwlc,0xAAAAAAAA & 0x5555
 XORI3,XORI,mjnwlc,0xFFFFFFFF ^ 0xFFFF
+REG1,REG,mjnwlc,Reading and Writing Registers
