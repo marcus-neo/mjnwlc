@@ -199,7 +199,7 @@ void add(unsigned short& rd, unsigned short rs, unsigned short rt){
         sum = xs+xt;
 
         if(sum > (unsigned)0x80000000 || sum == 0){
-            cerr << "Error: Arithmetic overflow occurred!" << endl;
+            cerr << "Arithmetic error!" << endl;
             exit(-10);
         }
 

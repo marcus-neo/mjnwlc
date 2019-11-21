@@ -1,22 +1,22 @@
-ADD1, ADD, Passed, mjnwlc, (normal case) 349756+ 2387468
+ADD1, ADD, Passed, mjnwlc, (Normal Case) 349756 + 2387468
 ADD2, ADD, Passed, mjnwlc, 0xFFFFFFFF + 0x2
 ADD3, ADD, Passed, mjnwlc, 0x70000000 + 0x0FFFFFFF
 ADD4, ADD, Passed, mjnwlc, 0x7FFFFFFF + 0x7FFFFFFF
 ADD5, ADD, Passed, mjnwlc, 0x8000000 + 0x1
 ADD6, ADD, Passed, mjnwlc, 0xFFFFFFFF + 0x80000002
 ADD7, ADD, Passed, mjnwlc, 0x8000000 + 0x80000000
-ADDI1, ADDI, Passed, mjnwlc, Normal Case (3586911 + 47812)
+ADDI1, ADDI, Passed, mjnwlc, (Normal Case) 3586911 + 47812
 ADDI2, ADDI, Passed, mjnwlc, 0xFFFFFFFF + 0x2
 ADDI3, ADDI, Passed, mjnwlc, 0x7FFFFFFF + 0x7FFF
 ADDI4, ADDI, Passed, mjnwlc, 0xFFFFFFFF + 0x8000
 ADDI5, ADDI, Passed, mjnwlc, 0x8000000 + 0x8000
-ADDIU1, ADDIU, Passed, mjnwlc, Normal Case (5454435 + 12495)
+ADDIU1, ADDIU, Passed, mjnwlc, (Normal Case) 5454435 + 12495
 ADDIU2, ADDIU, Passed, mjnwlc, 0xFFFFFFFF + 0x2
 ADDIU3, ADDIU, Passed, mjnwlc, 0x7000000 + 0xFFFF
 ADDIU4, ADDIU, Passed, mjnwlc, 0x7FFFFFFF + 0x7FFF
 ADDIU5, ADDIU, Passed, mjnwlc, 0x8000000 + 0x1
 ADDIU6, ADDIU, Passed, mjnwlc, 0XFFFFFFFF + 0xFFFF
-ADDU1, ADDU, Passed, mjnwlc, (normal case) 567812 + 418141
+ADDU1, ADDU, Passed, mjnwlc, (Normal Case) 567812 + 418141
 ADDU2, ADDU, Passed, mjnwlc, 0xFFFFFFFF + 0x2
 ADDU3, ADDU, Passed, mjnwlc, 0x7000000 + 0x0FFFFFFF
 ADDU4, ADDU, Passed, mjnwlc, 0x7FFFFFFF + 0x7FFFFFFF
@@ -51,7 +51,7 @@ BLEZ3, BLEZ, Passed, mjnwlc, Jump Out of Bounds Negative
 BLTZ1, BLTZ, Passed, mjnwlc, Positive Branch + No Branch + Delay Slot Check
 BLTZ2, BLTZ, Passed, mjnwlc, Negative Branch + No Branch + Delay Slot Checkl
 BLTZ3, BLTZ, Passed, mjnwlc, Jump Out of Memory Negative
-BLTZ4, BLTZ, Passed, mjnwlc, Jumo Out of Bounds Positive
+BLTZ4, BLTZ, Passed, mjnwlc, Jump Out of Bounds Positive
 BLTZAL1, BLTZAL, Passed, mjnwlc, Positive Branch + No Branch + Delay Slot Check + Link Check
 BLTZAL2, BLTZAL, Passed, mjnwlc, Negative Branch + No Branch + Delay Slot Check + Link Check
 BLTZAL3, BLTZAL, Passed, mjnwlc, Branch Out of Bounds Negative
@@ -113,7 +113,7 @@ MULT3, MULT, Passed, mjnwlc, (Signed) 14285 * -7142 ADDU HI + LO
 MULT4, MULT, Passed, mjnwlc, (Signed) 0XACEDCODE * 0X23 ADDU HI + LO
 MULTU1, MULTU, Passed, mjnwlc, (Unsigned) 0x7FFFFFFF * 0x31415926 HI + LO
 MULTU2, MULTU, Passed, mjnwlc, (Interpreted Signed) 0xFACEBAFF * 0xDADDB0DD ADDU HI + LO
-MULTU3, MULTU, Passed, mjnwlc, (Interpreted Signed) 14285 * -7142 ADDU HI + LO
+MULTU3, MULTU, Passed, mjnwlc, (Interpreted Signed) 14285 * -7412 ADDU HI + LO
 MULTU4, MULTU, Passed, mjnwlc, (Interpreted Signed) 0xACEDC0DE * 0X23 ADDU HI + LO
 OR1, OR, Passed, mjnwlc, 0x0 | 0x0
 OR2, OR, Passed, mjnwlc, 0xAAAAAAAA | 0x55555555

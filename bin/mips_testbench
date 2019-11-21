@@ -33,9 +33,9 @@ do
 		exit 99;
 	fi
 	cp $i bin/test/temp.bin;
-	
+
 	if [ -z "$1" ] ; then
-		(printf "%s" "ABCDEFG" "H" | ./bin/mips_simulator bin/test/temp.bin)>bin/tempcout;
+		(printf "%s" "ABCDEFG" "H" | ./bin/mips_simulator bin/test/temp.bin)>bin/tempcout 2>bin/errors/$field1"cerr.txt";
 		RETCODE=$?
 	else
 		if [ -f "$1" ] ; then
