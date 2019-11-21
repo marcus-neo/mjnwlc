@@ -482,7 +482,7 @@ void lwr(unsigned short rt, unsigned short rs, unsigned short imm){
 
     unsigned int addr = reg.readRegister(rs) + ximm;
 
-    if(addr == 0x30000000){
+    if(addr == 0x30000003){
         reg.writeRegister(rt, r.getchar(1));
         return;
     }
