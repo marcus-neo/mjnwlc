@@ -233,7 +233,7 @@ void lb(unsigned short rt, unsigned short rs, unsigned short imm){
         reg.writeRegister(rt, r.getchar(1));
         return;
     }
-    cout << "hi" << endl;
+
     try{
         byte = r.getfromDataMem(reg.readRegister(rs)+ximm, 0);
 
