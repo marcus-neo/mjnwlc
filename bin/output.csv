@@ -195,3 +195,6 @@ XORI1, XORI, Passed, mjnwlc, 0x0 ^ 0x0
 XORI2, XORI, Passed, mjnwlc, 0xAAAAAAAA & 0x5555
 XORI3, XORI, Passed, mjnwlc, 0xFFFFFFFF ^ 0xFFFF
 REG1, REG, Passed, mjnwlc, Reading and Writing Registers
+BGEZAL1TEST, BGEZAL1TES, Passed, mjnwlc, BGEZAL1TEST
+SUBTEST3, SUBTEST, Failed, mjnwlc, SUBTEST3
+246, 231

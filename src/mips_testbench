@@ -35,7 +35,7 @@ do
 		printf "%s\n" "ABCDEFG" "H" | ./bin/mips_simulator bin/test/temp.bin;
 	else
 		if [ -f "$1" ] ; then
-			printf "%s\n" "ABCDEFG" "H" | ./$1 bin/test/temp.bin;
+			printf "%s\n\r" "ABCDEFG" "H" | ./$1 bin/test/temp.bin;
 		else
 			echo " ";
 			echo "ERROR!";
