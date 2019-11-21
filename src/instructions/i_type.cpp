@@ -72,6 +72,8 @@ void bltz(unsigned short rs, unsigned short imm){
 }
 
 void bltzal(unsigned short rs, unsigned short imm){
+    reg.writeRegister(31, PC.ProgCount+8);
+    
     if(reg.readRegister(rs) < 0){
         int ximm = imm << 2;
 
@@ -79,7 +81,6 @@ void bltzal(unsigned short rs, unsigned short imm){
             ximm = ximm | 0xFFFE0000;
         }
 
-        reg.writeRegister(31, PC.ProgCount+8);
         delayins();
         PC.ProgCount += ximm;
     }
@@ -98,6 +99,8 @@ void bgez(unsigned short rs, unsigned short imm){
 }
 
 void bgezal(unsigned short rs, unsigned short imm){
+    reg.writeRegister(31, PC.ProgCount+8);
+
     if(reg.readRegister(rs) >= 0){
         int ximm = imm << 2;
 
@@ -105,7 +108,6 @@ void bgezal(unsigned short rs, unsigned short imm){
             ximm = ximm | 0xFFFE0000;
         }
 
-        reg.writeRegister(31, PC.ProgCount+8);
         delayins();
         PC.ProgCount += ximm;
     }
@@ -222,12 +224,12 @@ void lb(unsigned short rt, unsigned short rs, unsigned short imm){
 
 
     if(reg.readRegister(rs)+ximm == 0x30000000 || reg.readRegister(rs)+ximm == 0x30000001 || reg.readRegister(rs)+ximm == 0x30000002){
-        reg.writeRegister(rt, r.getchar(0));
+        reg.writeRegister(rt, r.getc(0));
         return;
     }
 
     else if(reg.readRegister(rs)+ximm == 0x30000003){
-        reg.writeRegister(rt, r.getchar(1));
+        reg.writeRegister(rt, r.getc(1));
         return;
     }
 
@@ -258,12 +260,12 @@ void lh(unsigned short rt, unsigned short rs, unsigned short imm){
     }
 
     if(reg.readRegister(rs)+ximm == 0x30000000){
-        reg.writeRegister(rt, r.getchar(0));
+        reg.writeRegister(rt, r.getc(0));
         return;
     }
 
     else if(reg.readRegister(rs)+ximm == 0x30000002){
-        reg.writeRegister(rt, r.getchar(1));
+        reg.writeRegister(rt, r.getc(1));
         return;
     }
 
@@ -295,12 +297,12 @@ void lbu(unsigned short rt, unsigned short rs, unsigned short imm){
     }
 
     if(reg.readRegister(rs)+ximm == 0x30000000 || reg.readRegister(rs)+ximm == 0x30000001 || reg.readRegister(rs)+ximm == 0x30000002){
-        reg.writeRegister(rt, r.getchar(0));
+        reg.writeRegister(rt, r.getc(0));
         return;
     }
 
     else if(reg.readRegister(rs)+ximm == 0x30000003){
-        reg.writeRegister(rt, r.getchar(1));
+        reg.writeRegister(rt, r.getc(1));
         return;
     }
 
@@ -328,12 +330,12 @@ void lhu(unsigned short rt, unsigned short rs, unsigned short imm){
     }
 
     if(reg.readRegister(rs)+ximm == 0x30000000){
-        reg.writeRegister(rt, r.getchar(0));
+        reg.writeRegister(rt, r.getc(0));
         return;
     }
 
     else if(reg.readRegister(rs)+ximm == 0x30000002){
-        reg.writeRegister(rt, r.getchar(1));
+        reg.writeRegister(rt, r.getc(1));
         return;
     }
 
@@ -363,14 +365,14 @@ void sb(unsigned short rt, unsigned short rs, unsigned short imm){
 
     if(reg.readRegister(rs)+ximm >= 0x30000004 && reg.readRegister(rs)+ximm <= 0x30000006){
         char x = 0;
-        r.putchar(0, x);
+        r.putc(0, x);
 
         return;
     }
 
     else if(reg.readRegister(rs)+ximm == 0x30000007){
         char x = reg.readRegister(rt) & 0xFF;
-        r.putchar(1, x);
+        r.putc(1, x);
 
         return;
     }
@@ -388,14 +390,14 @@ void sh(unsigned short rt, unsigned short rs, unsigned short imm){
 
     if(reg.readRegister(rs)+ximm == 0x30000004){
         char x = 0;
-        r.putchar(0, x);
+        r.putc(0, x);
 
         return;
     }
 
     else if(reg.readRegister(rs)+ximm == 0x30000006){
         char x = reg.readRegister(rt) & 0xFF;
-        r.putchar(1, x);
+        r.putc(1, x);
 
         return;
     }
@@ -412,7 +414,7 @@ void sw(unsigned short rt, unsigned short rs, unsigned short imm){
 
     if(reg.readRegister(rs)+ximm == 0x30000004){
         char x = reg.readRegister(rt) & 0xFF;
-        r.putchar(1, x);
+        r.putc(1, x);
 
         return;
     }
@@ -430,7 +432,7 @@ void lw(unsigned short rt, unsigned short rs, unsigned short imm){
     }
 
     if(reg.readRegister(rs)+ximm == 0x30000000){
-        reg.writeRegister(rt, r.getchar(1));
+        reg.writeRegister(rt, r.getc(1));
         return;
     }
 
@@ -447,7 +449,7 @@ void lwl(unsigned short rt, unsigned short rs, unsigned short imm){
     unsigned int addr = reg.readRegister(rs) + ximm;
 
     if(addr == 0x30000000){
-        reg.writeRegister(rt, r.getchar(1));
+        reg.writeRegister(rt, r.getc(1));
         return;
     }
 
@@ -483,7 +485,7 @@ void lwr(unsigned short rt, unsigned short rs, unsigned short imm){
     unsigned int addr = reg.readRegister(rs) + ximm;
 
     if(addr == 0x30000003){
-        reg.writeRegister(rt, r.getchar(1));
+        reg.writeRegister(rt, r.getc(1));
         return;
     }
 

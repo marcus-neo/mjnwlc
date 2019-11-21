@@ -1,5 +1,6 @@
 #include "include/memory.hpp"
 #include <iostream>
+#include <cstdlib>
 
 void RAM::loadtoMemory(unsigned char binstr){
     unsigned int addr = ADDR_INSTR_OFFSET + offset;
@@ -26,7 +27,7 @@ unsigned int RAM::pullfromMemory(unsigned int& ProgCount){
     }
 
     try{
-        if(ProgCount < ADDR_INSTR_OFFSET || ProgCount > (ADDR_INSTR_OFFSET + ADDR_INSTR_LENGTH)){
+        if(ProgCount < ADDR_INSTR_OFFSET || ProgCount > (ADDR_INSTR_OFFSET + offset + 4)){
             throw "Accessing out of bounds memory!";
         }
     } catch(const char* msg){
@@ -129,7 +130,43 @@ unsigned int RAM::getfromDataMem(unsigned int addr, int num){
     }
 
     if((addr & 0x10000000) > 0){
+        unsigned int index = addr - ADDR_INSTR_OFFSET;
 
+        if(num == 0){
+            data = memory[index];
+        }
+
+        else if(num == 1){
+            try{
+                if(addr%2 == 0){
+                    data = (memory[index] << 8) + memory[index+1];
+                }
+
+                else{
+                    throw "Invalid address!";
+                }
+            } catch(const char* msg){
+                cerr << msg << endl;
+                exit(-11);
+            }
+        }
+
+        else if(num == 2){
+            try{
+                if(addr%4 == 0){
+                    data = ((memory[index] << 8) + memory[index+1]) << 8;
+                    data = (data + memory[index+2]) << 8;
+                    data = data + memory[index+3];
+                }
+
+                else{
+                    throw "Invalid address!";
+                }
+            } catch(const char* msg){
+                cerr << msg << endl;
+                exit(-11);
+            }
+        }
     }
 
     else if((addr & 0x30000000) > 0){
@@ -175,9 +212,30 @@ unsigned int RAM::getfromDataMem(unsigned int addr, int num){
     return data;
 }
 
-int RAM::getchar(int num){
+int RAM::getc(int num){
     if(num == 0){
-        if(line.empty() && eof == 0){
+        int x;
+        
+        try{
+            x = getchar();
+
+            if(cin.fail()){
+                throw "I/O error!";
+            }
+        } catch(const char* msg){
+            cerr << msg << endl;
+            exit(-21);
+        }
+
+        if(x == -1){
+            return -1;
+        }
+
+        else{
+            return 0;
+        }
+
+        /* if(line.empty() && eof == 0){
             try{
                 cin >> line;
 
@@ -205,11 +263,26 @@ int RAM::getchar(int num){
 
         else{
             return 0;
-        }
+        } */
     }
 
     else if(num == 1){
-        if(line.empty() && eof == 0){
+        int x;
+        
+        try{
+            x = getchar();
+
+            if(cin.fail()){
+                throw "I/O error!";
+            }
+        } catch(const char* msg){
+            cerr << msg << endl;
+            exit(-21);
+        }
+
+        return x;
+        
+        /* if(line.empty() && eof == 0){
             string str;
 
             try{
@@ -278,16 +351,16 @@ int RAM::getchar(int num){
             }
 
             return x;
-        }
+        } */
     }
 }
 
-void RAM::putchar(int num, char ch){
+void RAM::putc(int num, char ch){
     if(num == 0){
-        char x = 0;
+        char ch = 0;
 
         try{
-            cout << x << endl;
+            putchar(ch);
 
             if(cout.fail()){
                 throw "I/O error!";
@@ -300,7 +373,7 @@ void RAM::putchar(int num, char ch){
 
     else if(num == 1){
         try{
-            cout << ch << endl;
+            putchar(ch);
 
             if(cout.fail()){
                 throw "I/O error!";

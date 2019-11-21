@@ -25,8 +25,8 @@ class RAM{
         void loadtoDataMem(unsigned int addr, unsigned int data, int num);
         unsigned int getfromDataMem(unsigned int addr, int num);
 
-        int getchar(int num);
-        void putchar(int num, char ch);
+        int getc(int num);
+        void putc(int num, char ch);
 
         string line;
         bool eof = 0;

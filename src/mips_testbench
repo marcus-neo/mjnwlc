@@ -9,10 +9,9 @@ fi
 [ ! -f $INPUT ] && { echo "$INPUT file not found!"; exit 99; }
 while read field1 field2 field3 field4 
 do
-	dos2unix testbinary/testanswer/$field1.txt;
+	dos2unix testbinary/testanswer/$field1.txt testbinary/output/$field1"output.txt";
 	i=testbinary/testbench/$field1.bin
 	j=testbinary/testanswer/$field1.txt
-
 
 	if [ ! -f $i ] ; then
 		echo " ";
@@ -30,12 +29,14 @@ do
 		exit 99;
 	fi
 	cp $i bin/test/temp.bin;
-
+	
 	if [ -z "$1" ] ; then
-		printf "%s\n" "ABCDEFG" "H" | ./bin/mips_simulator bin/test/temp.bin;
+		(printf "%s\n" "ABCDEFG" "H" | ./bin/mips_simulator bin/test/temp.bin)>newfile;
+		RETCODE=$?
 	else
 		if [ -f "$1" ] ; then
-			printf "%s\n\r" "ABCDEFG" "H" | ./$1 bin/test/temp.bin;
+			(printf "%s" "ABCDEFG" "H" | ./$1 bin/test/temp.bin)>bin/newfile;
+			RETCODE=$?
 		else
 			echo " ";
 			echo "ERROR!";
@@ -44,10 +45,19 @@ do
 			exit 99;
 		fi
 	fi
-	RETCODE=$?
+	STDOUT=$(<bin/newfile);
+	rm bin/newfile
+	ACOUT=$(<testbinary/output/$field1"output.txt")
+	echo " ";
+	echo "Stdout is "$STDOUT;
+	echo "Acout is "$ACOUT;
 
 	if [[ "$RETCODE" == "$OUTPUT" ]] ; then
-		STATUS="Passed";
+		if [[ "$STDOUT" == "$ACOUT" ]] ; then
+			STATUS="Passed";
+		else
+			STATUS="Failed";
+		fi
 	else
 		STATUS="Failed";
 	fi
