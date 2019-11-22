@@ -127,7 +127,9 @@ void mult(unsigned short rs, unsigned short rt){
 void multu(unsigned short rs, unsigned short rt){
     unsigned long xs = (unsigned)reg.readRegister(rs);
     unsigned long xt = (unsigned)reg.readRegister(rt);
+
     long product = xs * xt;
+
     reg.writeRegister(32, (product & 0xFFFFFFFF00000000) >> 32);
     reg.writeRegister(33, (product & 0xFFFFFFFF));
 }
@@ -185,25 +187,6 @@ void add(unsigned short& rd, unsigned short rs, unsigned short rt){
     xs = reg.readRegister(rs);
     xt = reg.readRegister(rt);
     sum = xs+xt;
-
-    /*if(((reg.readRegister(rs) & 0x80000000) > 0) && ((reg.readRegister(rt)) & 0x80000000) > 0){
-        xs = -reg.readRegister(rs);
-        xt = -reg.readRegister(rt);
-        sum = xs+xt;
-
-        if(sum > (unsigned)0x80000000 || sum == 0){
-            cerr << "Arithmetic error!" << endl;
-            exit(-10);
-        }
-
-        else{
-            reg.writeRegister(rd, -sum);
-        }
-    }
-
-    else{
-        reg.writeRegister(rd, reg.readRegister(rs) + reg.readRegister(rt));
-    }*/
 
     reg.writeRegister(rd, reg.readRegister(rs) + reg.readRegister(rt));
 

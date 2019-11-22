@@ -13,6 +13,7 @@ void simulator::execute(){
     unsigned short decoded2;
     unsigned int decoded3;
     int instructiontype;
+
     PC.ProgCount = r.ADDR_INSTR_OFFSET;
 
     while(PC.ProgCount != 0){
