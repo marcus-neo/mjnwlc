@@ -190,8 +190,6 @@ void add(unsigned short& rd, unsigned short rs, unsigned short rt){
 
     reg.writeRegister(rd, reg.readRegister(rs) + reg.readRegister(rt));
 
-    cerr << "sum is" << hex << sum << dec << endl;
-
     if(((xs > 0) && (xt > 0) && (sum < 0)) || ((xs < 0) && (xt < 0) && (sum >= 0))){
         cerr << "Arithmetic error!" << endl;
         exit(-10);
