@@ -65,12 +65,10 @@ DIV1, DIV, Passed, mjnwlc, (Regular Division) 1967556744/605365266 then LO + HI
 DIV2, DIV, Passed, mjnwlc, (Signed Division) -7/-3
 DIV3, DIV, Passed, mjnwlc, (Signed Division) -7/3
 DIV4, DIV, Passed, mjnwlc, (Signed Division) 7/-3
-DIV5, DIV, Passed, mjnwlc, Divide by 0
 DIVU1, DIVU, Passed, mjnwlc, (Regular Division) 1967556744/605365266
 DIVU2, DIVU, Passed, mjnwlc, (Interpreted Signed Division) -7/-3 
 DIVU3, DIVU, Passed, mjnwlc, (Interpreted Signed Division) -7/3
 DIVU4, DIVU, Passed, mjnwlc, (Interpreted Signed Division) 7/-3
-DIVU5, DIVU, Passed, mjnwlc, Divide by 0
 GETC1, GETC, Passed, mjnwlc, Getchar all loads (A-G EOF H)
 GETC2, GETC, Passed, mjnwlc, Getchar unaligned LH
 GETC3, GETC, Passed, mjnwlc, Getchar unaligned LHU
