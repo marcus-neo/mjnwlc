@@ -335,7 +335,7 @@ void lhu(unsigned short rt, unsigned short rs, unsigned short imm){
     }
 
     else if(reg.readRegister(rs)+ximm == 0x30000002){
-        reg.writeRegister(rt, 0xFF & r.getc(1));
+        reg.writeRegister(rt, 0xFFFF & r.getc(1));
         return;
     }
 
