@@ -46,7 +46,7 @@ do
 		RETCODE=$?
 	else
 		if [ -f "$1" ] ; then
-			(printf "%s" "ABCDEFG" "H" | ./$1 bin/test/temp.bin)>bin/tempcout;
+			(printf "%s" "ABCDEFG" "H" | ./$1 bin/test/temp.bin)>bin/tempcout 2>bin/errors/$field1"cerr.txt";
 			RETCODE=$?
 		else
 			echo " ";
