@@ -16,6 +16,13 @@ do
 	#dos2unix testbinary/testanswer/$field1.txt testbinary/output/$field1"output.txt";
 	i=testbinary/testbench/$field1.bin
 	j=testbinary/testanswer/$field1.txt
+	k="bin/output/"$field1"output.txt"
+	if [ ! -f $k ] ; then
+		echo " ";
+		echo "ERROR!";
+		echo "bin/output does not contain "$field1"output.txt!";
+		exit 99;
+	fi
 
 	if [ ! -f $i ] ; then
 		echo " ";
@@ -51,7 +58,7 @@ do
 	fi
 	STDOUT=$(<bin/tempcout);
 	rm bin/tempcout
-	ACOUT=$(<testbinary/output/$field1"output.txt")
+	ACOUT=$(<bin/output/$field1"output.txt")
 	if [[ "$RETCODE" == "$OUTPUT" ]] ; then
 		if [[ "$STDOUT" == "$ACOUT" ]] ; then
 			STATUS="Passed";

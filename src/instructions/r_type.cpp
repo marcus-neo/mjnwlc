@@ -117,23 +117,8 @@ void mtlo(unsigned short rs){
 void mult(unsigned short rs, unsigned short rt){
     long xs = reg.readRegister(rs);
     long xt = reg.readRegister(rt);
-    bool s=0, t=0;
-
-    if((reg.readRegister(rs) & 0x80000000) > 0){
-        xs = -reg.readRegister(rs);
-        s=1;
-    }
-
-    if((reg.readRegister(rt) & 0x80000000) > 0){
-        xt = -reg.readRegister(rt);
-        t=1;
-    }
 
     long product = xs * xt;
-
-    if((s ^ t) == 1){
-        product = -product;
-    }
 
     reg.writeRegister(32, (product & 0xFFFFFFFF00000000) >> 32);
     reg.writeRegister(33, product & 0xFFFFFFFF);
@@ -148,52 +133,60 @@ void multu(unsigned short rs, unsigned short rt){
 }
 
 void div(unsigned short rs, unsigned short rt){
-    int xs = reg.readRegister(rs);
-    int xt = reg.readRegister(rt);
-    bool s=0, t=0;
+    if(reg.readRegister(rt) != 0){
+        int xs = reg.readRegister(rs);
+        int xt = reg.readRegister(rt);
+        bool s=0, t=0;
 
-    if((reg.readRegister(rs) & 0x80000000) > 1){
-        xs = -reg.readRegister(rs);
-        s=1;
+        if((reg.readRegister(rs) & 0x80000000) > 1){
+            xs = -reg.readRegister(rs);
+            s=1;
+        }
+
+        if((reg.readRegister(rt) & 0x80000000) > 1){
+            xt = -reg.readRegister(rt);
+            t=1;
+        }
+
+        signed int quotient = xs / xt;
+        signed int remainder = xs % xt;
+
+        if((s & t) == 1){
+            remainder = -remainder;
+        }
+
+        else if(s == 1 && t == 0){
+            quotient = -quotient;
+            remainder = -remainder;
+        }
+
+        else if(s == 0 && t == 1){
+            quotient = -quotient;
+        }
+
+        reg.writeRegister(33, quotient);
+        reg.writeRegister(32, remainder);
     }
-
-    if((reg.readRegister(rt) & 0x80000000) > 1){
-        xt = -reg.readRegister(rt);
-        t=1;
-    }
-
-    signed int quotient = xs / xt;
-    signed int remainder = xs % xt;
-
-    if((s & t) == 1){
-        remainder = -remainder;
-    }
-
-    else if(s == 1 && t == 0){
-        quotient = -quotient;
-        remainder = -remainder;
-    }
-
-    else if(s == 0 && t == 1){
-        quotient = -quotient;
-    }
-
-    reg.writeRegister(33, quotient);
-    reg.writeRegister(32, remainder);
 }
 
 void divu(unsigned short rs, unsigned short rt){
-    unsigned int quotient = (unsigned)reg.readRegister(rs) / (unsigned)reg.readRegister(rt);
-    unsigned int remainder = (unsigned)reg.readRegister(rs) % (unsigned)reg.readRegister(rt);
+    if(reg.readRegister(rt) != 0){
+        unsigned int quotient = (unsigned)reg.readRegister(rs) / (unsigned)reg.readRegister(rt);
+        unsigned int remainder = (unsigned)reg.readRegister(rs) % (unsigned)reg.readRegister(rt);
 
-    reg.writeRegister(33, quotient);
-    reg.writeRegister(32, remainder);
+        reg.writeRegister(33, quotient);
+        reg.writeRegister(32, remainder);
+    }
 }
 
 void add(unsigned short& rd, unsigned short rs, unsigned short rt){
-    int xs, xt, sum;
+    int32_t xs, xt, sum;
 
-    if(((reg.readRegister(rs) & 0x80000000) > 0) && ((reg.readRegister(rt)) & 0x80000000) > 0){
+    xs = reg.readRegister(rs);
+    xt = reg.readRegister(rt);
+    sum = xs+xt;
+
+    /*if(((reg.readRegister(rs) & 0x80000000) > 0) && ((reg.readRegister(rt)) & 0x80000000) > 0){
         xs = -reg.readRegister(rs);
         xt = -reg.readRegister(rt);
         sum = xs+xt;
@@ -210,9 +203,13 @@ void add(unsigned short& rd, unsigned short rs, unsigned short rt){
 
     else{
         reg.writeRegister(rd, reg.readRegister(rs) + reg.readRegister(rt));
-    }
+    }*/
 
-    if(((reg.readRegister(rs) > 0) && (reg.readRegister(rt) > 0) && (reg.readRegister(rd) < 0)) || ((reg.readRegister(rs) < 0) && (reg.readRegister(rt) < 0) && (reg.readRegister(rd) > 0))){
+    reg.writeRegister(rd, reg.readRegister(rs) + reg.readRegister(rt));
+
+    cerr << "sum is" << hex << sum << dec << endl;
+
+    if(((xs > 0) && (xt > 0) && (sum < 0)) || ((xs < 0) && (xt < 0) && (sum >= 0))){
         cerr << "Arithmetic error!" << endl;
         exit(-10);
     }

@@ -5,6 +5,7 @@ ADD4, ADD, Passed, mjnwlc, 0x7FFFFFFF + 0x7FFFFFFF
 ADD5, ADD, Passed, mjnwlc, 0x8000000 + 0x1
 ADD6, ADD, Passed, mjnwlc, 0xFFFFFFFF + 0x80000002
 ADD7, ADD, Passed, mjnwlc, 0x8000000 + 0x80000000
+ADD8, ADD, Passed, mjnwlc, 0x7FFEFFFF + 0x7FFEFFFF
 ADDI1, ADDI, Passed, mjnwlc, (Normal Case) 3586911 + 47812
 ADDI2, ADDI, Passed, mjnwlc, 0xFFFFFFFF + 0x2
 ADDI3, ADDI, Passed, mjnwlc, 0x7FFFFFFF + 0x7FFF
@@ -64,10 +65,12 @@ DIV1, DIV, Passed, mjnwlc, (Regular Division) 1967556744/605365266 then LO + HI
 DIV2, DIV, Passed, mjnwlc, (Signed Division) -7/-3
 DIV3, DIV, Passed, mjnwlc, (Signed Division) -7/3
 DIV4, DIV, Passed, mjnwlc, (Signed Division) 7/-3
+DIV5, DIV, Passed, mjnwlc, Divide by 0
 DIVU1, DIVU, Passed, mjnwlc, (Regular Division) 1967556744/605365266
 DIVU2, DIVU, Passed, mjnwlc, (Interpreted Signed Division) -7/-3 
 DIVU3, DIVU, Passed, mjnwlc, (Interpreted Signed Division) -7/3
 DIVU4, DIVU, Passed, mjnwlc, (Interpreted Signed Division) 7/-3
+DIVU5, DIVU, Passed, mjnwlc, Divide by 0
 GETC1, GETC, Passed, mjnwlc, Getchar all loads (A-G EOF H)
 GETC2, GETC, Passed, mjnwlc, Getchar unaligned LH
 GETC3, GETC, Passed, mjnwlc, Getchar unaligned LHU
@@ -111,6 +114,7 @@ MULT1, MULT, Passed, mjnwlc, (Unsigned) 0x7FFFFFFF * 0x31415926 ADDU HI + LO
 MULT2, MULT, Passed, mjnwlc, (Signed) 0xFACEBAFF * 0XDADDB0DD ADDU HI + LO
 MULT3, MULT, Passed, mjnwlc, (Signed) 14285 * -7142 ADDU HI + LO
 MULT4, MULT, Passed, mjnwlc, (Signed) 0XACEDCODE * 0X23 ADDU HI + LO
+MULT5, MULT, Passed, mjnwlc, (Signed) 0x7FFFFFFF * 0x80000000 SLL HI by 29 bits
 MULTU1, MULTU, Passed, mjnwlc, (Unsigned) 0x7FFFFFFF * 0x31415926 HI + LO
 MULTU2, MULTU, Passed, mjnwlc, (Interpreted Signed) 0xFACEBAFF * 0xDADDB0DD ADDU HI + LO
 MULTU3, MULTU, Passed, mjnwlc, (Interpreted Signed) 14285 * -7412 ADDU HI + LO
