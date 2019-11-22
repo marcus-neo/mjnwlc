@@ -13,7 +13,7 @@ fi
 [ ! -f $INPUT ] && { echo "$INPUT file not found!"; exit 99; }
 while read field1 field2 field3 field4 
 do
-	#dos2unix testbinary/testanswer/$field1.txt testbinary/output/$field1"output.txt";
+	dos2unix -q testbinary/testanswer/$field1.txt testbinary/output/$field1"output.txt";
 	i=testbinary/testbench/$field1.bin
 	j=testbinary/testanswer/$field1.txt
 	k="bin/output/"$field1"output.txt"
