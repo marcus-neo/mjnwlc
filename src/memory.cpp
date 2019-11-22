@@ -215,7 +215,7 @@ unsigned int RAM::getfromDataMem(unsigned int addr, int num){
 int RAM::getc(int num){
     if(num == 0){
         int x;
-        
+
         try{
             x = getchar();
 
@@ -234,41 +234,11 @@ int RAM::getc(int num){
         else{
             return 0;
         }
-
-        /* if(line.empty() && eof == 0){
-            try{
-                cin >> line;
-
-                if(cin.fail()){
-                    throw "I/O error!";
-                }
-            } catch(const char* msg){
-                cerr << msg << endl;
-                exit(-21);
-            }
-
-            if(std::getline(std::cin, line)){
-                return 0;
-            }
-
-            else{
-                return -1;
-            }
-        }
-
-        else if(eof == 1){
-            eof = 0;
-            return -1;
-        }
-
-        else{
-            return 0;
-        } */
     }
 
     else if(num == 1){
         int x;
-        
+
         try{
             x = getchar();
 
@@ -281,77 +251,6 @@ int RAM::getc(int num){
         }
 
         return x;
-        
-        /* if(line.empty() && eof == 0){
-            string str;
-
-            try{
-                cin >> str;
-                line = str;
-
-                if(cin.fail()){
-                    throw "I/O error!";
-                }
-            } catch(const char* msg){
-                cerr << msg << endl;
-                exit(-21);
-            }
-
-            int x;
-
-            if(std::getline(std::cin, str)){
-                try{
-                    x = line[0];
-
-                    if(x > 255 || x < 0){
-                        throw "I/O error! Character not recognised!";
-                    }
-                } catch(const char* msg){
-                    cerr << msg << endl;
-                    exit(-21);
-                }
-
-                line.erase(line.begin());
-
-                if(line.empty()){
-                    eof = 1;
-                }
-
-                return x;
-            }
-
-            else{
-                return -1;
-            }
-        }
-
-        else if(eof == 1){
-            eof = 0;
-            return -1;
-        }
-
-        else{
-            int x;
-
-            try{
-                x = line[0];
-
-                if(x > 255 || x < 0){
-                    throw "I/O error! Character not recognised!";
-                }
-            } catch(const char* msg){
-                cerr << msg << endl;
-                exit(-21);
-            }
-
-            line.erase(line.begin());
-
-            if(line.empty()){
-                eof = 1;
-            }
-
-            return x;
-        } */
     }
 }
 
