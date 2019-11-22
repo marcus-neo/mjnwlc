@@ -1,6 +1,20 @@
 Architecture II Coursework
 ==========================
 
+Additional Notes to User (IMPORTANT!)
+=====================================
+
+When executing testbench, please make sure to have dos2unix installed.
+Failing to do so might lead to errors within the testbench.
+
+To install dos2unix, run this in your command line:
+```
+sudo apt install dos2unix
+```
+
+Specifications
+==============
+
 There are three central aims of this coursework:
 
 - Solidify your understanding of how an instruction
@@ -558,7 +572,3 @@ last year, and very similar to the year before that (barring submission
 dates). Previous students have published their simulators, both as
 demonstrations of their work, and to share a useful product.
 **If you copy code from a simulator in a public repo, then you are at fault, not the person who published it.**
-
-Additional Notes
-================
-
