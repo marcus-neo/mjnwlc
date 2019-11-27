@@ -117,6 +117,7 @@ object-oriented programming, I used OOP to categorize functions better.
 In retrospect, this choice was right. Though the OOP was basic, Wei Loon 
 had little confusion working on the instruction and memory logic, therefore 
 saving us time.
+
 I was responsible for creating the testbench and over two hundred tests. I 
 initially had difficulty implementing the bash script as its syntax was confusing. 
 After much patience and determination, I successfully iterated through binary 
@@ -127,11 +128,33 @@ files and produced output files to match the answer files.
 
 Tools and Infrastructure (e.g. OS, automation, ...)
 ---------------------------------------------------
+Initially, I used visual studio code for the simulator. However, there were 
+constant problems when Wei Loon tried executing it on his MacBook. Hence, I 
+switched to Ubuntu app on Windows to prevent further issues. If we had done 
+that earlier, we would have saved much more time.
+
+I worked on the generation of the testbench and test codes because of my 
+Excel VBA proficiency. Instead of using third-party software, I decided to 
+create my own automation process with VBA. This enabled swift translation 
+from instructions into binaries, which saved loads of time compared to 
+manually creating hundreds of testbenches.
 
 (up to 100 words)
 
 
 Understanding of computer architecture
 --------------------------------------
+By using OOP to simulate each hardware block in the MIPS architecture like 
+the registers, memory and ALU, I learnt about the interactions between these 
+hardware blocks when instructions are called.
+
+By creating my own testbench automation process with Excel VBA, I learnt 
+in-depth about the bit distributions and bit positions of registers codes, 
+op-codes, addresses, immediate and function codes for r-type, i-type and j-type 
+instructions.
+
+Furthermore, with the creation of the tests, I learnt about the importance of 
+delay slots and how they would generate completely different answers for branch 
+and jump tests if not correctly taken into consideration.
 
 (up to 100 words)
