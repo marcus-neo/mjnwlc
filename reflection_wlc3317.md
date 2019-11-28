@@ -1,9 +1,9 @@
 Individual Reflection
 =====================
 
-Imperial Login : XXX
+Imperial Login : wlc3317
 
-Group Name : XXX
+Group Name : Lelolulalil
 
 Guidance
 --------
